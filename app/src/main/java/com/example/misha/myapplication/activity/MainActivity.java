@@ -20,16 +20,12 @@ public class MainActivity extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
       /*  if (!Preferences.getInstance().isHintsOpened()) {
             Intent intent = new Intent(MainActivity.this, StartActivity.class);
             startActivity(intent);
             Preferences.getInstance().setHintsOpened();
         }*/
-
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
-
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 item -> {
