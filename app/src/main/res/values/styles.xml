@@ -1,0 +1,192 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <attr name="cardStyle" format="reference" />
+    <attr name="navBottomStyle" format="reference" />
+    <attr name="tabLayoutStyle" format="reference" />
+    <attr name="timeOneStyle" format="reference" />
+    <attr name="timeTwoStyle" format="reference" />
+    <attr name="typelessonStyle" format="reference" />
+    <attr name="lineSpinnerItemStyle" format="reference" />
+    <attr name="textViewNumberCallStyle" format="reference" />
+    <attr name="floatButton" format="reference" />
+    <attr name="lineColorStyle" format="reference" />
+
+
+    <style name="DarkTheme" parent="@style/Theme.AppCompat">
+        <item name="windowNoTitle">true</item>
+        <item name="toolbarStyle">@style/ToolBarDarkStyle</item>
+        <item name="cardStyle">@style/CardViewDarkStyle</item>
+        <item name="timeOneStyle">@style/TimeOneDarkStyle</item>
+        <item name="timeTwoStyle">@style/TimeTwoDarkStyle</item>
+        <item name="lineSpinnerItemStyle">@style/LineSpinnerItemDarkStyle</item>
+        <item name="typelessonStyle">@style/TypelessonDarkStyle</item>
+        <item name="textViewNumberCallStyle">@style/TextViewNumberCallDarkStyle</item>
+        <item name="tabLayoutStyle">@style/TabLayoutDarkStyle</item>
+        <item name="navBottomStyle">@style/BottomNavigationViewDarkStyle</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/PopupMenuTextAppearanceLarge</item>
+        <item name="android:textColorHint">@color/whiteD3</item>
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorAccent">@color/black38</item>
+        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/black38</item>
+        <item name="android:colorBackground">@color/black38</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="lineColorStyle">@style/DarkLineColorStyle</item>
+    </style>
+
+
+    <style name="LightTheme" parent="@style/Theme.AppCompat.Light">
+        <item name="windowNoTitle">true</item>
+        <item name="toolbarStyle">@style/ToolBarLightStyle</item>
+        <item name="cardStyle">@style/CardViewLightStyle</item>
+        <item name="android:timePickerDialogTheme">@style/TimePickerDialogLightStyle</item>
+        <item name="timeOneStyle">@style/TimeOneLightStyle</item>
+        <item name="timeTwoStyle">@style/TimeTwoLightStyle</item>
+        <item name="typelessonStyle">@style/TypelessonLightStyle</item>
+        <item name="lineSpinnerItemStyle">@style/lineSpinnerItemLightStyle</item>
+        <item name="textViewNumberCallStyle">@style/TextViewNumberCallLightStyle</item>
+        <item name="tabLayoutStyle">@style/TabLayoutLightStyle</item>
+        <item name="navBottomStyle">@style/BottomNavigationLightView</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/PopupMenuTextAppearanceLarge</item>
+        <item name="floatButton">@style/FloatButtonLightStyle</item>
+        <item name="android:textColorHint">@color/greyB3</item>
+        <item name="colorControlActivated">@color/green</item>
+        <item name="colorControlNormal">@color/green</item>
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryDark">@color/black48</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">@color/black20</item>
+        <item name="android:textColorPrimary">@color/black20</item>
+        <item name="lineColorStyle">@style/LightLineColorStyle</item>
+    </style>
+
+    <style name="ToolBarDarkStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/black27</item>
+    </style>
+
+    <style name="DarkLineColorStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">#656565</item>
+    </style>
+
+    <style name="TitleText" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="TabLayoutDarkStyle" parent="Widget.Design.TabLayout">
+        <item name="tabSelectedTextColor">@color/colorAccent</item>
+        <item name="tabTextColor">@android:color/white</item>
+        <item name="tabBackground">@color/black38</item>
+        <item name="tabIndicatorColor">@color/colorAccent</item>
+    </style>
+
+    <style name="TypelessonDarkStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@drawable/rounded_corner_dark</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+
+    <style name="TimeOneDarkStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TimeTwoDarkStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/greyBF</item>
+    </style>
+
+
+    <style name="TextViewNumberCallDarkStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@color/black44</item>
+    </style>
+
+    <style name="LineSpinnerItemDarkStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@color/whiteD3</item>
+    </style>
+
+    <style name="CardViewDarkStyle" parent="CardView">
+        <item name="cardCornerRadius">@dimen/spacing_medium</item>
+        <item name="cardElevation">@dimen/spacing_small</item>
+        <item name="cardBackgroundColor">@color/black56</item>
+    </style>
+
+    <style name="BottomNavigationViewDarkStyle" parent="Widget.Design.BottomNavigationView">
+        <item name="itemBackground">@color/black27</item>
+        <item name="itemIconTint">@drawable/nav_bottom_view_dark</item>
+    </style>
+
+
+    <style name="TypelessonLightStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@drawable/rounded_corner_light</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
+
+
+    <style name="TimePickerDialogLightStyle" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="showTitle">false</item>
+        <item name="colorControlActivated">@color/green</item>
+        <item name="colorAccent">@color/greyBF</item>
+        <item name="android:textColorPrimary">@color/black20</item>
+        <item name="android:textColorSecondary">@color/black56</item>
+    </style>
+
+
+    <style name="FloatButtonLightStyle" parent="Theme.AppCompat.Light">
+        <item name="android:tint">@color/white</item>
+        <item name="android:backgroundTint">@color/greyB3</item>
+    </style>
+
+
+    <style name="TimeOneLightStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black20</item>
+    </style>
+
+    <style name="TimeTwoLightStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/black48</item>
+    </style>
+
+
+    <style name="ToolBarLightStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/whiteEF</item>
+    </style>
+
+    <style name="LightLineColorStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/greyB3</item>
+    </style>
+
+    <style name="TabLayoutLightStyle" parent="Widget.Design.TabLayout">
+        <item name="tabSelectedTextColor">@color/green</item>
+        <item name="tabTextColor">@color/black20</item>
+        <item name="tabBackground">@color/white</item>
+        <item name="tabIndicatorColor">@color/green</item>
+    </style>
+
+    <style name="TextViewNumberCallLightStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@color/whiteE6</item>
+    </style>
+
+    <style name="lineSpinnerItemLightStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@color/black20</item>
+    </style>
+
+    <style name="CardViewLightStyle" parent="CardView">
+        <item name="cardCornerRadius">@dimen/spacing_medium</item>
+        <item name="cardElevation">@dimen/spacing_small</item>
+        <item name="cardBackgroundColor">@color/white</item>
+    </style>
+
+    <style name="BottomNavigationLightView" parent="Widget.Design.BottomNavigationView">
+        <item name="itemBackground">@color/whiteEF</item>
+        <item name="itemIconTint">@drawable/nav_bottom_view_light</item>
+    </style>
+
+
+    <style name="TabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="PopupMenuTextAppearanceLarge" parent="@android:style/TextAppearance.DeviceDefault.Widget.PopupMenu.Large">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+
+</resources>

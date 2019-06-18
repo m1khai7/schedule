@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black56">#565656</color>
+    <color name="black48">#484848</color>
+    <color name="black44">#444444</color>
+    <color name="black38">#383838</color>
+    <color name="black27">#272727</color>
+    <color name="black20">#202020</color>
+    <color name="green">@android:color/holo_green_light</color>
+    <color name="white">#FFFFFF</color>
+    <color name="whiteD3">#D3D3D3</color>
+    <color name="whiteEF">#efefef</color>
+    <color name="whiteE6">#e6e6e6</color>
+    <color name="greyB3">#b3b3b3</color>
+    <color name="greyBF">#bfbfbf</color>
+</resources>

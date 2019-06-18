@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item android:id="@+id/copyUp"
+            android:title="@string/menu_item_copy_previous_lesson" />
+        <item android:id="@+id/copyDown"
+            android:title="@string/menu_item_copy_next_lesson" />
+        <item android:id="@+id/clearLesson"
+            android:title="@string/clear_lesson" />
+    </group>
+</menu>

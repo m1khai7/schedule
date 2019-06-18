@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/what"
+        android:icon="@android:drawable/ic_popup_reminder"
+        android:title=""/>
+    <item
+        android:id="@+id/editData"
+        android:icon="@drawable/ic_add_circle"
+        android:title="" />
+    <item
+        android:id="@+id/raspDay"
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@android:drawable/ic_dialog_info"
+        android:title="" />
+</menu>

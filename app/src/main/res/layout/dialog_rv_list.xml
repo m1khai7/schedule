@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/spacing_medium">
+
+    <TextView
+        android:id="@+id/dialog_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginEnd="@dimen/spacing_medium"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:textSize="19sp"
+        tools:text="Преподаватель" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relLay"
+        android:layout_below="@+id/dialog_textView"
+        android:layout_margin="@dimen/spacing_small"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <LinearLayout
+        android:id="@+id/relLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_medium"
+            android:text="@string/dialog_button_add"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_medium"
+            android:text="@string/dialog_button_close"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</RelativeLayout>

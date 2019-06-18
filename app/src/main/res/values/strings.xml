@@ -1,0 +1,94 @@
+<resources>
+
+    <string-array name="weeks">
+        <item>1 неделя</item>
+        <item>2 неделя</item>
+        <item>3 неделя</item>
+        <item>4 неделя</item>
+        <item>5 неделя</item>
+        <item>6 неделя</item>
+        <item>7 неделя</item>
+        <item>8 неделя</item>
+        <item>9 неделя</item>
+        <item>10 неделя</item>
+        <item>11 неделя</item>
+        <item>12 неделя</item>
+        <item>13 неделя</item>
+        <item>14 неделя</item>
+        <item>15 неделя</item>
+        <item>16 неделя</item>
+        <item>17 неделя</item>
+    </string-array>
+
+    <string name="app_name">Расписание</string>
+    <string name="data_start_semestr">Дата начала семестра</string>
+    <string name="settings_change_theme">Изменить тему приложения</string>
+    <string name="dialog_button_add">Добавить</string>
+    <string name="dialog_button_close">Закрыть</string>
+    <string name="educator_edittext">Преподаватель</string>
+    <string name="clear_subjects">Очистить предметы?</string>
+    <string name="clear_audience">Очистить аудитории?</string>
+    <string name="clear_educators">Очистить преподавателей?</string>
+    <string name="clear_typelessons">Очистить типы занятий?</string>
+    <string name="network_error">Ошибка подключения к сети</string>
+    <string name="unknown_error">Произошла ошибка, попробуйте еще раз</string>
+    <string name="error_api_unexpected">Неизвестная ошибка при ответе от удаленного сервера</string>
+    <string name="retry">Повторить</string>
+    <string name="developer">Разработчик</string>
+    <string name="settings">Настройки</string>
+
+
+    <string name="title_subject">Добавить предмет</string>
+    <string name="title_audience">Добавить аудиторию</string>
+    <string name="title_educator">Добавить преподавателя</string>
+    <string name="title_typelesson">Добавить тип занятия</string>
+
+    <string name="error_subject">Введите предмет</string>
+    <string name="error_audience">Введите аудиторию</string>
+    <string name="error_educator">Введите преподавателя</string>
+    <string name="error_typelesson">Введите тип предмета</string>
+
+    <string name="hint_subject">Предмет</string>
+    <string name="hint_audience">Аудитория</string>
+    <string name="hint_educator">Преподаватель</string>
+    <string name="hint_typelesson">Тип занятия</string>
+
+    <string name="delete_subject">Удалить предмет «%1$s»?</string>
+    <string name="delete_audience">Удалить аудиторию «%1$s»?</string>
+    <string name="delete_educator">Удалить преподавателя «%1$s»?</string>
+    <string name="delete_typelesson">Удалить тип предмета «%1$s»?</string>
+    <string name="ack">Подтвердить</string>
+    <string name="cancel">Отмена</string>
+
+    <string name="copy_to_evenweek">Скопировать неделю в четные недели?</string>
+    <string name="copy_to_unevenweek">Скопировать неделю в нечетные недели?</string>
+    <string name="string_empty_lesson">Занятие отсутствует</string>
+    <string name="string_time_One">13:10</string>
+    <string name="string_time_Two">14:00</string>
+    <string name="transfer">Отправить / получить расписание</string>
+    <string name="button_import">Импорт</string>
+    <string name="button_export">Экспорт</string>
+    <string name="title_transfer_data">Импорт / экспорт расписания</string>
+    <string name="feedback_developer">Обратная связь с разработчиком</string>
+    <string name="string_email_developer">Электронная почта</string>
+    <string name="string_vk_developer">Профиль Вконтакте</string>
+    <string name="vk_developer">https://vk.com/mikhailvolkov1</string>
+    <string name="email_developer">mailto:mikhailvolkov2014–2014@ya.ru</string>
+    <string name="title_edit_data">Редактор данных</string>
+    <string name="title_calls">Расписание звонков</string>
+    <string name="dialog_fragment_title_typelesson">Типы занятия</string>
+    <string name="dialog_fragment_title_educator">Преподаватели</string>
+    <string name="dialog_fragment_title_audience">Аудитории</string>
+    <string name="dialog_fragment_title_subject">Предметы</string>
+    <string name="dialog_button_edit">Сохранить</string>
+    <string name="dialog_button_delete">Удалить</string>
+    <string name="title_editSubject">Редактировать предмет</string>
+    <string name="title_editAudience">Редактировать аудиторию</string>
+    <string name="title_editEducator">Редактировать преподавателя</string>
+    <string name="title_editTypelesson">Редактировать тип предмета</string>
+    <string name="string_empty_day">Занятия отсутствуют ;)</string>
+    <string name="menu_item_copy_previous_lesson">Скопировать в предыдущее занятие</string>
+    <string name="menu_item_copy_next_lesson">Скопировать в следующее занятие</string>
+    <string name="clear_lesson">Очистить занятие</string>
+    <string name="menu_main_title">Выберите группу</string>
+</resources>

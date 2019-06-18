@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/call_cardView"
+        style="?attr/cardStyle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/spacing_medium"
+        card_view:cardCornerRadius="@dimen/spacing_small"
+        card_view:elevation="@dimen/spacing_normal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/call_number"
+                style="?attr/textViewNumberCallStyle"
+                android:layout_width="30sp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/call_timeOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="12dp"
+                android:background="@null"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/call_timeTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_toEndOf="@+id/call_timeOne"
+                android:background="@null"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
