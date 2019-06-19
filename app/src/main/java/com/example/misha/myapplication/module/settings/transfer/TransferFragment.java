@@ -20,7 +20,7 @@ import com.example.misha.myapplication.R;
 import com.example.misha.myapplication.common.core.BaseMainFragment;
 import com.example.misha.myapplication.common.core.BasePresenter;
 import com.example.misha.myapplication.data.preferences.Preferences;
-import com.example.misha.myapplication.module.schedule.explore.ScheduleFragment;
+import com.example.misha.myapplication.module.schedule.exploreDays.ScheduleFragment;
 import com.example.misha.myapplication.util.PermissionUtils;
 
 import org.jetbrains.annotations.NotNull;

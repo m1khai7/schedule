@@ -1,4 +1,4 @@
-package com.example.misha.myapplication.module.schedule.explore;
+package com.example.misha.myapplication.module.schedule.exploreDays;
 
 import android.annotation.SuppressLint;
 
@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.misha.myapplication.data.preferences.Preferences;
-import com.example.misha.myapplication.module.schedule.explore.page.SchedulePageFragment;
+import com.example.misha.myapplication.module.schedule.exploreDays.page.SchedulePageFragment;
 
 import java.util.ArrayList;
 

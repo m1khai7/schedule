@@ -1,4 +1,4 @@
-package com.example.misha.myapplication.module.schedule.explore;
+package com.example.misha.myapplication.module.schedule.exploreDays;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -77,7 +77,7 @@ public class ScheduleFragment extends BaseMainFragment implements ScheduleFragme
 
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
+        View view = inflater.inflate(R.layout.fragment_schedule_days, container, false);
         viewPager = view.findViewById(R.id.viewPager);
         viewPager.addOnPageChangeListener(new SimpleOnPageChangeListener() {
             @Override

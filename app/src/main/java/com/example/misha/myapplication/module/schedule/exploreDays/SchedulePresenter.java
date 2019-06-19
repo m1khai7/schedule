@@ -1,4 +1,4 @@
-package com.example.misha.myapplication.module.schedule.explore;
+package com.example.misha.myapplication.module.schedule.exploreDays;
 
 import com.example.misha.myapplication.common.core.BaseMainPresenter;
 import com.example.misha.myapplication.data.preferences.Preferences;

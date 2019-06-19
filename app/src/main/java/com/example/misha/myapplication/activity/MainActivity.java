@@ -10,7 +10,8 @@ import com.example.misha.myapplication.data.database.DatabaseHelper;
 import com.example.misha.myapplication.data.database.dao.CallDao;
 import com.example.misha.myapplication.module.calls.CallsFragment;
 import com.example.misha.myapplication.module.editData.EditDataFragment;
-import com.example.misha.myapplication.module.schedule.explore.ScheduleFragment;
+import com.example.misha.myapplication.module.exploreList.ScheduleListFragment;
+import com.example.misha.myapplication.module.schedule.exploreDays.ScheduleFragment;
 import com.example.misha.myapplication.module.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -38,7 +39,11 @@ public class MainActivity extends BaseActivity {
                             fragment = new EditDataFragment();
                             replaceFragment(fragment);
                             return true;
-                        case R.id.raspDay:
+                        case R.id.scheduleList:
+                            fragment = new ScheduleListFragment();
+                            replaceFragment(fragment);
+                            return true;
+                        case R.id.scheduleDays:
                             fragment = new ScheduleFragment();
                             replaceFragment(fragment);
                             return true;
@@ -49,7 +54,7 @@ public class MainActivity extends BaseActivity {
                     }
                     return false;
                 });
-        bottomNavigationView.setSelectedItemId(R.id.raspDay);
+        bottomNavigationView.setSelectedItemId(R.id.scheduleDays);
     }
 
 

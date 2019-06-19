@@ -1,4 +1,4 @@
-package com.example.misha.myapplication.module.schedule.explore;
+package com.example.misha.myapplication.module.schedule.exploreDays;
 
 public interface SchedulePresenterInterface {
 
