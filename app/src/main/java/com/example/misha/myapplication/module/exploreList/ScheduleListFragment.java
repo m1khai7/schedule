@@ -2,7 +2,6 @@ package com.example.misha.myapplication.module.exploreList;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,11 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +23,8 @@ import com.example.misha.myapplication.CustomSpinnerAdapterWeeks;
 import com.example.misha.myapplication.R;
 import com.example.misha.myapplication.common.core.BaseMainFragment;
 import com.example.misha.myapplication.common.core.BasePresenter;
+import com.example.misha.myapplication.data.Repository;
+import com.example.misha.myapplication.data.RepositoryManager;
 import com.example.misha.myapplication.data.preferences.Preferences;
 import com.example.misha.myapplication.entity.Lesson;
 import com.example.misha.myapplication.module.schedule.edit.EditScheduleFragment;
@@ -44,7 +46,7 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
     private CustomSpinnerAdapterWeeks customSpinnerAdapterWeeks;
     private ScheduleListPresenter presenter;
     private ScheduleListFragmentAdapter rvadapter;
-    private Snackbar snackbar;
+    private TextView titleDay;
 
     @Override
     public void onResume() {
@@ -79,35 +81,26 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
 
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View fragmentView = inflater.inflate(R.layout.item_edit_schedule_recycler, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_schedule_list, container, false);
         RecyclerView rvLessons = fragmentView.findViewById(R.id.rv_lessons_edit);
         rvLessons.setAdapter(rvadapter);
-        snackbar = Snackbar.make(getContext().findViewById(android.R.id.content), "should disappear when scrolling!", Snackbar.LENGTH_LONG);
-        View view = snackbar.getView();
-        FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)view.getLayoutParams();
-        params.gravity = Gravity.TOP;
-        view.setLayoutParams(params);
+        titleDay = fragmentView.findViewById(R.id.titleDay);
+        titleDay.setText("aaaaa");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvLessons.setLayoutManager(linearLayoutManager);
         rvLessons.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
             @Override
-            public final void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (!recyclerView.canScrollVertically(-1)) {
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                LinearLayoutManager layoutManager = (LinearLayoutManager) rvLessons.getLayoutManager();
+                int firstVisiblePosition = layoutManager != null ? layoutManager.findFirstVisibleItemPosition() : 0;
+                titleDay.setText(String.valueOf(firstVisiblePosition));
+            }
 
-                    if (!snackbar.isShown())
-                        snackbar.show();
-
-                } else if (!recyclerView.canScrollVertically(1)) {
-                    if (snackbar.isShown())
-                        snackbar.dismiss();
-                }
-                if (dy < 0) {
-                    if (!snackbar.isShown())
-                        snackbar.show();
-                } else if (dy > 0) {
-                    if (snackbar.isShown())
-                        snackbar.dismiss();
-                }
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
             }
         });
         return fragmentView;
