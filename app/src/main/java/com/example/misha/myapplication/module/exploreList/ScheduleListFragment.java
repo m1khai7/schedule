@@ -1,5 +1,6 @@
 package com.example.misha.myapplication.module.exploreList;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,14 +9,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,18 +21,17 @@ import com.example.misha.myapplication.CustomSpinnerAdapterWeeks;
 import com.example.misha.myapplication.R;
 import com.example.misha.myapplication.common.core.BaseMainFragment;
 import com.example.misha.myapplication.common.core.BasePresenter;
-import com.example.misha.myapplication.data.Repository;
-import com.example.misha.myapplication.data.RepositoryManager;
+import com.example.misha.myapplication.data.database.dao.LessonDao;
 import com.example.misha.myapplication.data.preferences.Preferences;
 import com.example.misha.myapplication.entity.Lesson;
 import com.example.misha.myapplication.module.schedule.edit.EditScheduleFragment;
-import com.example.misha.myapplication.module.schedule.exploreDays.page.ScheduleFragmentPagerAdapter;
 import com.example.misha.myapplication.util.DataUtil;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import static com.example.misha.myapplication.data.preferences.Preferences.DARK_THEME;
 import static com.example.misha.myapplication.data.preferences.Preferences.LIGHT_THEME;
@@ -47,6 +44,7 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
     private ScheduleListPresenter presenter;
     private ScheduleListFragmentAdapter rvadapter;
     private TextView titleDay;
+    private ArrayList<Lesson> lessons;
 
     @Override
     public void onResume() {
@@ -95,7 +93,19 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
                 super.onScrolled(recyclerView, dx, dy);
                 LinearLayoutManager layoutManager = (LinearLayoutManager) rvLessons.getLayoutManager();
                 int firstVisiblePosition = layoutManager != null ? layoutManager.findFirstVisibleItemPosition() : 0;
-                titleDay.setText(String.valueOf(firstVisiblePosition));
+
+                Calendar mCalendar = Calendar.getInstance();
+                mCalendar.setTimeInMillis(Long.valueOf(Preferences.getInstance().getSemestrStart()));
+                mCalendar.setFirstDayOfWeek(Calendar.MONDAY);
+                mCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat mFormat = new SimpleDateFormat("dd.MM");
+                try {
+                    mCalendar.add(Calendar.WEEK_OF_YEAR, Integer.parseInt(LessonDao.getInstance().getItemByID(Long.parseLong(lessons.get(firstVisiblePosition).getId())).getNumber_week()) - 1);
+                    mCalendar.add(Calendar.DAY_OF_YEAR, Integer.parseInt(LessonDao.getInstance().getItemByID(Long.parseLong(lessons.get(firstVisiblePosition).getId())).getNumber_day()) - 1);
+                    titleDay.setText(mFormat.format(mCalendar.getTime()));
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -105,6 +115,7 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
         });
         return fragmentView;
     }
+
 
 
     @Override
@@ -147,10 +158,10 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
         if (Preferences.getInstance().getSelectedTheme().equals(LIGHT_THEME)) {
             menu.findItem(R.id.btn_edit).setIcon(R.drawable.ic_edit_black);
         }
-
     }
 
     public void updateList(ArrayList<Lesson> lessonList) {
+        this.lessons=lessonList;
         rvadapter.setLessonList(lessonList);
         rvadapter.notifyDataSetChanged();
     }

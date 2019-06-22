@@ -8,17 +8,17 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.misha.myapplication.R;
-import com.example.misha.myapplication.SimpleItemClickListener;
 import com.example.misha.myapplication.data.database.dao.AudienceDao;
 import com.example.misha.myapplication.data.database.dao.CallDao;
 import com.example.misha.myapplication.data.database.dao.EducatorDao;
+import com.example.misha.myapplication.data.database.dao.LessonDao;
 import com.example.misha.myapplication.data.database.dao.SubjectDao;
 import com.example.misha.myapplication.data.database.dao.TypelessonDao;
+import com.example.misha.myapplication.data.preferences.Preferences;
 import com.example.misha.myapplication.entity.Audience;
 import com.example.misha.myapplication.entity.Calls;
 import com.example.misha.myapplication.entity.Educator;
 import com.example.misha.myapplication.entity.Lesson;
-import com.example.misha.myapplication.entity.SimpleItem;
 import com.example.misha.myapplication.entity.Subject;
 import com.example.misha.myapplication.entity.Typelesson;
 import com.google.android.material.textfield.TextInputLayout;
@@ -26,7 +26,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
 
@@ -36,24 +35,10 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
     private Educator educator;
     private Typelesson typelesson;
 
+
     @Override
     public int getItemViewType(int position) {
-        int codeViewType = 0;
-        Lesson lesson = lessonList.get(position);
-        try {
-            subject = SubjectDao.getInstance().getItemByID(Long.parseLong(lesson.getId_subject()));
-            audience = AudienceDao.getInstance().getItemByID(Long.parseLong(lesson.getId_audience()));
-            educator = EducatorDao.getInstance().getItemByID(Long.parseLong(lesson.getId_educator()));
-            typelesson = TypelessonDao.getInstance().getItemByID(Long.parseLong(lesson.getId_typelesson()));
-        } catch (NumberFormatException ignored) {
-        }
-        if (subject == null || audience == null || educator == null || typelesson == null) {
-            codeViewType = 1;
-        }
-        if (getItemCount() == 1) {
-            codeViewType = 2;
-        }
-        return codeViewType;
+        return 0;
     }
 
 
@@ -69,8 +54,8 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_empty_lesson, parent, false);
                 return new ScheduleListFragmentAdapter.ViewHolderEmptyLesson(view);
             case 2:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_empty_day, parent, false);
-                return new ScheduleListFragmentAdapter.ViewHolderEmptyDay(view);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_day, parent, false);
+                return new ViewHolderDay(view);
         }
         return null;
     }
@@ -83,9 +68,17 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         switch (holder.getItemViewType()) {
             case 0:
+                Lesson lesson = lessonList.get(position);
+                try {
+                    subject = SubjectDao.getInstance().getItemByID(Long.parseLong(lesson.getId_subject()));
+                    audience = AudienceDao.getInstance().getItemByID(Long.parseLong(lesson.getId_audience()));
+                    educator = EducatorDao.getInstance().getItemByID(Long.parseLong(lesson.getId_educator()));
+                    typelesson = TypelessonDao.getInstance().getItemByID(Long.parseLong(lesson.getId_typelesson()));
+                } catch (NumberFormatException ignored) {
+                }
                 ArrayList<Calls> callsList = CallDao.getInstance().getAllData();
-                ((ScheduleListFragmentAdapter.ViewHolderLesson) holder).timeEditOne.setText(callsList.get(mod(position,6) * 2).getName());
-                ((ScheduleListFragmentAdapter.ViewHolderLesson) holder).timeEditTwo.setText(callsList.get((mod(position,6) * 2) + 1).getName());
+                ((ScheduleListFragmentAdapter.ViewHolderLesson) holder).timeEditOne.setText(callsList.get((Integer.parseInt(lesson.getNumber_lesson()))/2).getName());
+                ((ScheduleListFragmentAdapter.ViewHolderLesson) holder).timeEditTwo.setText(callsList.get((Integer.parseInt(lesson.getNumber_lesson()))/2+1).getName());
                 if (subject == null) {
                     break;
                 } else {
@@ -110,18 +103,17 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
                     ((ScheduleListFragmentAdapter.ViewHolderLesson) holder).typelessonEdit.setText(typelesson.getName());
                 }
                 break;
-
             case 1:
                 callsList = CallDao.getInstance().getAllData();
-                ((ScheduleListFragmentAdapter.ViewHolderEmptyLesson) holder).timeEditOne.setText(callsList.get(mod(position,6) * 2).getName());
-                ((ScheduleListFragmentAdapter.ViewHolderEmptyLesson) holder).timeEditTwo.setText(" - " + callsList.get((mod(position,6) * 2) + 1).getName());
+                ((ScheduleListFragmentAdapter.ViewHolderEmptyLesson) holder).timeEditOne.setText(callsList.get(mod(position, 6) * 2).getName());
+                ((ScheduleListFragmentAdapter.ViewHolderEmptyLesson) holder).timeEditTwo.setText(" - " + callsList.get((mod(position, 6) * 2) + 1).getName());
                 break;
         }
     }
 
     private int mod(int x, int y) {
         int result = x % y;
-        return result < 0? result + y : result;
+        return result < 0 ? result + y : result;
     }
 
     @Override
@@ -140,7 +132,6 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
         return lessonList.size();
     }
 
-
     public static class ViewHolderEmptyLesson extends RecyclerView.ViewHolder {
         private final TextView timeEditOne;
         private final TextView timeEditTwo;
@@ -152,11 +143,12 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public static class ViewHolderEmptyDay extends RecyclerView.ViewHolder {
-        public ViewHolderEmptyDay(View view) {
+    public static class ViewHolderDay extends RecyclerView.ViewHolder {
+        public ViewHolderDay(View view) {
             super(view);
         }
     }
+
 
     public class ViewHolderLesson extends RecyclerView.ViewHolder {
 

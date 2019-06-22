@@ -24,4 +24,6 @@ public interface ScheduleListFragmentView extends BaseView {
     void hideErrorView();
 
     void updateList(ArrayList<Lesson> lessonList);
+
+
 }

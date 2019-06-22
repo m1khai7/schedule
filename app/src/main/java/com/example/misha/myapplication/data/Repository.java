@@ -149,4 +149,14 @@ public class Repository implements RepositoryManager {
         return preferencesInterface.getSelectedDate();
     }
 
+    @Override
+    public String getSelectedCurrentLesson() {
+        return preferencesInterface.getSelectedCurrentLesson();
+    }
+
+    @Override
+    public void setSelectedCurrentLesson(String currentLesson) {
+        preferencesInterface.setSelectedCurrentLesson(currentLesson);
+    }
+
 }

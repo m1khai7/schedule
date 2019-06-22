@@ -46,5 +46,7 @@ public interface PreferencesInterface {
 
     String getSelectedDate();
 
+    String getSelectedCurrentLesson();
 
+    void setSelectedCurrentLesson(String currentLesson);
 }
