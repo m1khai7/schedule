@@ -18,8 +18,9 @@ import java.util.ArrayList;
 
 public class ScheduleListPresenter extends BaseMainPresenter<ScheduleListFragmentView> implements ScheduleListPresenterInterface {
 
-    private ArrayList<Lesson> lessons;
     public ArrayList<Lesson> lessonsNew = new ArrayList<>();
+    private String currentDay = "0";
+    private String currentWeek = "0";
 
     public ScheduleListPresenter() {
 
@@ -33,30 +34,38 @@ public class ScheduleListPresenter extends BaseMainPresenter<ScheduleListFragmen
         // getView().selectCurrentDay(currentDay);
         // selectDefaultWeek();
 
-        if (lessons == null) {
-            load();
-        } else {
-            getView().updateList(lessons);
-        }
+        load();
     }
 
     public void load() {
-        lessons = LessonDao.getInstance().getAllData();
+        ArrayList<Lesson> lessons = LessonDao.getInstance().getAllData();
         Lesson lesson;
         Subject subject;
         Audience audience;
         Educator educator;
         Typelesson typelesson;
         for (int i = 0; i < lessons.size(); i++) {
-             lesson = lessons.get(i);
+            lesson = lessons.get(i);
             subject = SubjectDao.getInstance().getItemByID(Long.parseLong(lesson.getId_subject()));
             audience = AudienceDao.getInstance().getItemByID(Long.parseLong(lesson.getId_audience()));
             educator = EducatorDao.getInstance().getItemByID(Long.parseLong(lesson.getId_educator()));
             typelesson = TypelessonDao.getInstance().getItemByID(Long.parseLong(lesson.getId_typelesson()));
+
             if (subject != null || audience != null || educator != null || typelesson != null) {
+                if (!currentDay.equals(lesson.getNumber_day()) || !currentWeek.equals(lesson.getNumber_week())) {
+                    Lesson les = new Lesson();
+                    les.setId_subject("0");
+                    les.setId_audience("0");
+                    les.setId_educator("0");
+                    les.setId_typelesson("0");
+                    lessonsNew.add(les);
+                    currentDay = lessons.get(i).getNumber_day();
+                    currentWeek = lessons.get(i).getNumber_week();
+                }
                 lessonsNew.add(lesson);
             }
         }
+        lessonsNew.remove(0);
         getView().updateList(lessonsNew);
 
     }

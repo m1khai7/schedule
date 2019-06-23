@@ -55,7 +55,6 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
         spinner.setOnItemSelectedListener(this);
         getContext().getToolbar().addView(spinner);
         getContext().setCurrentTitle(null);
-        presenter.init();
     }
 
     @Override
@@ -103,24 +102,17 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
                     mCalendar.add(Calendar.WEEK_OF_YEAR, Integer.parseInt(LessonDao.getInstance().getItemByID(Long.parseLong(lessons.get(firstVisiblePosition).getId())).getNumber_week()) - 1);
                     mCalendar.add(Calendar.DAY_OF_YEAR, Integer.parseInt(LessonDao.getInstance().getItemByID(Long.parseLong(lessons.get(firstVisiblePosition).getId())).getNumber_day()) - 1);
                     titleDay.setText(mFormat.format(mCalendar.getTime()));
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
+                } catch (NumberFormatException ignored) {}
             }
         });
         return fragmentView;
     }
 
 
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        presenter.init();
     }
 
     @Override
@@ -161,7 +153,7 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
     }
 
     public void updateList(ArrayList<Lesson> lessonList) {
-        this.lessons=lessonList;
+        this.lessons = lessonList;
         rvadapter.setLessonList(lessonList);
         rvadapter.notifyDataSetChanged();
     }

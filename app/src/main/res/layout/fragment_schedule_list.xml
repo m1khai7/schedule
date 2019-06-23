@@ -9,9 +9,11 @@
         android:id="@+id/titleDay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/spacing_medium"
-        android:padding="@dimen/spacing_small"
-        android:textSize="14sp"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:textSize="15sp"
         tools:text="Текущая дата"/>
 
     <View
@@ -20,7 +22,6 @@
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_below="@+id/titleDay"/>
-
 
     <androidx.recyclerview.widget.RecyclerView 
         android:id="@+id/rv_lessons_edit"
