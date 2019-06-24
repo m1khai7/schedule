@@ -29,6 +29,7 @@ import com.example.misha.myapplication.util.DataUtil;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -82,27 +83,16 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
         RecyclerView rvLessons = fragmentView.findViewById(R.id.rv_lessons_edit);
         rvLessons.setAdapter(rvadapter);
         titleDay = fragmentView.findViewById(R.id.titleDay);
-        titleDay.setText("aaaaa");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvLessons.setLayoutManager(linearLayoutManager);
         rvLessons.addOnScrollListener(new RecyclerView.OnScrollListener() {
-
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                LinearLayoutManager layoutManager = (LinearLayoutManager) rvLessons.getLayoutManager();
-                int firstVisiblePosition = layoutManager != null ? layoutManager.findFirstVisibleItemPosition() : 0;
 
-                Calendar mCalendar = Calendar.getInstance();
-                mCalendar.setTimeInMillis(Long.valueOf(Preferences.getInstance().getSemestrStart()));
-                mCalendar.setFirstDayOfWeek(Calendar.MONDAY);
-                mCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-                @SuppressLint("SimpleDateFormat") SimpleDateFormat mFormat = new SimpleDateFormat("dd.MM");
-                try {
-                    mCalendar.add(Calendar.WEEK_OF_YEAR, Integer.parseInt(LessonDao.getInstance().getItemByID(Long.parseLong(lessons.get(firstVisiblePosition).getId())).getNumber_week()) - 1);
-                    mCalendar.add(Calendar.DAY_OF_YEAR, Integer.parseInt(LessonDao.getInstance().getItemByID(Long.parseLong(lessons.get(firstVisiblePosition).getId())).getNumber_day()) - 1);
-                    titleDay.setText(mFormat.format(mCalendar.getTime()));
-                } catch (NumberFormatException ignored) {}
+                LinearLayoutManager layoutManager = (LinearLayoutManager) rvLessons.getLayoutManager();
+                int firstVisiblePosition = layoutManager != null ? (layoutManager.findFirstVisibleItemPosition() == 0 ? layoutManager.findFirstVisibleItemPosition() : layoutManager.findFirstVisibleItemPosition() - 1) : 0;
+                titleDay.setText(DataUtil.dateDay(lessons, firstVisiblePosition));
             }
         });
         return fragmentView;

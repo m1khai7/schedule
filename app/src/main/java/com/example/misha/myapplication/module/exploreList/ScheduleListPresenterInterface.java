@@ -9,5 +9,4 @@ public interface ScheduleListPresenterInterface {
     void selectDefaultWeek();
 
     void load();
-
 }

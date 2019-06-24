@@ -58,6 +58,8 @@ public class ScheduleListPresenter extends BaseMainPresenter<ScheduleListFragmen
                     les.setId_audience("0");
                     les.setId_educator("0");
                     les.setId_typelesson("0");
+                    les.setNumber_day(lessons.get(i).getNumber_day());
+                    les.setNumber_week(lessons.get(i).getNumber_week());
                     lessonsNew.add(les);
                     currentDay = lessons.get(i).getNumber_day();
                     currentWeek = lessons.get(i).getNumber_week();

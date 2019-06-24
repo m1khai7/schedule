@@ -19,6 +19,7 @@ import com.example.misha.myapplication.entity.Educator;
 import com.example.misha.myapplication.entity.Lesson;
 import com.example.misha.myapplication.entity.Subject;
 import com.example.misha.myapplication.entity.Typelesson;
+import com.example.misha.myapplication.util.DataUtil;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.jetbrains.annotations.NotNull;
@@ -85,8 +86,8 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
                 }
                 ArrayList<Calls> callsList = CallDao.getInstance().getAllData();
                 try {
-                    ((ScheduleListFragmentAdapter.ViewHolderLesson) holder).timeEditOne.setText(callsList.get((Integer.parseInt(lesson.getNumber_lesson())) / 2).getName());
-                    ((ScheduleListFragmentAdapter.ViewHolderLesson) holder).timeEditTwo.setText(callsList.get((Integer.parseInt(lesson.getNumber_lesson())) / 2 + 1).getName());
+                    ((ScheduleListFragmentAdapter.ViewHolderLesson) holder).timeEditOne.setText(callsList.get(Integer.parseInt(String.valueOf(lessonList.get(position).getNumber_lesson())) * 2 - 2).getName());
+                    ((ScheduleListFragmentAdapter.ViewHolderLesson) holder).timeEditTwo.setText(callsList.get(Integer.parseInt(String.valueOf(lessonList.get(position).getNumber_lesson())) * 2 - 1).getName());
                 } catch (NumberFormatException ignored) {
                 }
                 if (subject == null) {
@@ -114,7 +115,7 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
                 }
                 break;
             case 1:
-                //((ViewHolderDataDay) holder).dataDayText.setText();
+                ((ViewHolderDataDay) holder).dataDayText.setText(DataUtil.dateDay(lessonList, position));
         }
     }
 
@@ -129,7 +130,7 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
 
         public ViewHolderDataDay(View view) {
             super(view);
-            dataDayText= view.findViewById(R.id.titleDataDay);
+            dataDayText = view.findViewById(R.id.titleDataDay);
         }
     }
 
