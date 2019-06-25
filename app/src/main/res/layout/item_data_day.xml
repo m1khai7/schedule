@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <View
-        android:id="@+id/lineOne"
         style="?attr/lineColorStyle"
         android:layout_width="wrap_content"
         android:layout_height="1dp" />
@@ -19,7 +18,6 @@
         android:textSize="15sp"
         android:text="Текущая дата"/>
     <View
-        android:id="@+id/lineTwo"
         style="?attr/lineColorStyle"
         android:layout_width="wrap_content"
         android:layout_height="1dp" />

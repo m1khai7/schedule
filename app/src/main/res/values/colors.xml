@@ -7,7 +7,7 @@
     <color name="black38">#383838</color>
     <color name="black27">#272727</color>
     <color name="black20">#202020</color>
-    <color name="green">@android:color/holo_green_light</color>
+    <color name="green">#AEEA00</color>
     <color name="white">#FFFFFF</color>
     <color name="whiteD3">#D3D3D3</color>
     <color name="whiteEF">#efefef</color>

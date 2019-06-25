@@ -2,8 +2,6 @@ package com.example.misha.myapplication.data;
 
 import com.example.misha.myapplication.data.database.DatabaseInterface;
 import com.example.misha.myapplication.data.database.DatabaseManager;
-import com.example.misha.myapplication.data.network.APIService;
-import com.example.misha.myapplication.data.network.RetrofitClient;
 import com.example.misha.myapplication.data.preferences.Preferences;
 import com.example.misha.myapplication.data.preferences.PreferencesInterface;
 import com.example.misha.myapplication.entity.Lesson;
@@ -18,13 +16,11 @@ public class Repository implements RepositoryManager {
 
     private DatabaseInterface databaseInterface;
 
-    private APIService apiService;
 
     private PreferencesInterface preferencesInterface;
 
     private Repository() {
         databaseInterface = DatabaseManager.getInstance();
-        apiService = RetrofitClient.getInstance().getRequestInterface();
         preferencesInterface = Preferences.getInstance();
     }
 
@@ -156,6 +152,11 @@ public class Repository implements RepositoryManager {
     }
 
     @Override
+    public void setSelectedCurrentLesson(String currentLesson) {
+        preferencesInterface.setSelectedCurrentLesson(currentLesson);
+    }
+
+    @Override
     public Boolean getWeek() {
         return preferencesInterface.getWeek();
     }
@@ -163,10 +164,5 @@ public class Repository implements RepositoryManager {
     @Override
     public void selectWeek(boolean select) {
         preferencesInterface.selectWeek(select);
-    }
-
-    @Override
-    public void setSelectedCurrentLesson(String currentLesson) {
-        preferencesInterface.setSelectedCurrentLesson(currentLesson);
     }
 }

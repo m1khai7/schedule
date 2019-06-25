@@ -22,15 +22,20 @@ import com.example.misha.myapplication.R;
 import com.example.misha.myapplication.common.core.BaseMainFragment;
 import com.example.misha.myapplication.common.core.BasePresenter;
 import com.example.misha.myapplication.data.preferences.Preferences;
+import com.example.misha.myapplication.entity.Licenses;
+import com.example.misha.myapplication.module.settings.licenses.DialogFragmentLicenses;
 import com.example.misha.myapplication.module.settings.theme.DialogFragmentSelectTheme;
 import com.example.misha.myapplication.module.settings.transfer.TransferFragment;
 import com.example.misha.myapplication.util.DataUtil;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 import static com.example.misha.myapplication.Constants.SELECT_THEME;
 import static com.example.misha.myapplication.data.preferences.Preferences.DARK_THEME;
 import static com.example.misha.myapplication.data.preferences.Preferences.LIGHT_THEME;
+import static com.example.misha.myapplication.module.schedule.edit.page.EditSchedulePageFragmentView.ITEMS;
 
 
 public class SettingsFragment extends BaseMainFragment implements SettingsFragmentView, View.OnClickListener {
@@ -62,41 +67,49 @@ public class SettingsFragment extends BaseMainFragment implements SettingsFragme
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
         DataUtil.hintKeyboard(getContext());
         RelativeLayout layoutDateStartSemestr = view.findViewById(R.id.date_start_semestr);
-        RelativeLayout layoutAbout = view.findViewById(R.id.about);
         RelativeLayout layoutSelectDate = view.findViewById(R.id.select_theme);
         RelativeLayout layoutTransferData = view.findViewById(R.id.transfer_data);
+        RelativeLayout layoutAbout = view.findViewById(R.id.about);
+        RelativeLayout layoutLicenses = view.findViewById(R.id.licenses);
         ImageView imageDateStartSemestr = view.findViewById(R.id.image_date_start_semestr);
         ImageView imageTheme = view.findViewById(R.id.image_theme);
-        ImageView imageAbout = view.findViewById(R.id.image_about);
         ImageView imageTransferData = view.findViewById(R.id.image_tranfer);
+        ImageView imageAbout = view.findViewById(R.id.image_about);
+        ImageView imageLicenses = view.findViewById(R.id.image_licenses);
         ImageView imageArrowOne = view.findViewById(R.id.arrowOne);
         ImageView imageArrowTwo = view.findViewById(R.id.arrowTwo);
         ImageView imageArrowThree = view.findViewById(R.id.arrowThree);
         ImageView imageArrowFour = view.findViewById(R.id.arrowFour);
+        ImageView imageArrowFive = view.findViewById(R.id.arrowFive);
         if (Preferences.getInstance().getSelectedTheme().equals(DARK_THEME)) {
             imageDateStartSemestr.setImageResource(R.drawable.ic_date_white);
             imageTheme.setImageResource(R.drawable.ic_palette_white);
-            imageAbout.setImageResource(R.drawable.ic_person_white);
             imageTransferData.setImageResource(R.drawable.ic_send_white);
+            imageAbout.setImageResource(R.drawable.ic_person_white);
+            imageLicenses.setImageResource(R.drawable.ic_info_white);
             imageArrowOne.setImageResource(R.drawable.ic_arrow_white);
             imageArrowTwo.setImageResource(R.drawable.ic_arrow_white);
             imageArrowThree.setImageResource(R.drawable.ic_arrow_white);
             imageArrowFour.setImageResource(R.drawable.ic_arrow_white);
+            imageArrowFive.setImageResource(R.drawable.ic_arrow_white);
         }
         if (Preferences.getInstance().getSelectedTheme().equals(LIGHT_THEME)) {
             imageDateStartSemestr.setImageResource(R.drawable.ic_date_black);
             imageTheme.setImageResource(R.drawable.ic_palette_black);
-            imageAbout.setImageResource(R.drawable.ic_person_black);
             imageTransferData.setImageResource(R.drawable.ic_send_black);
+            imageAbout.setImageResource(R.drawable.ic_person_black);
+            imageLicenses.setImageResource(R.drawable.ic_info_black);
             imageArrowOne.setImageResource(R.drawable.ic_arrow_black);
             imageArrowTwo.setImageResource(R.drawable.ic_arrow_black);
             imageArrowThree.setImageResource(R.drawable.ic_arrow_black);
             imageArrowFour.setImageResource(R.drawable.ic_arrow_black);
+            imageArrowFive.setImageResource(R.drawable.ic_arrow_black);
         }
         layoutDateStartSemestr.setOnClickListener(this);
         layoutAbout.setOnClickListener(this);
         layoutSelectDate.setOnClickListener(this);
         layoutTransferData.setOnClickListener(this);
+        layoutLicenses.setOnClickListener(this);
         return view;
     }
 
@@ -134,6 +147,14 @@ public class SettingsFragment extends BaseMainFragment implements SettingsFragme
         }
     }
 
+    @Override
+    public void showLicensesDialog(ArrayList<Licenses> licensesDialog) {
+        Bundle args = new Bundle();
+        args.putParcelableArrayList(ITEMS, licensesDialog);
+        DialogFragmentLicenses dialogFragment = DialogFragmentLicenses.newInstance(args);
+        dialogFragment.show(getChildFragmentManager(), DialogFragmentLicenses.class.getSimpleName());
+    }
+
     public void openFragmentTransferData() {
         Fragment newFragment = new TransferFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -156,6 +177,9 @@ public class SettingsFragment extends BaseMainFragment implements SettingsFragme
         }
         if (v.getId() == R.id.about) {
             presenter.onCreateDialogAbout();
+        }
+        if (v.getId() == R.id.licenses) {
+            presenter.onCreateDialogLicenses();
         }
     }
 }

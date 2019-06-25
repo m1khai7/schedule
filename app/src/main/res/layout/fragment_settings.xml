@@ -153,4 +153,42 @@
         android:layout_width="wrap_content"
         android:layout_height="1dp" />
 
+    <RelativeLayout
+        android:id="@+id/licenses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image_licenses"
+            android:layout_width="40sp"
+            android:layout_height="45sp"
+            android:layout_margin="@dimen/spacing_medium"
+            android:padding="@dimen/spacing_medium"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_normal"
+            android:layout_toEndOf="@+id/image_licenses"
+            android:paddingTop="@dimen/spacing_small"
+            android:text="@string/licenses"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/arrowFive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20sp"
+            android:layout_marginEnd="@dimen/spacing_normal" />
+    </RelativeLayout>
+
+    <View
+        style="?attr/lineColorStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp" />
+
+
 </LinearLayout>

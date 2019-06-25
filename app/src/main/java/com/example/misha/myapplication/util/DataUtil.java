@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.inputmethod.InputMethodManager;
 
-import com.example.misha.myapplication.data.database.dao.LessonDao;
 import com.example.misha.myapplication.data.preferences.Preferences;
 import com.example.misha.myapplication.entity.Lesson;
 

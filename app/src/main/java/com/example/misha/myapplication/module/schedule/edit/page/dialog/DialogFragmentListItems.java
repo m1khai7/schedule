@@ -48,7 +48,6 @@ public class DialogFragmentListItems extends BaseAlertDialog implements DialogFr
         return fragment;
     }
 
-
     @Override
     public void showAddDataDialog(ArrayList<? extends SimpleItem> items, int fragmentCode) {
         DialogFragmentAddData dialogFragment = null;

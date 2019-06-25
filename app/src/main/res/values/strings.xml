@@ -91,5 +91,6 @@
     <string name="menu_item_copy_next_lesson">Скопировать в следующее занятие</string>
     <string name="clear_lesson">Очистить занятие</string>
     <string name="menu_main_title">Выберите группу</string>
-    <string name="string_item_day">Дата занятия</string>
+    <string name="licenses">Лицензии открытого ПО</string>
+    <string name="title_dialog_licenses">Лицензии открытого ПО</string>
 </resources>

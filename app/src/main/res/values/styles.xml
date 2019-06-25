@@ -5,6 +5,7 @@
     <attr name="timeOneStyle" format="reference" />
     <attr name="timeTwoStyle" format="reference" />
     <attr name="typelessonStyle" format="reference" />
+    <attr name="licensesStyle" format="reference" />
     <attr name="lineSpinnerItemStyle" format="reference" />
     <attr name="textViewNumberCallStyle" format="reference" />
     <attr name="floatButton" format="reference" />
@@ -23,6 +24,7 @@
         <item name="tabLayoutStyle">@style/TabLayoutDarkStyle</item>
         <item name="navBottomStyle">@style/BottomNavigationViewDarkStyle</item>
         <item name="android:textAppearanceLargePopupMenu">@style/PopupMenuTextAppearanceLarge</item>
+        <item name="licensesStyle">@style/LicensesDarkStyle</item>
         <item name="android:textColorHint">@color/whiteD3</item>
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="colorAccent">@color/black38</item>
@@ -49,6 +51,7 @@
         <item name="tabLayoutStyle">@style/TabLayoutLightStyle</item>
         <item name="navBottomStyle">@style/BottomNavigationLightView</item>
         <item name="android:textAppearanceLargePopupMenu">@style/PopupMenuTextAppearanceLarge</item>
+        <item name="licensesStyle">@style/LicensesLightStyle</item>
         <item name="floatButton">@style/FloatButtonLightStyle</item>
         <item name="android:textColorHint">@color/greyB3</item>
         <item name="colorControlActivated">@color/green</item>
@@ -69,6 +72,10 @@
         <item name="android:background">#656565</item>
     </style>
 
+    <style name="LicensesDarkStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColorLink">@color/colorAccent</item>
+    </style>
+
     <style name="TitleText" parent="TextAppearance.AppCompat.Title">
         <item name="android:textSize">17sp</item>
     </style>
@@ -82,7 +89,7 @@
 
     <style name="TypelessonDarkStyle" parent="Widget.AppCompat.TextView">
         <item name="android:background">@drawable/rounded_corner_dark</item>
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
 
@@ -117,7 +124,7 @@
 
     <style name="TypelessonLightStyle" parent="Widget.AppCompat.TextView">
         <item name="android:background">@drawable/rounded_corner_light</item>
-        <item name="android:textColor">@color/green</item>
+        <item name="android:textColor">@color/black20</item>
     </style>
 
 
@@ -128,7 +135,9 @@
         <item name="android:textColorPrimary">@color/black20</item>
         <item name="android:textColorSecondary">@color/black56</item>
     </style>
-
+    <style name="LicensesLightStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColorLink">@color/green</item>
+    </style>
 
     <style name="FloatButtonLightStyle" parent="Theme.AppCompat.Light">
         <item name="android:tint">@color/white</item>

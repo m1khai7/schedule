@@ -25,7 +25,6 @@
 
 
         <TextView
-            android:id="@+id/textImport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_medium"
@@ -53,7 +52,6 @@
             android:padding="@dimen/spacing_medium" />
 
         <TextView
-            android:id="@+id/textExport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_medium"
