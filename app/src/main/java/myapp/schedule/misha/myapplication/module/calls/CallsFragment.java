@@ -9,15 +9,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseMainFragment;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.entity.Calls;
 import myapp.schedule.misha.myapplication.util.DataUtil;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 
 
 public class CallsFragment extends BaseMainFragment implements CallsFragmentView {

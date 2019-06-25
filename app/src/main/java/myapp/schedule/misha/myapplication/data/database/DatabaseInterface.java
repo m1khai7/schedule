@@ -1,10 +1,9 @@
 package myapp.schedule.misha.myapplication.data.database;
 
-import myapp.schedule.misha.myapplication.entity.Lesson;
-
 import java.util.List;
 
 import io.reactivex.Single;
+import myapp.schedule.misha.myapplication.entity.Lesson;
 
 public interface DatabaseInterface {
 

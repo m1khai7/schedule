@@ -7,14 +7,14 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import myapp.schedule.misha.myapplication.R;
-import myapp.schedule.misha.myapplication.SimpleItemClickListener;
-import myapp.schedule.misha.myapplication.entity.SimpleItem;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import myapp.schedule.misha.myapplication.R;
+import myapp.schedule.misha.myapplication.SimpleItemClickListener;
+import myapp.schedule.misha.myapplication.entity.SimpleItem;
 
 
 public class EditDataFragmentPageAdapter extends RecyclerView.Adapter<EditDataFragmentPageAdapter.ViewHolder> {

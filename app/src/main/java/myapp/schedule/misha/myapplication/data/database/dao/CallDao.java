@@ -4,11 +4,11 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 
+import java.util.ArrayList;
+
 import myapp.schedule.misha.myapplication.data.database.AbsDao;
 import myapp.schedule.misha.myapplication.data.database.AppContentProvider;
 import myapp.schedule.misha.myapplication.entity.Calls;
-
-import java.util.ArrayList;
 
 public class CallDao extends AbsDao<Calls> {
 

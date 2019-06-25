@@ -18,12 +18,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import myapp.schedule.misha.myapplication.R;
-import myapp.schedule.misha.myapplication.ScheduleApp;
-import myapp.schedule.misha.myapplication.common.ErrorView;
-import myapp.schedule.misha.myapplication.common.core.snack.SnackBehavior;
-import myapp.schedule.misha.myapplication.common.core.snack.SnackBehaviorInterface;
-import myapp.schedule.misha.myapplication.data.preferences.Preferences;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
@@ -33,6 +27,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.disposables.CompositeDisposable;
+import myapp.schedule.misha.myapplication.R;
+import myapp.schedule.misha.myapplication.ScheduleApp;
+import myapp.schedule.misha.myapplication.common.ErrorView;
+import myapp.schedule.misha.myapplication.common.core.snack.SnackBehavior;
+import myapp.schedule.misha.myapplication.common.core.snack.SnackBehaviorInterface;
+import myapp.schedule.misha.myapplication.data.preferences.Preferences;
 
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DARK_THEME;
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.LIGHT_THEME;

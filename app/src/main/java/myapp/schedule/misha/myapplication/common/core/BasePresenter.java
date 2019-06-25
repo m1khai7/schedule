@@ -1,12 +1,11 @@
 package myapp.schedule.misha.myapplication.common.core;
 
 
+import io.reactivex.disposables.CompositeDisposable;
 import myapp.schedule.misha.myapplication.common.rx.AppSchedulerProvider;
 import myapp.schedule.misha.myapplication.common.rx.SchedulerProvider;
 import myapp.schedule.misha.myapplication.data.Repository;
 import myapp.schedule.misha.myapplication.data.RepositoryManager;
-
-import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BasePresenter<View, Root> {
     private View view;

@@ -1,9 +1,9 @@
 package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialog;
 
+import java.util.ArrayList;
+
 import myapp.schedule.misha.myapplication.common.core.BaseView;
 import myapp.schedule.misha.myapplication.entity.SimpleItem;
-
-import java.util.ArrayList;
 
 public interface DialogFragmentListItemsView extends BaseView {
 

@@ -4,8 +4,9 @@ import android.view.View;
 
 import androidx.annotation.StringRes;
 
-import myapp.schedule.misha.myapplication.ScheduleApp;
 import com.google.android.material.snackbar.Snackbar;
+
+import myapp.schedule.misha.myapplication.ScheduleApp;
 
 public class SnackBehavior extends AbsSnackBehavior {
 

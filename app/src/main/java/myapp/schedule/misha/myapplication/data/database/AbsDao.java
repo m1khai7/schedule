@@ -7,9 +7,9 @@ import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.net.Uri;
 
-import myapp.schedule.misha.myapplication.ScheduleApp;
-
 import java.util.ArrayList;
+
+import myapp.schedule.misha.myapplication.ScheduleApp;
 
 /**
  * Abstract data access object.

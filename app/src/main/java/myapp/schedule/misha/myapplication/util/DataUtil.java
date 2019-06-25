@@ -4,13 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.inputmethod.InputMethodManager;
 
-import myapp.schedule.misha.myapplication.data.preferences.Preferences;
-import myapp.schedule.misha.myapplication.entity.Lesson;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import myapp.schedule.misha.myapplication.data.preferences.Preferences;
+import myapp.schedule.misha.myapplication.entity.Lesson;
 
 public final class DataUtil {
 

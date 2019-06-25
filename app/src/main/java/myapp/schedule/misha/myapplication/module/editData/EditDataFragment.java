@@ -12,15 +12,16 @@ import android.view.ViewGroup;
 
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
+
+import org.jetbrains.annotations.NotNull;
+
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseMainFragment;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.data.database.AbsDao;
 import myapp.schedule.misha.myapplication.data.preferences.Preferences;
 import myapp.schedule.misha.myapplication.util.DataUtil;
-import com.google.android.material.tabs.TabLayout;
-
-import org.jetbrains.annotations.NotNull;
 
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DARK_THEME;
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.LIGHT_THEME;

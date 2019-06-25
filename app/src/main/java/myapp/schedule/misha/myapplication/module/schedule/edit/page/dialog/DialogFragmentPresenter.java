@@ -1,5 +1,7 @@
 package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialog;
 
+import java.util.ArrayList;
+
 import myapp.schedule.misha.myapplication.common.core.BaseMainPresenter;
 import myapp.schedule.misha.myapplication.data.database.AbsDao;
 import myapp.schedule.misha.myapplication.data.database.dao.AudienceDao;
@@ -7,8 +9,6 @@ import myapp.schedule.misha.myapplication.data.database.dao.EducatorDao;
 import myapp.schedule.misha.myapplication.data.database.dao.SubjectDao;
 import myapp.schedule.misha.myapplication.data.database.dao.TypelessonDao;
 import myapp.schedule.misha.myapplication.entity.SimpleItem;
-
-import java.util.ArrayList;
 
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_AUDIENCES;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_EDUCATORS;
