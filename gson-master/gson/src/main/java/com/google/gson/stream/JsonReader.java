@@ -161,7 +161,7 @@ import java.io.Reader;
  *
  * <h3>Number Handling</h3>
  * This reader permits numeric values to be read as strings and string values to
- * be read as numbers. For example, both elements of the JSON array {@code
+ * be read as numbers. For schedule, both elements of the JSON array {@code
  * [1, "1"]} may be read using either {@link #nextInt} or {@link #nextString}.
  * This behavior is intended to prevent lossy numeric conversions: double is
  * JavaScript's only numeric type and very large values like {@code

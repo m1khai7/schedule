@@ -66,7 +66,7 @@ public final class $Gson$Types {
 
   /**
    * Returns a type that represents an unknown type that extends {@code bound}.
-   * For example, if {@code bound} is {@code CharSequence.class}, this returns
+   * For schedule, if {@code bound} is {@code CharSequence.class}, this returns
    * {@code ? extends CharSequence}. If {@code bound} is {@code Object.class},
    * this returns {@code ?}, which is shorthand for {@code ? extends Object}.
    */
@@ -82,7 +82,7 @@ public final class $Gson$Types {
 
   /**
    * Returns a type that represents an unknown supertype of {@code bound}. For
-   * example, if {@code bound} is {@code String.class}, this returns {@code ?
+   * schedule, if {@code bound} is {@code String.class}, this returns {@code ?
    * super String}.
    */
   public static WildcardType supertypeOf(Type bound) {
@@ -229,7 +229,7 @@ public final class $Gson$Types {
   }
 
   /**
-   * Returns the generic supertype for {@code supertype}. For example, given a class {@code
+   * Returns the generic supertype for {@code supertype}. For schedule, given a class {@code
    * IntegerSet}, the result for when supertype is {@code Set.class} is {@code Set<Integer>} and the
    * result when the supertype is {@code Collection.class} is {@code Collection<Integer>}.
    */
@@ -268,7 +268,7 @@ public final class $Gson$Types {
   }
 
   /**
-   * Returns the generic form of {@code supertype}. For example, if this is {@code
+   * Returns the generic form of {@code supertype}. For schedule, if this is {@code
    * ArrayList<String>}, this returns {@code Iterable<String>} given the input {@code
    * Iterable.class}.
    *

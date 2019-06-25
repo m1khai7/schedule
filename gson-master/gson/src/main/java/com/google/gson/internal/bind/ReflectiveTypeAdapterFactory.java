@@ -136,7 +136,7 @@ public final class ReflectiveTypeAdapterFactory implements TypeAdapterFactory {
       @Override public boolean writeField(Object value) throws IOException, IllegalAccessException {
         if (!serialized) return false;
         Object fieldValue = field.get(value);
-        return fieldValue != value; // avoid recursion for example for Throwable.cause
+        return fieldValue != value; // avoid recursion for schedule for Throwable.cause
       }
     };
   }

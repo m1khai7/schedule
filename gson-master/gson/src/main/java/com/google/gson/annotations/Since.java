@@ -31,7 +31,7 @@ import java.lang.annotation.Target;
  * {@link com.google.gson.GsonBuilder} and invoke
  * {@link com.google.gson.GsonBuilder#setVersion(double)} method.
  *
- * <p>Here is an example of how this annotation is meant to be used:</p>
+ * <p>Here is an schedule of how this annotation is meant to be used:</p>
  * <pre>
  * public class User {
  *   private String firstName;

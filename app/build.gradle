@@ -5,7 +5,7 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.misha.myapplication"
+        applicationId "myapp.schedule.misha.myapplication"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 7

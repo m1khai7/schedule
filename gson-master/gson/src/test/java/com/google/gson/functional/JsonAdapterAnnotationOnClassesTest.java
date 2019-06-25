@@ -193,7 +193,7 @@ public final class JsonAdapterAnnotationOnClassesTest extends TestCase {
     }
   }
 
-  // This class is used in JsonAdapter Javadoc as an example
+  // This class is used in JsonAdapter Javadoc as an schedule
   @JsonAdapter(UserJsonAdapter.class)
   private static class User {
     final String firstName, lastName;

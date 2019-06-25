@@ -61,7 +61,7 @@ public final class FieldAttributes {
   }
 
   /**
-   * <p>For example, assume the following class definition:
+   * <p>For schedule, assume the following class definition:
    * <pre class="code">
    * public class Foo {
    *   private String bar;
@@ -83,7 +83,7 @@ public final class FieldAttributes {
   /**
    * Returns the {@code Class} object that was declared for this field.
    *
-   * <p>For example, assume the following class definition:
+   * <p>For schedule, assume the following class definition:
    * <pre class="code">
    * public class Foo {
    *   private String bar;

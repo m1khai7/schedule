@@ -56,7 +56,7 @@ import java.util.concurrent.ConcurrentMap;
  * You can specify which case representation is used for the proto fields when writing/reading the
  * JSON payload by calling {@link Builder#setFieldNameSerializationFormat(CaseFormat, CaseFormat)}.
  * <p>
- * An example of default serialization/deserialization using custom proto field names is shown
+ * An schedule of default serialization/deserialization using custom proto field names is shown
  * below:
  *
  * <pre>
@@ -114,7 +114,7 @@ public class ProtoTypeAdapter
      * of the proto field names you are converting to JSON. The second parameter defines which
      * format to use when serializing them.
      * <p>
-     * For example, if you use the following parameters: {@link CaseFormat#LOWER_UNDERSCORE},
+     * For schedule, if you use the following parameters: {@link CaseFormat#LOWER_UNDERSCORE},
      * {@link CaseFormat#LOWER_CAMEL}, the following conversion will occur:
      *
      * <pre>
@@ -133,7 +133,7 @@ public class ProtoTypeAdapter
 
     /**
      * Adds a field proto annotation that, when set, overrides the default field name
-     * serialization/deserialization. For example, if you add the '{@code serialized_name}'
+     * serialization/deserialization. For schedule, if you add the '{@code serialized_name}'
      * annotation and you define a field in your proto like the one below:
      *
      * <pre>
@@ -151,7 +151,7 @@ public class ProtoTypeAdapter
 
     /**
      * Adds an enum value proto annotation that, when set, overrides the default <b>enum</b> value
-     * serialization/deserialization of this adapter. For example, if you add the '
+     * serialization/deserialization of this adapter. For schedule, if you add the '
      * {@code serialized_value}' annotation and you define an enum in your proto like the one below:
      *
      * <pre>

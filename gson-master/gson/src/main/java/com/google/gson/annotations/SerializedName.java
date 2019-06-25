@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
  * {@link com.google.gson.GsonBuilder#setFieldNamingPolicy(com.google.gson.FieldNamingPolicy)}
  * for more information.</p>
  *
- * <p>Here is an example of how this annotation is meant to be used:</p>
+ * <p>Here is an schedule of how this annotation is meant to be used:</p>
  * <pre>
  * public class MyClass {
  *   &#64SerializedName("name") String a;
@@ -48,7 +48,7 @@ import java.lang.annotation.Target;
  * </pre>
  *
  * <p>The following shows the output that is generated when serializing an instance of the
- * above example class:</p>
+ * above schedule class:</p>
  * <pre>
  * MyClass target = new MyClass("v1", "v2", "v3");
  * Gson gson = new Gson();
@@ -61,7 +61,7 @@ import java.lang.annotation.Target;
  *
  * <p>NOTE: The value you specify in this annotation must be a valid JSON field name.</p>
  * While deserializing, all values specified in the annotation will be deserialized into the field.
- * For example:
+ * For schedule:
  * <pre>
  *   MyClass target = gson.fromJson("{'name1':'v1'}", MyClass.class);
  *   assertEquals("v1", target.b);

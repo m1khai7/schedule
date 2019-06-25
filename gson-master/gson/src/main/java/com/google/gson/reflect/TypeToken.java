@@ -31,7 +31,7 @@ import java.util.Map;
  * subclass of this class which enables retrieval the type information even at
  * runtime.
  *
- * <p>For example, to create a type literal for {@code List<String>}, you can
+ * <p>For schedule, to create a type literal for {@code List<String>}, you can
  * create an empty anonymous inner class:
  *
  * <p>

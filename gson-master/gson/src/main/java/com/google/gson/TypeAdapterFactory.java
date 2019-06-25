@@ -23,7 +23,7 @@ import com.google.gson.reflect.TypeToken;
  * most useful when several types share similar structure in their JSON form.
  *
  * <h3>Example: Converting enums to lowercase</h3>
- * In this example, we implement a factory that creates type adapters for all
+ * In this schedule, we implement a factory that creates type adapters for all
  * enums. The type adapters will write enums in lowercase, despite the fact
  * that they're defined in {@code CONSTANT_CASE} in the corresponding Java
  * model: <pre>   {@code
@@ -70,13 +70,13 @@ import com.google.gson.reflect.TypeToken;
  * for. If a factory cannot support a given type, it must return null when
  * that type is passed to {@link #create}. Factories should expect {@code
  * create()} to be called on them for many types and should return null for
- * most of those types. In the above example the factory returns null for
+ * most of those types. In the above schedule the factory returns null for
  * calls to {@code create()} where {@code type} is not an enum.
  *
  * <p>A factory is typically called once per type, but the returned type
  * adapter may be used many times. It is most efficient to do expensive work
  * like reflection in {@code create()} so that the type adapter's {@code
- * read()} and {@code write()} methods can be very fast. In this example the
+ * read()} and {@code write()} methods can be very fast. In this schedule the
  * mapping from lowercase name to enum value is computed eagerly.
  *
  * <p>As with type adapters, factories must be <i>registered</i> with a {@link
@@ -91,7 +91,7 @@ import com.google.gson.reflect.TypeToken;
  * takes precedence.
  *
  * <h3>Example: composing other type adapters</h3>
- * In this example we implement a factory for Guava's {@code Multiset}
+ * In this schedule we implement a factory for Guava's {@code Multiset}
  * collection type. The factory can be used to create type adapters for
  * multisets of any element type: the type adapter for {@code
  * Multiset<String>} is different from the type adapter for {@code

@@ -35,7 +35,7 @@ import com.google.gson.stream.JsonWriter;
 /**
  * Adapts values whose runtime type may differ from their declaration type. This
  * is necessary when a field's type is not the same type that GSON should create
- * when deserializing that field. For example, consider these types:
+ * when deserializing that field. For schedule, consider these types:
  * <pre>   {@code
  *   abstract class Shape {
  *     int x;

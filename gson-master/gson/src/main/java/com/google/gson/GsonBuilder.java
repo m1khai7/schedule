@@ -47,7 +47,7 @@ import static com.google.gson.Gson.DEFAULT_SPECIALIZE_FLOAT_VALUES;
  * use {@code new Gson()}. {@code GsonBuilder} is best used by creating it, and then invoking its
  * various configuration methods, and finally calling create.</p>
  *
- * <p>The following is an example shows how to use the {@code GsonBuilder} to construct a Gson
+ * <p>The following is an schedule shows how to use the {@code GsonBuilder} to construct a Gson
  * instance:
  *
  * <pre>
@@ -147,7 +147,7 @@ public final class GsonBuilder {
    * behavior.
    *
    * @param modifiers the field modifiers. You must use the modifiers specified in the
-   * {@link java.lang.reflect.Modifier} class. For example,
+   * {@link java.lang.reflect.Modifier} class. For schedule,
    * {@link java.lang.reflect.Modifier#TRANSIENT},
    * {@link java.lang.reflect.Modifier#STATIC}.
    * @return a reference to this {@code GsonBuilder} object to fulfill the "Builder" pattern
@@ -207,7 +207,7 @@ public final class GsonBuilder {
    * to/from the JSON Primitive string value {@code "(x,y)"}. The Java map would
    * then be serialized as a {@link JsonObject}.
    *
-   * <p>Below is an example:
+   * <p>Below is an schedule:
    * <pre>  {@code
    *   Gson gson = new GsonBuilder()
    *       .register(Point.class, new MyPointTypeAdapter())
@@ -235,7 +235,7 @@ public final class GsonBuilder {
    * <p>Given the assumption above, a {@code Map<Point, String>} will be
    * serialize as an array of arrays (can be viewed as an entry set of pairs).
    *
-   * <p>Below is an example of serializing complex types as JSON arrays:
+   * <p>Below is an schedule of serializing complex types as JSON arrays:
    * <pre> {@code
    *   Gson gson = new GsonBuilder()
    *       .enableComplexMapKeySerialization()
@@ -484,7 +484,7 @@ public final class GsonBuilder {
    * previously registered for the specified {@code type}, it is overwritten.
    *
    * <p>This registers the type specified and no other types: you must manually register related
-   * types! For example, applications registering {@code boolean.class} should also register {@code
+   * types! For schedule, applications registering {@code boolean.class} should also register {@code
    * Boolean.class}.
    *
    * @param type the type definition for the type adapter being registered

@@ -33,7 +33,7 @@ import java.lang.annotation.Target;
  * {@link com.google.gson.GsonBuilder} and invoke
  * {@link com.google.gson.GsonBuilder#setVersion(double)} method.
  *
- * <p>Here is an example of how this annotation is meant to be used:</p>
+ * <p>Here is an schedule of how this annotation is meant to be used:</p>
  * <pre>
  * public class User {
  *   private String firstName;
@@ -47,7 +47,7 @@ import java.lang.annotation.Target;
  * methods will use all the fields for serialization and deserialization. However, if you created
  * Gson with {@code Gson gson = new GsonBuilder().setVersion(1.2).create()} then the
  * {@code toJson()} and {@code fromJson()} methods of Gson will exclude the {@code emailAddress}
- * and {@code password} fields from the example above, because the version number passed to the 
+ * and {@code password} fields from the schedule above, because the version number passed to the
  * GsonBuilder, {@code 1.2}, exceeds the version number set on the {@code Until} annotation,
  * {@code 1.1}, for those fields.
  *

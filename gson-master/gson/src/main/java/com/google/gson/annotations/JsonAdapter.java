@@ -29,7 +29,7 @@ import java.lang.annotation.Target;
  * An annotation that indicates the Gson {@link TypeAdapter} to use with a class
  * or field.
  *
- * <p>Here is an example of how this annotation is used:</p>
+ * <p>Here is an schedule of how this annotation is used:</p>
  * <pre>
  * &#64JsonAdapter(UserJsonAdapter.class)
  * public class User {
@@ -62,7 +62,7 @@ import java.lang.annotation.Target;
  * Since User class specified UserJsonAdapter.class in &#64JsonAdapter annotation, it
  * will automatically be invoked to serialize/deserialize User instances. <br>
  *
- * <p> Here is an example of how to apply this annotation to a field.
+ * <p> Here is an schedule of how to apply this annotation to a field.
  * <pre>
  * private static final class Gadget {
  *   &#64JsonAdapter(UserJsonAdapter2.class)
@@ -90,7 +90,7 @@ import java.lang.annotation.Target;
  * @author Joel Leitch
  * @author Jesse Wilson
  */
-// Note that the above example is taken from AdaptAnnotationTest.
+// Note that the above schedule is taken from AdaptAnnotationTest.
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.FIELD})
 public @interface JsonAdapter {

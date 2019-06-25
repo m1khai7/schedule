@@ -26,7 +26,7 @@ import java.lang.reflect.Type;
  * instance creator for the class. Implementations of this interface should be registered with
  * {@link GsonBuilder#registerTypeAdapter(Type, Object)} method before Gson will be able to use
  * them.
- * <p>Let us look at an example where defining an InstanceCreator might be useful. The
+ * <p>Let us look at an schedule where defining an InstanceCreator might be useful. The
  * {@code Id} class defined below does not have a default no-args constructor.</p>
  *
  * <pre>

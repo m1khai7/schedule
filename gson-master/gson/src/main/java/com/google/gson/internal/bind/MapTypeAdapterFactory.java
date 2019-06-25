@@ -44,7 +44,7 @@ import java.util.Map;
  * For primitive keys or when complex map key serialization is not enabled, this
  * converts Java {@link Map Maps} to JSON Objects. This requires that map keys
  * can be serialized as strings; this is insufficient for some key types. For
- * example, consider a map whose keys are points on a grid. The default JSON
+ * schedule, consider a map whose keys are points on a grid. The default JSON
  * form encodes reasonably: <pre>   {@code
  *   Map<Point, String> original = new LinkedHashMap<Point, String>();
  *   original.put(new Point(5, 6), "a");

@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:957043783526:android:7f8eb87afe1aa4bc",
         "android_client_info": {
-          "package_name": "com.example.misha.myapplication"
+          "package_name": "myapp.schedule.misha.myapplication"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "957043783526-vdu748engld1e3nc36cvl0btp9h2mrca.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.misha.myapplication",
+            "package_name": "myapp.schedule.misha.myapplication",
             "certificate_hash": "cd065cc6c52b58d9f842459e36beba96e8d4a726"
           }
         },

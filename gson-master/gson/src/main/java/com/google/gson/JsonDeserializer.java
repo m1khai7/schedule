@@ -24,7 +24,7 @@ import java.lang.reflect.Type;
  * also need to register this deserializer through
  * {@link GsonBuilder#registerTypeAdapter(Type, Object)}.</p>
  *
- * <p>Let us look at example where defining a deserializer will be useful. The {@code Id} class
+ * <p>Let us look at schedule where defining a deserializer will be useful. The {@code Id} class
  * defined below has two fields: {@code clazz} and {@code value}.</p>
  *
  * <pre>

@@ -69,7 +69,7 @@ import com.google.gson.stream.MalformedJsonException;
  * configuration options such as versioning support, pretty printing, custom
  * {@link JsonSerializer}s, {@link JsonDeserializer}s, and {@link InstanceCreator}s.</p>
  *
- * <p>Here is an example of how Gson is used for a simple Class:
+ * <p>Here is an schedule of how Gson is used for a simple Class:
  *
  * <pre>
  * Gson gson = new Gson(); // Or use new GsonBuilder().create();
@@ -81,7 +81,7 @@ import com.google.gson.stream.MalformedJsonException;
  * <p>If the object that your are serializing/deserializing is a {@code ParameterizedType}
  * (i.e. contains at least one type parameter and may be an array) then you must use the
  * {@link #toJson(Object, Type)} or {@link #fromJson(String, Type)} method.  Here is an
- * example for serializing and deserializing a {@code ParameterizedType}:
+ * schedule for serializing and deserializing a {@code ParameterizedType}:
  *
  * <pre>
  * Type listType = new TypeToken&lt;List&lt;String&gt;&gt;() {}.getType();
@@ -477,7 +477,7 @@ public final class Gson {
    * to access a type adapter that is overridden by a {@link TypeAdapterFactory} that you
    * may have registered. This features is typically used when you want to register a type
    * adapter that does a little bit of work but then delegates further processing to the Gson
-   * default type adapter. Here is an example:
+   * default type adapter. Here is an schedule:
    * <p>Let's say we want to write a type adapter that counts the number of objects being read
    *  from or written to JSON. We can achieve this by writing a type adapter factory that uses
    *  the <code>getDelegateAdapter</code> method:
@@ -584,7 +584,7 @@ public final class Gson {
    *
    * @param src the object for which JSON representation is to be created
    * @param typeOfSrc The specific genericized type of src. You can obtain
-   * this type by using the {@link com.google.gson.reflect.TypeToken} class. For example,
+   * this type by using the {@link com.google.gson.reflect.TypeToken} class. For schedule,
    * to get the type for {@code Collection<Foo>}, you should use:
    * <pre>
    * Type typeOfSrc = new TypeToken&lt;Collection&lt;Foo&gt;&gt;(){}.getType();
@@ -626,7 +626,7 @@ public final class Gson {
    *
    * @param src the object for which JSON representation is to be created
    * @param typeOfSrc The specific genericized type of src. You can obtain
-   * this type by using the {@link com.google.gson.reflect.TypeToken} class. For example,
+   * this type by using the {@link com.google.gson.reflect.TypeToken} class. For schedule,
    * to get the type for {@code Collection<Foo>}, you should use:
    * <pre>
    * Type typeOfSrc = new TypeToken&lt;Collection&lt;Foo&gt;&gt;(){}.getType();
@@ -668,7 +668,7 @@ public final class Gson {
    *
    * @param src the object for which JSON representation is to be created
    * @param typeOfSrc The specific genericized type of src. You can obtain
-   * this type by using the {@link com.google.gson.reflect.TypeToken} class. For example,
+   * this type by using the {@link com.google.gson.reflect.TypeToken} class. For schedule,
    * to get the type for {@code Collection<Foo>}, you should use:
    * <pre>
    * Type typeOfSrc = new TypeToken&lt;Collection&lt;Foo&gt;&gt;(){}.getType();
@@ -823,7 +823,7 @@ public final class Gson {
    * @param <T> the type of the desired object
    * @param json the string from which the object is to be deserialized
    * @param typeOfT The specific genericized type of src. You can obtain this type by using the
-   * {@link com.google.gson.reflect.TypeToken} class. For example, to get the type for
+   * {@link com.google.gson.reflect.TypeToken} class. For schedule, to get the type for
    * {@code Collection<Foo>}, you should use:
    * <pre>
    * Type typeOfT = new TypeToken&lt;Collection&lt;Foo&gt;&gt;(){}.getType();
@@ -876,7 +876,7 @@ public final class Gson {
    * @param <T> the type of the desired object
    * @param json the reader producing Json from which the object is to be deserialized
    * @param typeOfT The specific genericized type of src. You can obtain this type by using the
-   * {@link com.google.gson.reflect.TypeToken} class. For example, to get the type for
+   * {@link com.google.gson.reflect.TypeToken} class. For schedule, to get the type for
    * {@code Collection<Foo>}, you should use:
    * <pre>
    * Type typeOfT = new TypeToken&lt;Collection&lt;Foo&gt;&gt;(){}.getType();
@@ -977,7 +977,7 @@ public final class Gson {
    * @param json the root of the parse tree of {@link JsonElement}s from which the object is to
    * be deserialized
    * @param typeOfT The specific genericized type of src. You can obtain this type by using the
-   * {@link com.google.gson.reflect.TypeToken} class. For example, to get the type for
+   * {@link com.google.gson.reflect.TypeToken} class. For schedule, to get the type for
    * {@code Collection<Foo>}, you should use:
    * <pre>
    * Type typeOfT = new TypeToken&lt;Collection&lt;Foo&gt;&gt;(){}.getType();

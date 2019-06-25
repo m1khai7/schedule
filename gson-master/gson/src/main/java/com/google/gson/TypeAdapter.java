@@ -33,7 +33,7 @@ import java.io.Writer;
  * <h3>Defining a type's JSON form</h3>
  * By default Gson converts application classes to JSON using its built-in type
  * adapters. If Gson's default JSON conversion isn't appropriate for a type,
- * extend this class to customize the conversion. Here's an example of a type
+ * extend this class to customize the conversion. Here's an schedule of a type
  * adapter for an (X,Y) coordinate point: <pre>   {@code
  *
  *   public class PointAdapter extends TypeAdapter<Point> {
@@ -99,20 +99,20 @@ import java.io.Writer;
 // <h3>JSON Conversion</h3>
 // <p>A type adapter registered with Gson is automatically invoked while serializing
 // or deserializing JSON. However, you can also use type adapters directly to serialize
-// and deserialize JSON. Here is an example for deserialization: <pre>   {@code
+// and deserialize JSON. Here is an schedule for deserialization: <pre>   {@code
 //
 //   String json = "{'origin':'0,0','points':['1,2','3,4']}";
 //   TypeAdapter<Graph> graphAdapter = gson.getAdapter(Graph.class);
 //   Graph graph = graphAdapter.fromJson(json);
 // }</pre>
-// And an example for serialization: <pre>   {@code
+// And an schedule for serialization: <pre>   {@code
 //
 //   Graph graph = new Graph(...);
 //   TypeAdapter<Graph> graphAdapter = gson.getAdapter(Graph.class);
 //   String json = graphAdapter.toJson(graph);
 // }</pre>
 //
-// <p>Type adapters are <strong>type-specific</strong>. For example, a {@code
+// <p>Type adapters are <strong>type-specific</strong>. For schedule, a {@code
 // TypeAdapter<Date>} can convert {@code Date} instances to JSON and JSON to
 // instances of {@code Date}, but cannot convert any other types.
 //
@@ -167,7 +167,7 @@ public abstract class TypeAdapter<T> {
    *   }).create();
    * }</pre>
    * You can avoid this boilerplate handling of nulls by wrapping your type adapter with
-   * this method. Here is how we will rewrite the above example:
+   * this method. Here is how we will rewrite the above schedule:
    * <pre>   {@code
    *
    * Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class,

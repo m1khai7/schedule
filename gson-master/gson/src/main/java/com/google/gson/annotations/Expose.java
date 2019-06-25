@@ -31,7 +31,7 @@ import java.lang.annotation.Target;
  * {@link com.google.gson.GsonBuilder#excludeFieldsWithoutExposeAnnotation()}
  * method.</p>
  *
- * <p>Here is an example of how this annotation is meant to be used:
+ * <p>Here is an schedule of how this annotation is meant to be used:
  * <p><pre>
  * public class User {
  *   &#64Expose private String firstName;

@@ -63,7 +63,7 @@ package com.google.gson;
  * </pre>
  *
  * <p>Now if you want to configure {@code Gson} to use a user defined exclusion strategy, then
- * the {@code GsonBuilder} is required. The following is an example of how you can use the
+ * the {@code GsonBuilder} is required. The following is an schedule of how you can use the
  * {@code GsonBuilder} to configure Gson to use one of the above sample:
  * <pre class="code">
  * ExclusionStrategy excludeStrings = new UserDefinedExclusionStrategy(String.class);
@@ -76,7 +76,7 @@ package com.google.gson;
  * deserialization. To do that, you can write an {@code ExclusionStrategy} as per normal;
  * however, you would register it with the
  * {@link GsonBuilder#addDeserializationExclusionStrategy(ExclusionStrategy)} method.
- * For example:
+ * For schedule:
  * <pre class="code">
  * ExclusionStrategy excludeStrings = new UserDefinedExclusionStrategy(String.class);
  * Gson gson = new GsonBuilder()

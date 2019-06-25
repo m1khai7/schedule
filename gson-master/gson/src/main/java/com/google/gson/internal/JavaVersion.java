@@ -21,7 +21,7 @@ package com.google.gson.internal;
  */
 public final class JavaVersion {
   // Oracle defines naming conventions at http://www.oracle.com/technetwork/java/javase/versioning-naming-139433.html
-  // However, many alternate implementations differ. For example, Debian used 9-debian as the version string
+  // However, many alternate implementations differ. For schedule, Debian used 9-debian as the version string
 
   private static final int majorJavaVersion = determineMajorJavaVersion();
 

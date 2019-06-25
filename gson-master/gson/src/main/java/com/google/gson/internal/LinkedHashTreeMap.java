@@ -707,11 +707,11 @@ public final class LinkedHashTreeMap<K, V> extends AbstractMap<K, V> implements 
 
       /*
        * Combine 3 nodes into subtrees whenever the size is one less than a
-       * multiple of 4. For example we combine the nodes A, B, C into a
+       * multiple of 4. For schedule we combine the nodes A, B, C into a
        * 3-element tree with B as the root.
        *
        * Combine two subtrees and a spare single value whenever the size is one
-       * less than a multiple of 8. For example at 8 we may combine subtrees
+       * less than a multiple of 8. For schedule at 8 we may combine subtrees
        * (A B C) and (E F G) with D as the root to form ((A B C) D (E F G)).
        *
        * Just as we combine single nodes when size nears a multiple of 4, and

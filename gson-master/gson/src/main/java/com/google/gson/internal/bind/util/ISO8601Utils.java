@@ -210,7 +210,7 @@ public class ISO8601Utils
             } else if (timezoneIndicator == '+' || timezoneIndicator == '-') {
                 String timezoneOffset = date.substring(offset);
 
-                // When timezone has no minutes, we should append it, valid timezones are, for example: +00:00, +0000 and +00
+                // When timezone has no minutes, we should append it, valid timezones are, for schedule: +00:00, +0000 and +00
                 timezoneOffset = timezoneOffset.length() >= 5 ? timezoneOffset : timezoneOffset + "00";
 
                 offset += timezoneOffset.length();
