@@ -39,12 +39,13 @@ public class MainActivity extends BaseActivity {
                             fragment = new EditDataFragment();
                             replaceFragment(fragment);
                             return true;
-                        case R.id.scheduleList:
-                            fragment = new ScheduleListFragment();
-                            replaceFragment(fragment);
-                            return true;
                         case R.id.scheduleDays:
                             fragment = new ScheduleFragment();
+                            replaceFragment(fragment);
+                            return true;
+                        case R.id.scheduleList:
+                            fragment = new ScheduleListFragment();
+                            showProgressBar();
                             replaceFragment(fragment);
                             return true;
                         case R.id.settings:

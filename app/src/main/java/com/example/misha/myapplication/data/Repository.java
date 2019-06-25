@@ -39,6 +39,7 @@ public class Repository implements RepositoryManager {
         return databaseInterface.getLessonsByDayWeek(week, day);
     }
 
+
     @Override
     public boolean isHintsOpened() {
         return preferencesInterface.isHintsOpened();
@@ -168,5 +169,4 @@ public class Repository implements RepositoryManager {
     public void setSelectedCurrentLesson(String currentLesson) {
         preferencesInterface.setSelectedCurrentLesson(currentLesson);
     }
-
 }

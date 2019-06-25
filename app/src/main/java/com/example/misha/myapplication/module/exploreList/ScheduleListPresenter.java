@@ -18,12 +18,7 @@ import java.util.ArrayList;
 
 public class ScheduleListPresenter extends BaseMainPresenter<ScheduleListFragmentView> implements ScheduleListPresenterInterface {
 
-    public ArrayList<Lesson> lessonsNew = new ArrayList<>();
-    private String currentDay = "0";
-    private String currentWeek = "0";
-
     public ScheduleListPresenter() {
-
     }
 
     @Override
@@ -38,6 +33,10 @@ public class ScheduleListPresenter extends BaseMainPresenter<ScheduleListFragmen
     }
 
     public void load() {
+
+        ArrayList<Lesson> lessonsNew = new ArrayList<>();
+        String currentDay = "0";
+        String currentWeek = "0";
         ArrayList<Lesson> lessons = LessonDao.getInstance().getAllData();
         Lesson lesson;
         Subject subject;
@@ -68,8 +67,8 @@ public class ScheduleListPresenter extends BaseMainPresenter<ScheduleListFragmen
             }
         }
         lessonsNew.remove(0);
+        getView().hideProgressBar();
         getView().updateList(lessonsNew);
-
     }
 
     @Override
