@@ -23,6 +23,7 @@ public final class Preferences implements PreferencesInterface {
     private static final String SELECTED_DAY = "SELECTED_DAY";
     private static final String SELECTED_LESSON = "SELECTED_LESSON";
     private static final String CURRENT_LESSON = "CURRENT_LESSON";
+    private static final String WEEK = "WEEK";
     private static volatile Preferences instance;
     private final SharedPreferences mPrefs;
     public String SELECT_THEME = "SELECT_THEME";
@@ -151,4 +152,16 @@ public final class Preferences implements PreferencesInterface {
     public void setSelectedCurrentLesson(String currentLesson) {
         mPrefs.edit().putString(CURRENT_LESSON, currentLesson).apply();
     }
+
+    @Override
+    public Boolean getWeek() {
+        return mPrefs.getBoolean(WEEK, false);
+    }
+
+    @Override
+    public void selectWeek(boolean select) {
+        mPrefs.edit().putBoolean(WEEK, select).apply();
+    }
+
+
 }

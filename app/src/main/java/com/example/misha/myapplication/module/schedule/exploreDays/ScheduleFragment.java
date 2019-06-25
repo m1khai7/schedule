@@ -148,7 +148,6 @@ public class ScheduleFragment extends BaseMainFragment implements ScheduleFragme
         if (Preferences.getInstance().getSelectedTheme().equals(LIGHT_THEME)) {
             menu.findItem(R.id.btn_edit).setIcon(R.drawable.ic_edit_black);
         }
-
     }
 
     @Override

@@ -75,7 +75,6 @@ public class ScheduleListPresenter extends BaseMainPresenter<ScheduleListFragmen
     @Override
     public void onWeekSelected(int position) {
         getView().selectWeek(position);
-        Preferences.getInstance().setSelectedWeekSchedule(position);
     }
 
     @Override

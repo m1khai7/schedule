@@ -1,12 +1,12 @@
 package com.example.misha.myapplication.module.exploreList;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -21,7 +21,6 @@ import com.example.misha.myapplication.CustomSpinnerAdapterWeeks;
 import com.example.misha.myapplication.R;
 import com.example.misha.myapplication.common.core.BaseMainFragment;
 import com.example.misha.myapplication.common.core.BasePresenter;
-import com.example.misha.myapplication.data.database.dao.LessonDao;
 import com.example.misha.myapplication.data.preferences.Preferences;
 import com.example.misha.myapplication.entity.Lesson;
 import com.example.misha.myapplication.module.schedule.edit.EditScheduleFragment;
@@ -29,16 +28,13 @@ import com.example.misha.myapplication.util.DataUtil;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import static com.example.misha.myapplication.data.preferences.Preferences.DARK_THEME;
 import static com.example.misha.myapplication.data.preferences.Preferences.LIGHT_THEME;
 
 
-public class ScheduleListFragment extends BaseMainFragment implements ScheduleListFragmentView, AdapterView.OnItemSelectedListener {
+public class ScheduleListFragment extends BaseMainFragment implements ScheduleListFragmentView, AdapterView.OnItemSelectedListener, View.OnTouchListener {
 
     private Spinner spinner;
     private CustomSpinnerAdapterWeeks customSpinnerAdapterWeeks;
@@ -46,6 +42,8 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
     private ScheduleListFragmentAdapter rvadapter;
     private TextView titleDay;
     private ArrayList<Lesson> lessons;
+    private RecyclerView rvLessons;
+    private String dateDay = "";
 
     @Override
     public void onResume() {
@@ -54,13 +52,25 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
         spinner.setBackgroundColor(Color.TRANSPARENT);
         spinner.setAdapter(customSpinnerAdapterWeeks);
         spinner.setOnItemSelectedListener(this);
+        spinner.setOnTouchListener(this);
         getContext().getToolbar().addView(spinner);
         getContext().setCurrentTitle(null);
+
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        presenter.onWeekSelected(position);
+        if (Preferences.getInstance().getWeek()) {
+            int searchListLength = lessons.size();
+            for (int i = 0; i < searchListLength; i++) {
+                if (lessons.get(i).getNumber_week().equals(String.valueOf(position + 1))) {
+                    ((LinearLayoutManager) rvLessons.getLayoutManager()).scrollToPositionWithOffset(position == 0 ? 0 : i + 1, 0);
+                    break;
+                }
+            }
+            Preferences.getInstance().selectWeek(false);
+        }
+
     }
 
     @Override
@@ -80,19 +90,26 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_schedule_list, container, false);
-        RecyclerView rvLessons = fragmentView.findViewById(R.id.rv_lessons_edit);
+        rvLessons = fragmentView.findViewById(R.id.rv_lessons_edit);
         rvLessons.setAdapter(rvadapter);
         titleDay = fragmentView.findViewById(R.id.titleDay);
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvLessons.setLayoutManager(linearLayoutManager);
         rvLessons.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
                 LinearLayoutManager layoutManager = (LinearLayoutManager) rvLessons.getLayoutManager();
                 int firstVisiblePosition = layoutManager != null ? (layoutManager.findFirstVisibleItemPosition() == 0 ? layoutManager.findFirstVisibleItemPosition() : layoutManager.findFirstVisibleItemPosition() - 1) : 0;
-                titleDay.setText(DataUtil.dateDay(lessons, firstVisiblePosition));
+                if (!dateDay.equals(DataUtil.dateDay(lessons, firstVisiblePosition))) {
+                    presenter.onWeekSelected(Integer.parseInt(lessons.get(firstVisiblePosition).getNumber_week()) - 1);
+                    dateDay = DataUtil.dateDay(lessons, firstVisiblePosition);
+                } else {
+                    dateDay = DataUtil.dateDay(lessons, firstVisiblePosition);
+                }
+                titleDay.setText(dateDay);
             }
         });
         return fragmentView;
@@ -107,6 +124,7 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
 
     @Override
     public void selectWeek(int position) {
+        spinner.setSelection(position);
     }
 
     @Override
@@ -162,4 +180,13 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
         getContext().getToolbar().removeView(spinner);
     }
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            Preferences.getInstance().selectWeek(true);
+        } else {
+            Preferences.getInstance().selectWeek(false);
+        }
+        return false;
+    }
 }

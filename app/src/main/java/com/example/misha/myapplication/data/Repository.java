@@ -155,6 +155,16 @@ public class Repository implements RepositoryManager {
     }
 
     @Override
+    public Boolean getWeek() {
+        return preferencesInterface.getWeek();
+    }
+
+    @Override
+    public void selectWeek(boolean select) {
+        preferencesInterface.selectWeek(select);
+    }
+
+    @Override
     public void setSelectedCurrentLesson(String currentLesson) {
         preferencesInterface.setSelectedCurrentLesson(currentLesson);
     }

@@ -48,5 +48,9 @@ public interface PreferencesInterface {
 
     String getSelectedCurrentLesson();
 
+    Boolean getWeek();
+
+    void selectWeek(boolean select);
+
     void setSelectedCurrentLesson(String currentLesson);
 }
