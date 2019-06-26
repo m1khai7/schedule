@@ -20,7 +20,7 @@
         <item>17 неделя</item>
     </string-array>
 
-    <string name="app_name">Расписание</string>
+    <string name="app_name">Respect Schedule</string>
     <string name="data_start_semestr">Дата начала семестра</string>
     <string name="settings_change_theme">Изменить тему приложения</string>
     <string name="dialog_button_add">Добавить</string>

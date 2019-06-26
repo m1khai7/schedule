@@ -50,7 +50,7 @@ public class ScheduleListPresenter extends BaseMainPresenter<ScheduleListFragmen
             educator = EducatorDao.getInstance().getItemByID(Long.parseLong(lesson.getId_educator()));
             typelesson = TypelessonDao.getInstance().getItemByID(Long.parseLong(lesson.getId_typelesson()));
 
-            if (subject != null || audience != null || educator != null || typelesson != null) {
+            if (subject != null && audience != null && educator != null && typelesson != null) {
                 if (!currentDay.equals(lesson.getNumber_day()) || !currentWeek.equals(lesson.getNumber_week())) {
                     Lesson les = new Lesson();
                     les.setId_subject("0");
