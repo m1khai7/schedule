@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseAlertDialog;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.entity.EditDataModel;
+import myapp.schedule.misha.myapplication.util.DataUtil;
 
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_EDIT_DATA;
 
@@ -48,6 +50,7 @@ public class DialogFragmentAddData extends BaseAlertDialog implements TextView.O
         presenter = new DialogFragmentDataPresenter(editDataModel);
         presenter.init();
 
+
         @SuppressLint("InflateParams")
         View view = layoutInflater.inflate(R.layout.dialog_add_data, null);
         TextView title_dialog = view.findViewById(R.id.dialog_textView);
@@ -61,14 +64,16 @@ public class DialogFragmentAddData extends BaseAlertDialog implements TextView.O
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
-
+        AlertDialog d = builder.create();
+        d.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         Button button_cancel = view.findViewById(R.id.button_cancel);
         button_cancel.setOnClickListener(v -> {
+            DataUtil.showKeyboard(getContext());
             Intent intent = new Intent();
             getParentFragment().onActivityResult(editDataModel.getType(), Activity.RESULT_OK, intent);
             dismiss();
         });
-        return builder.create();
+        return d;
     }
 
     @Override

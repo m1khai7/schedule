@@ -2,6 +2,8 @@ package myapp.schedule.misha.myapplication.util;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 
 import java.text.DateFormat;
@@ -21,13 +23,19 @@ public final class DataUtil {
         return calculateWeek >= 16 ? 16 : calculateWeek;
     }
 
-    public static void hintKeyboard(Activity contex) {
-        InputMethodManager imm = (InputMethodManager) contex.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        if (contex.getCurrentFocus() != null)
-            imm.hideSoftInputFromWindow(contex.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    public static void hintKeyboard(Activity context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (context.getCurrentFocus() != null)
+            imm.hideSoftInputFromWindow(context.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+    public static void showKeyboard(Activity context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm.isActive()) {
+            imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 
-    public static String dateDay(ArrayList<Lesson> lessonArrayList, int position) {
+        public static String dateDay(ArrayList<Lesson> lessonArrayList, int position) {
         Calendar mCalendar = Calendar.getInstance();
         mCalendar.setTimeInMillis(Long.valueOf(Preferences.getInstance().getSemestrStart()));
         mCalendar.setFirstDayOfWeek(Calendar.MONDAY);
