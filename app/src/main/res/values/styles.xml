@@ -10,6 +10,7 @@
     <attr name="textViewNumberCallStyle" format="reference" />
     <attr name="floatButton" format="reference" />
     <attr name="lineColorStyle" format="reference" />
+    <attr name="titleTextColorStyle" format="reference" />
 
 
     <style name="DarkTheme" parent="@style/Theme.AppCompat">
@@ -25,6 +26,7 @@
         <item name="navBottomStyle">@style/BottomNavigationViewDarkStyle</item>
         <item name="android:textAppearanceLargePopupMenu">@style/PopupMenuTextAppearanceLarge</item>
         <item name="licensesStyle">@style/LicensesDarkStyle</item>
+        <item name="titleTextColorStyle">@style/TitleDarkStyle</item>
         <item name="android:textColorHint">@color/whiteD3</item>
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="colorAccent">@color/black38</item>
@@ -52,6 +54,7 @@
         <item name="navBottomStyle">@style/BottomNavigationLightView</item>
         <item name="android:textAppearanceLargePopupMenu">@style/PopupMenuTextAppearanceLarge</item>
         <item name="licensesStyle">@style/LicensesLightStyle</item>
+        <item name="titleTextColorStyle">@style/TitleLightStyle</item>
         <item name="floatButton">@style/FloatButtonLightStyle</item>
         <item name="android:textColorHint">@color/greyB3</item>
         <item name="colorControlActivated">@color/green</item>
@@ -69,7 +72,7 @@
     </style>
 
     <style name="DarkLineColorStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">#656565</item>
+        <item name="android:background">@color/greyB3</item>
     </style>
 
     <style name="LicensesDarkStyle" parent="Widget.AppCompat.TextView">
@@ -78,6 +81,10 @@
 
     <style name="TitleText" parent="TextAppearance.AppCompat.Title">
         <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="TitleDarkStyle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
     <style name="TabLayoutDarkStyle" parent="Widget.Design.TabLayout">
@@ -144,6 +151,9 @@
         <item name="android:backgroundTint">@color/greyB3</item>
     </style>
 
+    <style name="TitleLightStyle" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textColor">@color/green</item>
+    </style>
 
     <style name="TimeOneLightStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">@color/black20</item>

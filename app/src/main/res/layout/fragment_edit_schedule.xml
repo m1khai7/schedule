@@ -12,6 +12,12 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="6" />
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rv_tab"
+        style="?attr/lineColorStyle"/>
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
