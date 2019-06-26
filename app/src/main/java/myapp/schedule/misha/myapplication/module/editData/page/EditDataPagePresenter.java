@@ -65,7 +65,8 @@ public class EditDataPagePresenter extends BaseMainPresenter<EditDataFragmentPag
         item.setName(itemName);
         absDao.insertItem(item);
         listItems.add(item);
-        init();
+        listItems = absDao.getAllData();
+        getView().updateItemsAdapter(listItems);
     }
 
     @Override

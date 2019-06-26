@@ -17,8 +17,6 @@
             android:layout_marginTop="@dimen/spacing_small"
             android:layout_marginEnd="@dimen/spacing_medium"
             android:imeOptions="actionDone"
-            android:inputType="textCapSentences"
-            android:maxLength="60"
             android:paddingBottom="@dimen/spacing_normal"
             android:textSize="18sp" />
 

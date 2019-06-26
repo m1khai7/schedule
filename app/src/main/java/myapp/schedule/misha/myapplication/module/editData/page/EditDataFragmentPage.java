@@ -126,8 +126,7 @@ public class EditDataFragmentPage extends BaseMainFragment implements EditDataFr
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
         EditDataModel editDataModel = getArguments().getParcelable(FRAGMENT_EDIT_DATA);
-        if ((actionId == EditorInfo.IME_ACTION_DONE) ||
-                ((event.getKeyCode() == KeyEvent.KEYCODE_ENTER) && (event.getAction() == KeyEvent.ACTION_DOWN))) {
+        if (actionId == EditorInfo.IME_ACTION_DONE) {
             String itemName = inputItem.getText().toString();
             itemName = itemName.trim().replaceAll(" +", " ");
             if (TextUtils.isEmpty(itemName) || itemName.equals(" ")) {
