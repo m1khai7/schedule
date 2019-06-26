@@ -129,20 +129,21 @@ public class ScheduleFragmentPagerAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         int numberItem = lessonList.size();
         if (!lessonList.isEmpty()) {
-            int countPositiveItems=0;
-            for  (int i = 0; i<6; i++){
-            Lesson lesson = lessonList.get(i);
-            try {
-                subject = SubjectDao.getInstance().getItemByID(Long.parseLong(lesson.getId_subject()));
-                audience = AudienceDao.getInstance().getItemByID(Long.parseLong(lesson.getId_audience()));
-                educator = EducatorDao.getInstance().getItemByID(Long.parseLong(lesson.getId_educator()));
-                typelesson = TypelessonDao.getInstance().getItemByID(Long.parseLong(lesson.getId_typelesson()));
-            } catch (NumberFormatException ignored) {
+            int countPositiveItems = 0;
+            for (int i = 0; i < 6; i++) {
+                Lesson lesson = lessonList.get(i);
+                try {
+                    subject = SubjectDao.getInstance().getItemByID(Long.parseLong(lesson.getId_subject()));
+                    audience = AudienceDao.getInstance().getItemByID(Long.parseLong(lesson.getId_audience()));
+                    educator = EducatorDao.getInstance().getItemByID(Long.parseLong(lesson.getId_educator()));
+                    typelesson = TypelessonDao.getInstance().getItemByID(Long.parseLong(lesson.getId_typelesson()));
+                } catch (NumberFormatException ignored) {
+                }
+                if (subject == null || audience == null || educator == null || typelesson == null) {
+                    countPositiveItems += 1;
+                }
             }
-            if (subject == null || audience == null || educator == null || typelesson == null) {
-                countPositiveItems+=1;
-            }}
-            if (countPositiveItems==6) {
+            if (countPositiveItems == 6) {
                 numberItem = 1;
             }
         }

@@ -11,11 +11,10 @@
 
     <application
         android:name="myapp.schedule.misha.myapplication.ScheduleApp"
-        android:icon="@mipmap/ic_launcher_w"
+        android:icon="@mipmap/ic_launcher_app"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_w"
+        android:roundIcon="@mipmap/ic_launcher_app"
         tools:ignore="GoogleAppIndexingWarning">
-
 
         <activity
             android:name="myapp.schedule.misha.myapplication.activity.MainActivity"
@@ -30,7 +29,6 @@
             </intent-filter>
 
             <intent-filter>
-
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>

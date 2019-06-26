@@ -3,7 +3,6 @@ package myapp.schedule.misha.myapplication.util;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 
 import java.text.DateFormat;
@@ -28,6 +27,7 @@ public final class DataUtil {
         if (context.getCurrentFocus() != null)
             imm.hideSoftInputFromWindow(context.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
+
     public static void showKeyboard(Activity context) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm.isActive()) {
@@ -35,7 +35,7 @@ public final class DataUtil {
         }
     }
 
-        public static String dateDay(ArrayList<Lesson> lessonArrayList, int position) {
+    public static String dateDay(ArrayList<Lesson> lessonArrayList, int position) {
         Calendar mCalendar = Calendar.getInstance();
         mCalendar.setTimeInMillis(Long.valueOf(Preferences.getInstance().getSemestrStart()));
         mCalendar.setFirstDayOfWeek(Calendar.MONDAY);
