@@ -1,4 +1,4 @@
-package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialog;
+package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,19 +17,19 @@ import myapp.schedule.misha.myapplication.SimpleItemClickListener;
 import myapp.schedule.misha.myapplication.entity.SimpleItem;
 
 
-public class DialogFragmentListItemsAdapter extends RecyclerView.Adapter<DialogFragmentListItemsAdapter.ViewHolder> {
+public class DialogEditFragmentListItemsAdapter extends RecyclerView.Adapter<DialogEditFragmentListItemsAdapter.ViewHolder> {
 
     private List<SimpleItem> listItems;
 
     private SimpleItemClickListener itemClickListener;
 
-    public DialogFragmentListItemsAdapter(ArrayList<SimpleItem> items, SimpleItemClickListener simpleItemClickListener) {
+    public DialogEditFragmentListItemsAdapter(ArrayList<SimpleItem> items, SimpleItemClickListener simpleItemClickListener) {
         this.listItems = items;
         this.itemClickListener = simpleItemClickListener;
     }
 
     @Override
-    public DialogFragmentListItemsAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+    public DialogEditFragmentListItemsAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_row, parent, false);
         return new ViewHolder(view);

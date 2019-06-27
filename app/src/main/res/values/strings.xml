@@ -60,8 +60,7 @@
     <string name="ack">Подтвердить</string>
     <string name="cancel">Отмена</string>
 
-    <string name="copy_to_evenweek">Скопировать неделю в четные недели?</string>
-    <string name="copy_to_unevenweek">Скопировать неделю в нечетные недели?</string>
+    <string name="clear_day">Очистить день</string>
     <string name="string_empty_lesson">Занятие отсутствует</string>
     <string name="string_time_One">13:10</string>
     <string name="string_time_Two">14:00</string>
@@ -93,4 +92,7 @@
     <string name="menu_main_title">Выберите группу</string>
     <string name="licenses">Лицензии открытого ПО</string>
     <string name="title_dialog_licenses">Лицензии открытого ПО</string>
+    <string name="copy_other_day">Скопировать в другой день</string>
+    <string name="dialog_button_copy">Скопировать</string>
+    <string name="string_title_copy_lesson">Скопировать занятие</string>
 </resources>

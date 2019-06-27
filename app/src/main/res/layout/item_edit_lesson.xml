@@ -95,19 +95,19 @@
             android:layout_marginBottom="@dimen/spacing_medium">
 
             <TextView
-                android:id="@+id/educator"
+                android:id="@+id/day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginEnd="@dimen/spacing_normal"
-                android:layout_toStartOf="@id/audience"
+                android:layout_toStartOf="@id/timeLesson"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textSize="16sp"
                 tools:text="Преподаватель" />
 
             <TextView
-                android:id="@+id/audience"
+                android:id="@+id/timeLesson"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

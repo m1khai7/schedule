@@ -25,12 +25,14 @@ import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.data.database.dao.LessonDao;
 import myapp.schedule.misha.myapplication.data.preferences.Preferences;
 import myapp.schedule.misha.myapplication.entity.Audience;
+import myapp.schedule.misha.myapplication.entity.CopyLesson;
 import myapp.schedule.misha.myapplication.entity.Educator;
 import myapp.schedule.misha.myapplication.entity.Lesson;
 import myapp.schedule.misha.myapplication.entity.SimpleItem;
 import myapp.schedule.misha.myapplication.entity.Subject;
 import myapp.schedule.misha.myapplication.entity.Typelesson;
-import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialog.DialogFragmentListItems;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.DialogCopyFragment;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit.DialogEditFragmentListItems;
 
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_AUDIENCES;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_EDUCATORS;
@@ -38,12 +40,11 @@ import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_SUBJECTS;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
 import static myapp.schedule.misha.myapplication.Constants.ITEMS_LIST;
 
-public class EditSchedulePageFragment extends BaseMainFragment implements EditSchedulePageFragmentView {
+public class EditSchedulePageFragment extends BaseMainFragment implements EditSchedulePageFragmentView, View.OnClickListener {
 
     private EditScheduleFragmentPagerAdapter rvadapter;
     private FloatingActionButton mainFab, evenWeekFab, unevenWeekFab;
-    private Animation fabClose;
-    private Animation rotateBackward;
+    private Animation fabOpen, fabClose, rotateForward, rotateBackward;
     private EditSchedulePagePresenter presenter;
 
     public static EditSchedulePageFragment newInstance(int selectedWeek, int position) {
@@ -60,7 +61,7 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
         super.onCreate(savedInstanceState);
         int positionWeek = getArguments().getInt(Constants.SELECTED_WEEK);
         int day = getArguments().getInt(Constants.DAY);
-        presenter = new EditSchedulePagePresenter(positionWeek, day);
+        presenter = new EditSchedulePagePresenter(getContext(), positionWeek, day);
         rvadapter = new EditScheduleFragmentPagerAdapter(presenter);
     }
 
@@ -68,12 +69,15 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.item_edit_schedule_recycler, container, false);
         mainFab = getActivity().findViewById(R.id.main_fab);
-        evenWeekFab = getActivity().findViewById(R.id.even_weekFab);
-        unevenWeekFab = getActivity().findViewById(R.id.uneven_weekFab);
-
+        evenWeekFab = getActivity().findViewById(R.id.copyWeek);
+        unevenWeekFab = getActivity().findViewById(R.id.clearDay);
+        mainFab.setOnClickListener(this);
+        evenWeekFab.setOnClickListener(this);
+        unevenWeekFab.setOnClickListener(this);
+        fabOpen = AnimationUtils.loadAnimation(getContext(), R.anim.fab_open);
         fabClose = AnimationUtils.loadAnimation(getContext(), R.anim.fab_close);
+        rotateForward = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_forward);
         rotateBackward = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_backward);
-
         RecyclerView rvLessons = fragmentView.findViewById(R.id.rv_lessons_edit);
         rvLessons.setAdapter(rvadapter);
         rvLessons.addOnScrollListener(new OnScrollListener() {
@@ -93,6 +97,7 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
                     } else {
                         mainFab.hide();
                         mainFab.setClickable(false);
+                        Preferences.getInstance().setFabOpen(false);
                     }
                 } else if (dy < 0 && mainFab.getVisibility() != android.view.View.VISIBLE) {
                     mainFab.show();
@@ -106,6 +111,7 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Preferences.getInstance().setFabOpen(false);
         presenter.init();
     }
 
@@ -131,9 +137,19 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
         args.putParcelableArrayList(ITEMS, items);
         args.putInt(POSITION, position);
         args.putInt(FRAGMENT_CODE, fragmentCode);
-        DialogFragmentListItems dialogFragment = DialogFragmentListItems.newInstance(args);
-        dialogFragment.show(getChildFragmentManager(), DialogFragmentListItems.class.getSimpleName());
+        DialogEditFragmentListItems dialogFragment = DialogEditFragmentListItems.newInstance(args);
+        dialogFragment.show(getChildFragmentManager(), DialogEditFragmentListItems.class.getSimpleName());
     }
+
+    @Override
+    public void showCopyDialog(ArrayList<CopyLesson> items, int position) {
+        Bundle args = new Bundle();
+        args.putParcelableArrayList(ITEMS, items);
+        args.putInt(POSITION, position);
+        DialogCopyFragment dialogFragment = DialogCopyFragment.newInstance(args);
+        dialogFragment.show(getChildFragmentManager(), DialogCopyFragment.class.getSimpleName());
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultOk, Intent data) {
@@ -165,8 +181,46 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
             lessonList.get(lessonPosition).setEducatorEdit(educator.getId());
             updateView(lessonList);
             LessonDao.getInstance().updateItemByID(lessonList.get(lessonPosition));
-
         }
     }
+
+
+    public void animateFAB() {
+
+        if (Preferences.getInstance().getFabOpen()) {
+            mainFab.startAnimation(rotateBackward);
+            evenWeekFab.startAnimation(fabClose);
+            unevenWeekFab.startAnimation(fabClose);
+            evenWeekFab.setClickable(false);
+            unevenWeekFab.setClickable(false);
+            Preferences.getInstance().setFabOpen(false);
+
+        } else {
+            mainFab.startAnimation(rotateForward);
+            evenWeekFab.startAnimation(fabOpen);
+            unevenWeekFab.startAnimation(fabOpen);
+            evenWeekFab.setClickable(true);
+            unevenWeekFab.setClickable(true);
+            Preferences.getInstance().setFabOpen(true);
+        }
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.main_fab:
+                presenter.onButtonClicked(R.id.main_fab);
+                break;
+            case R.id.copyWeek:
+                presenter.onButtonClicked(R.id.copyWeek);
+                break;
+            case R.id.clearDay:
+                presenter.onButtonClicked(R.id.clearDay);
+                break;
+        }
+    }
+
 
 }

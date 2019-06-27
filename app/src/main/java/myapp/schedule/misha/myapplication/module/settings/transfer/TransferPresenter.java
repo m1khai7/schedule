@@ -113,7 +113,6 @@ public class TransferPresenter extends BaseMainPresenter<TransferFragmentView> i
         } finally {
             database.endTransaction();
         }
-        //  getView().hideProgressDialog();
         getView().openFragmentSchedule();
     }
 

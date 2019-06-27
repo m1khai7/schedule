@@ -14,6 +14,5 @@ public interface EditScheduleFragmentView extends BaseView {
 
     void selectPage(int position);
 
-    void animateFAB();
 
 }

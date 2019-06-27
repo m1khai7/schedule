@@ -33,7 +33,6 @@ import static myapp.schedule.misha.myapplication.data.preferences.Preferences.LI
 public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditScheduleFragmentPagerAdapter.ViewHolder> {
 
     private List<Lesson> lessonList;
-    private ArrayList<Calls> callsList = new ArrayList<>();
     private EditSchedulePagePresenterInterface callback;
     private Subject subject;
     private Audience audience;
@@ -76,8 +75,14 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
                     case R.id.copyDown:
                         callback.onCopyDownClick(position);
                         return true;
+                    case R.id.copyOtherDay:
+                        callback.onCopyLessonOtherDay(position);
+                        return true;
                     case R.id.clearLesson:
                         callback.onClearLessonClick(position);
+                        return true;
+                    case R.id.clearDay:
+                        callback.onClearDayClick();
                         return true;
                     default:
                         return false;
@@ -110,8 +115,8 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
             timeEditOne = view.findViewById(R.id.timeOne);
             timeEditTwo = view.findViewById(R.id.timeTwo);
             subjectEdit = view.findViewById(R.id.subject);
-            audienceEdit = view.findViewById(R.id.audience);
-            educatorEdit = view.findViewById(R.id.educator);
+            audienceEdit = view.findViewById(R.id.timeLesson);
+            educatorEdit = view.findViewById(R.id.day);
             typeLessonEdit = view.findViewById(R.id.typelesson);
             textViewOptions = view.findViewById(R.id.menuOptions);
             subjectEdit.setOnClickListener(this);
@@ -125,7 +130,7 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
         private void onBindView(int position) {
 
             Lesson lesson = lessonList.get(position);
-            callsList = CallDao.getInstance().getAllData();
+            ArrayList<Calls> callsList = CallDao.getInstance().getAllData();
             timeEditOne.setText(callsList.get(position * 2).getName());
             timeEditTwo.setText(callsList.get((position * 2) + 1).getName());
             try {
@@ -180,10 +185,10 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
             if (v.getId() == R.id.subject) {
                 callback.onSubjectClick(getAdapterPosition());
             }
-            if (v.getId() == R.id.audience) {
+            if (v.getId() == R.id.timeLesson) {
                 callback.onAudienceClick(getAdapterPosition());
             }
-            if (v.getId() == R.id.educator) {
+            if (v.getId() == R.id.day) {
                 callback.onEducatorClick(getAdapterPosition());
             }
             if (v.getId() == R.id.typelesson) {

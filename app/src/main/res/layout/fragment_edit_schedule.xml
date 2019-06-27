@@ -13,6 +13,7 @@
         app:spanCount="6" />
 
     <View
+        android:id="@+id/viewLine"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:layout_below="@+id/rv_tab"
@@ -22,23 +23,23 @@
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rv_tab" />
+        android:layout_below="@+id/viewLine" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/uneven_weekFab"
+        android:id="@+id/clearDay"
         style="?attr/floatButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/even_weekFab"
+        android:layout_above="@+id/copyWeek"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/spacing_normal"
         app:borderWidth="0dp"
         android:layout_marginBottom="@dimen/spacing_normal"
-        android:src="@drawable/ic_uneven_week"
+        android:src="@drawable/ic_delete_sweep_white"
         android:visibility="invisible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/even_weekFab"
+        android:id="@+id/copyWeek"
         style="?attr/floatButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,7 +48,7 @@
         android:layout_marginEnd="@dimen/spacing_normal"
         android:layout_marginBottom="@dimen/spacing_normal"
         app:borderWidth="0dp"
-        android:src="@drawable/ic_even_week"
+        android:src="@drawable/ic_copy_white"
         android:visibility="invisible" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -60,7 +61,7 @@
         android:layout_marginEnd="@dimen/spacing_normal"
         app:borderWidth="0dp"
         android:layout_marginBottom="@dimen/spacing_normal"
-        android:src="@drawable/ic_add"
+        android:src="@drawable/ic_settings_white"
         app:layout_anchor="@id/rv_tab"
         app:layout_behavior="com.dev2qa.example.material_design.floatingactionbutton.FloatingActionButtonScrollBehavior" />
 </RelativeLayout>

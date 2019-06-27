@@ -32,14 +32,12 @@ import myapp.schedule.misha.myapplication.module.schedule.TabDaysAdapter;
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DARK_THEME;
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.LIGHT_THEME;
 
-public class EditScheduleFragment extends BaseMainFragment implements EditScheduleFragmentView, View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class EditScheduleFragment extends BaseMainFragment implements EditScheduleFragmentView, AdapterView.OnItemSelectedListener {
 
     private EditScheduleFragmentPagerAdapter pagerAdapter;
     private TabDaysAdapter adapterTabDays;
     private Spinner spinner;
     private ViewPager viewPager;
-    private FloatingActionButton mainFab, evenWeekFab, unevenWeekFab;
-    private Animation fabOpen, fabClose, rotateForward, rotateBackward;
     private RecyclerView dayTabs;
     private CustomSpinnerAdapterWeeks customSpinnerAdapterWeeks;
     private EditSchedulePresenter presenter;
@@ -70,7 +68,7 @@ public class EditScheduleFragment extends BaseMainFragment implements EditSchedu
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new EditSchedulePresenter(getContext());
+        presenter = new EditSchedulePresenter();
         setHasOptionsMenu(true);
         customSpinnerAdapterWeeks = new CustomSpinnerAdapterWeeks(getContext());
         pagerAdapter = new EditScheduleFragmentPagerAdapter(getChildFragmentManager());
@@ -87,20 +85,10 @@ public class EditScheduleFragment extends BaseMainFragment implements EditSchedu
                 presenter.onPageSwiped(position);
             }
         });
-        evenWeekFab = view.findViewById(R.id.even_weekFab);
-        unevenWeekFab = view.findViewById(R.id.uneven_weekFab);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(6);
         dayTabs = view.findViewById(R.id.rv_tab);
         dayTabs.setAdapter(adapterTabDays);
-        mainFab = view.findViewById(R.id.main_fab);
-        fabOpen = AnimationUtils.loadAnimation(getContext(), R.anim.fab_open);
-        fabClose = AnimationUtils.loadAnimation(getContext(), R.anim.fab_close);
-        rotateForward = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_forward);
-        rotateBackward = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_backward);
-        mainFab.setOnClickListener(this);
-        evenWeekFab.setOnClickListener(this);
-        unevenWeekFab.setOnClickListener(this);
         return view;
     }
 
@@ -171,44 +159,5 @@ public class EditScheduleFragment extends BaseMainFragment implements EditSchedu
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-    public void animateFAB() {
-
-        if (Preferences.getInstance().getFabOpen()) {
-            mainFab.startAnimation(rotateBackward);
-            evenWeekFab.startAnimation(fabClose);
-            unevenWeekFab.startAnimation(fabClose);
-            evenWeekFab.setClickable(false);
-            unevenWeekFab.setClickable(false);
-            Preferences.getInstance().setFabOpen(false);
-
-        } else {
-            mainFab.startAnimation(rotateForward);
-            evenWeekFab.startAnimation(fabOpen);
-            unevenWeekFab.startAnimation(fabOpen);
-            evenWeekFab.setClickable(true);
-            unevenWeekFab.setClickable(true);
-            Preferences.getInstance().setFabOpen(true);
-        }
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        switch (id) {
-            case R.id.main_fab:
-                presenter.onButtonClicked(R.id.main_fab);
-                break;
-            case R.id.even_weekFab:
-                presenter.onButtonClicked(R.id.even_weekFab);
-                break;
-            case R.id.uneven_weekFab:
-                presenter.onButtonClicked(R.id.uneven_weekFab);
-                break;
-        }
-    }
-
 
 }

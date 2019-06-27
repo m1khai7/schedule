@@ -1,10 +1,10 @@
-package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialog;
+package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.weeks;
 
 import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.entity.SimpleItem;
 
-public interface DialogFragmentPresenterInterface {
+public interface DialogFragmentWeeksPresenterInterface {
 
     void onItemClick(int fragmentCode);
 

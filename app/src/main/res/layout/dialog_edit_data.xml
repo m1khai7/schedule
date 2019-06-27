@@ -38,7 +38,7 @@
         tools:text="Преподаватель" />
 
     <LinearLayout
-        android:id="@+id/relLay"
+        android:id="@+id/linLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dialog_editText"

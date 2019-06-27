@@ -1,4 +1,4 @@
-package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialog;
+package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit;
 
 import java.util.ArrayList;
 
@@ -15,12 +15,12 @@ import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_EDUCATORS;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_SUBJECTS;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
 
-public class DialogFragmentPresenter extends BaseMainPresenter<DialogFragmentListItemsView> implements DialogFragmentPresenterInterface {
+public class DialogEditFragmentPresenter extends BaseMainPresenter<DialogEditFragmentListItemsView> implements DialogEditFragmentPresenterInterface {
 
     private AbsDao absDao;
     private ArrayList<SimpleItem> listItems = new ArrayList<>();
 
-    public DialogFragmentPresenter(int fragmentCode) {
+    public DialogEditFragmentPresenter(int fragmentCode) {
         if (fragmentCode == FRAGMENT_SUBJECTS) {
             absDao = SubjectDao.getInstance();
         }

@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.data.database.dao.LessonDao;
-import myapp.schedule.misha.myapplication.entity.Lesson;
 
 
 /**
@@ -101,16 +100,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 sdb.execSQL(CREATE_TABLE_TYPELESSONS);
                 sdb.execSQL(CREATE_CALL_SCHEDULE);
                 sdb.execSQL(CREATE_TABLE_LESSONS);
-
                 sdb.beginTransaction();
-
                 try {
-
-                    ArrayList<Lesson> lessons = new ArrayList<>();
                     for (int week = 1; week < 18; week++) {
                         for (int day = 1; day < 7; day++) {
                             for (int timeLesson = 1; timeLesson < 7; timeLesson++) {
-                                lessons.add(new Lesson(week, day, timeLesson, 0, 0, 0, 0));
                                 ContentValues set = new ContentValues();
                                 set.put(LessonDao.NUMBER_WEEK, week);
                                 set.put(LessonDao.NUMBER_DAY, day);
@@ -119,23 +113,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                                 set.put(LessonDao.ID_AUDIENCE, 0);
                                 set.put(LessonDao.ID_EDUCATOR, 0);
                                 set.put(LessonDao.ID_TYPE_LESSON, 0);
-
                                 sdb.insert(AppContentProvider.LESSONS_TABLE, null, set);
                             }
                         }
                     }
-
                     sdb.setTransactionSuccessful();
                 } finally {
-
                     sdb.endTransaction();
                 }
-
             }
 
             @Override
             public void revert(SQLiteDatabase sdb) {
-                //do nothing
             }
         };
     }

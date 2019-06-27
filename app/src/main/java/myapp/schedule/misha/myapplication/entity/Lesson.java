@@ -1,9 +1,25 @@
 package myapp.schedule.misha.myapplication.entity;
 
+import android.database.Cursor;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Lesson {
+public class Lesson implements Parcelable {
+
+    public static final Creator<Lesson> CREATOR = new Creator<Lesson>() {
+        @Override
+        public Lesson createFromParcel(Parcel in) {
+            return new Lesson(in);
+        }
+
+        @Override
+        public Lesson[] newArray(int size) {
+            return new Lesson[size];
+        }
+    };
 
     @Expose
     @SerializedName("id")
@@ -120,5 +136,45 @@ public class Lesson {
         this.id_audience = audience;
         this.id_educator = educator;
         this.id_typelesson = typeLesson;
+    }
+    protected Lesson(Parcel in) {
+        id = in.readString();
+        number_week = in.readString();
+        number_day = in.readString();
+        number_lesson = in.readString();
+        id_subject = in.readString();
+        id_audience = in.readString();
+        id_educator = in.readString();
+        id_typelesson = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+
+    public Lesson(Cursor cursor) {
+        this.id = cursor.getString(0);
+        this.number_week = cursor.getString(1);
+        this.number_day = cursor.getString(2);
+        this.number_lesson = cursor.getString(3);
+        this.id_subject = cursor.getString(4);
+        this.id_audience = cursor.getString(5);
+        this.id_educator = cursor.getString(6);
+        this.id_typelesson = cursor.getString(7);
+    }
+
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(number_week);
+        dest.writeString(number_day);
+        dest.writeString(number_lesson);
+        dest.writeString(id_subject);
+        dest.writeString(id_audience);
+        dest.writeString(id_educator);
+        dest.writeString(id_typelesson);
     }
 }

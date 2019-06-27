@@ -1,4 +1,4 @@
-package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialog.addData;
+package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit.addData;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

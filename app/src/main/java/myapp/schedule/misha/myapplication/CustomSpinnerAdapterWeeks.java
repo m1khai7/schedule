@@ -30,7 +30,7 @@ public class CustomSpinnerAdapterWeeks extends BaseAdapter implements SpinnerAda
         mCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         ArrayList<String> allDays = new ArrayList<>();
         @SuppressLint("SimpleDateFormat") SimpleDateFormat mFormat = new SimpleDateFormat("dd.MM");
-        for (int week = 0; week < 17; week++) {
+        for (int week = 1; week < 18; week++) {
             for (int day = 0; day < 7; day++) {
                 String startWeek = mFormat.format(mCalendar.getTime());
 

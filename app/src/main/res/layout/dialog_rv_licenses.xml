@@ -25,13 +25,13 @@
         android:id="@+id/rv_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/relLay"
+        android:layout_above="@+id/linLay"
         android:layout_below="@+id/dialog_textView"
         android:layout_margin="@dimen/spacing_small"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <LinearLayout
-        android:id="@+id/relLay"
+        android:id="@+id/linLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

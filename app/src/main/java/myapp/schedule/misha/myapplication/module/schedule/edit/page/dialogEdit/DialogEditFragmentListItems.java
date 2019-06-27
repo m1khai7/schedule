@@ -1,4 +1,4 @@
-package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialog;
+package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -26,7 +26,7 @@ import myapp.schedule.misha.myapplication.common.core.BaseAlertDialog;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.entity.EditDataModel;
 import myapp.schedule.misha.myapplication.entity.SimpleItem;
-import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialog.addData.DialogFragmentAddData;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit.addData.DialogFragmentAddData;
 
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_AUDIENCES;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_EDUCATORS;
@@ -36,14 +36,14 @@ import static myapp.schedule.misha.myapplication.Constants.ITEMS_LIST;
 
 //Todo прочитать про наследование инкапсуляцию интерфейсы абстрактные классы и generic.
 
-public class DialogFragmentListItems extends BaseAlertDialog implements DialogFragmentListItemsView {
+public class DialogEditFragmentListItems extends BaseAlertDialog implements DialogEditFragmentListItemsView {
 
-    private DialogFragmentPresenter presenter;
+    private DialogEditFragmentPresenter presenter;
     private RecyclerView rvItems;
-    private DialogFragmentListItemsAdapter dialogFragmentListItemsAdapter;
+    private DialogEditFragmentListItemsAdapter dialogFragmentListItemsAdapter;
 
-    public static DialogFragmentListItems newInstance(Bundle args) {
-        DialogFragmentListItems fragment = new DialogFragmentListItems();
+    public static DialogEditFragmentListItems newInstance(Bundle args) {
+        DialogEditFragmentListItems fragment = new DialogEditFragmentListItems();
         fragment.setArguments(args);
         return fragment;
     }
@@ -71,7 +71,7 @@ public class DialogFragmentListItems extends BaseAlertDialog implements DialogFr
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
         ArrayList<SimpleItem> listItems = getArguments().getParcelableArrayList(ITEMS);
-        presenter = new DialogFragmentPresenter(fragmentCode);
+        presenter = new DialogEditFragmentPresenter(fragmentCode);
 
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
 
@@ -94,7 +94,7 @@ public class DialogFragmentListItems extends BaseAlertDialog implements DialogFr
         builder.setView(view);
         rvItems = view.findViewById(R.id.rv_dialog);
         updateItemsAdapter(listItems);
-        Button button_add = view.findViewById(R.id.button_add);
+        Button button_add = view.findViewById(R.id.button_ok);
         button_add.setOnClickListener(v -> presenter.onItemClick(fragmentCode));
         Button button_cancel = view.findViewById(R.id.button_cancel);
         button_cancel.setOnClickListener(v -> dismiss());
@@ -113,12 +113,12 @@ public class DialogFragmentListItems extends BaseAlertDialog implements DialogFr
         int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
         int clickedPosition = getArguments().getInt(POSITION);
 
-        dialogFragmentListItemsAdapter = new DialogFragmentListItemsAdapter(subjectList, (position, view1) -> {
+        dialogFragmentListItemsAdapter = new DialogEditFragmentListItemsAdapter(subjectList, (position, view1) -> {
             Intent intent = new Intent();
             intent.putExtra(POSITION, clickedPosition);
             intent.putExtra(ITEMS_LIST, subjectList.get(position));
-            DialogFragmentListItems.this.getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
-            DialogFragmentListItems.this.dismiss();
+            DialogEditFragmentListItems.this.getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
+            DialogEditFragmentListItems.this.dismiss();
         });
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         rvItems.setAdapter(dialogFragmentListItemsAdapter);
