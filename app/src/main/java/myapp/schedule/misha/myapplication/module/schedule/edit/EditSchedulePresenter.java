@@ -70,10 +70,9 @@ public class EditSchedulePresenter extends BaseMainPresenter<EditScheduleFragmen
         int currentWeek = Preferences.getInstance().getSelectedWeekSchedule();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false).setPositiveButton(R.string.ack, (dialog, id) -> {
-            for (int idWeek = 1; idWeek < 17; idWeek += 2) {
+            for (int idWeek = 2; idWeek < 18; idWeek += 2) {
                 lessonListWeekCurrent = LessonDao.getInstance().getLessonByWeek(currentWeek);
                 lessonListWeek = LessonDao.getInstance().getLessonByWeek(idWeek);
-
                 for (int idRowWeek = 0; idRowWeek < 36; idRowWeek++) {
                     lessonListWeek.get(idRowWeek).setData(lessonListWeekCurrent.get(idRowWeek).getId_subject(), lessonListWeekCurrent.get(idRowWeek).getId_audience(),
                             lessonListWeekCurrent.get(idRowWeek).getId_educator(), lessonListWeekCurrent.get(idRowWeek).getId_typelesson());
@@ -89,10 +88,9 @@ public class EditSchedulePresenter extends BaseMainPresenter<EditScheduleFragmen
         int currentWeek = Preferences.getInstance().getSelectedWeekSchedule();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false).setPositiveButton(R.string.ack, (dialog, id) -> {
-            for (int idWeek = 0; idWeek < 17; idWeek += 2) {
+            for (int idWeek = 1; idWeek < 18; idWeek += 2) {
                 lessonListWeekCurrent = LessonDao.getInstance().getLessonByWeek(currentWeek);
                 lessonListWeek = LessonDao.getInstance().getLessonByWeek(idWeek);
-
                 for (int idRowWeek = 0; idRowWeek < 36; idRowWeek++) {
                     lessonListWeek.get(idRowWeek).setData(lessonListWeekCurrent.get(idRowWeek).getId_subject(), lessonListWeekCurrent.get(idRowWeek).getId_audience(),
                             lessonListWeekCurrent.get(idRowWeek).getId_educator(), lessonListWeekCurrent.get(idRowWeek).getId_typelesson());

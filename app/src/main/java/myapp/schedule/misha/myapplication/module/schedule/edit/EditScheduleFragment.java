@@ -128,6 +128,7 @@ public class EditScheduleFragment extends BaseMainFragment implements EditSchedu
 
     @Override
     public void selectWeek(int position) {
+        Preferences.getInstance().setSelectedWeekSchedule(position+1);
         pagerAdapter.setWeek(position);
         adapterTabDays.updateData(position);
         adapterTabDays.setSelection(viewPager.getCurrentItem());
