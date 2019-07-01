@@ -2,7 +2,7 @@ package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.
 
 import myapp.schedule.misha.myapplication.common.core.BaseView;
 
-public interface DialogFragmentWeeksView extends BaseView {
+public interface DialogSelectWeekFragmentView extends BaseView {
 
     String ITEMS = "ITEMS";
     String FRAGMENT_CODE = "FRAGMENT_CODE";

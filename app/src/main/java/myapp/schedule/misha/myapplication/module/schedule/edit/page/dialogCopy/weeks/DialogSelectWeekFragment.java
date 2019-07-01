@@ -26,25 +26,22 @@ import myapp.schedule.misha.myapplication.entity.SimpleItem;
 
 import static myapp.schedule.misha.myapplication.Constants.ITEMS_LIST;
 
-//Todo прочитать про наследование инкапсуляцию интерфейсы абстрактные классы и generic.
 
-public class DialogFragmentWeeks extends BaseAlertDialog implements DialogFragmentWeeksView {
 
-    private DialogFragmentWeeksPresenter presenter;
+public class DialogSelectWeekFragment extends BaseAlertDialog implements DialogSelectWeekFragmentView {
+
+    private DialogSelectWeekFragmentPresenter presenter;
     private RecyclerView rvItems;
-    private DialogFragmentWeeksAdapter dialogFragmentListItemsAdapter;
+    private DialogSelectWeekFragmentAdapter dialogFragmentListItemsAdapter;
 
-    public static DialogFragmentWeeks newInstance(Bundle args) {
-        DialogFragmentWeeks fragment = new DialogFragmentWeeks();
-        fragment.setArguments(args);
-        return fragment;
+    public static DialogSelectWeekFragment newInstance() {
+        return new DialogSelectWeekFragment();
     }
-
 
     @NotNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         ArrayList<SimpleItem> listItems = getArguments().getParcelableArrayList(ITEMS);
-        presenter = new DialogFragmentWeeksPresenter();
+        presenter = new DialogSelectWeekFragmentPresenter();
 
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
 
@@ -54,6 +51,7 @@ public class DialogFragmentWeeks extends BaseAlertDialog implements DialogFragme
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
         rvItems = view.findViewById(R.id.rv_dialog_weeks);
+        rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         updateItemsAdapter(listItems);
         Button buttonAllSelect = view.findViewById(R.id.checkBoxSelected);
         buttonAllSelect.setOnClickListener(v -> presenter.onItemClick());
@@ -76,14 +74,14 @@ public class DialogFragmentWeeks extends BaseAlertDialog implements DialogFragme
         int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
         int clickedPosition = getArguments().getInt(POSITION);
 
-        dialogFragmentListItemsAdapter = new DialogFragmentWeeksAdapter(itemList, (position, view1) -> {
+        dialogFragmentListItemsAdapter = new DialogSelectWeekFragmentAdapter(itemList, (position, view1) -> {
             Intent intent = new Intent();
             intent.putExtra(POSITION, clickedPosition);
             intent.putExtra(ITEMS_LIST, itemList.get(position));
-            DialogFragmentWeeks.this.getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
-            DialogFragmentWeeks.this.dismiss();
+            DialogSelectWeekFragment.this.getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
+            DialogSelectWeekFragment.this.dismiss();
         });
-        rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+
         rvItems.setAdapter(dialogFragmentListItemsAdapter);
     }
 

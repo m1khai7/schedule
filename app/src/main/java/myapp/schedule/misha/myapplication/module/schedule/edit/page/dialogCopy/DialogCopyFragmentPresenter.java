@@ -3,42 +3,48 @@ package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy;
 import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.common.core.BaseMainPresenter;
-import myapp.schedule.misha.myapplication.data.database.AbsDao;
-import myapp.schedule.misha.myapplication.data.database.dao.AudienceDao;
-import myapp.schedule.misha.myapplication.data.database.dao.EducatorDao;
-import myapp.schedule.misha.myapplication.data.database.dao.SubjectDao;
-import myapp.schedule.misha.myapplication.data.database.dao.TypelessonDao;
 import myapp.schedule.misha.myapplication.entity.CopyLesson;
-import myapp.schedule.misha.myapplication.entity.SimpleItem;
-
-import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_AUDIENCES;
-import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_EDUCATORS;
-import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_SUBJECTS;
-import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
 
 public class DialogCopyFragmentPresenter extends BaseMainPresenter<DialogCopyFragmentView> implements DialogCopyFragmentPresenterInterface {
-
-
-    private ArrayList<CopyLesson> listItems = new ArrayList<>();
+    private ArrayList<CopyLesson> copyLessons = new ArrayList<>();
 
     public DialogCopyFragmentPresenter() {
-
     }
 
     @Override
     public void init() {
     }
 
-
     @Override
-    public void onItemClick() {
-        //getView().showLessonsDialog(listItems, fragmentCode);
+    public void onDialogDayClick() {
+        getView().showDayDialog();
     }
 
-   /* public ArrayList<CopyLesson> getItemList() {
+    @Override
+    public void onDialogWeekClick() {
+        getView().showWeekDialog();
+    }
 
-        return listItems;
-    }*/
+    @Override
+    public void onDialogLessonClick() {
+        getView().showLessonDialog();
+    }
+
+    @Override
+    public void onImageAddClick(String day, String timeLesson) {
+        CopyLesson copyLesson = new CopyLesson();
+        copyLesson.setDay(day);
+        copyLesson.setTimeLesson(timeLesson);
+        copyLessons.add(copyLesson);
+        getView().updateItemsAdapter(copyLessons);
+    }
 
 
+    @Override
+    public void onImageDeleteClick(ArrayList<CopyLesson> itemList, int position) {
+        itemList.remove(position);
+        getView().updateItemsAdapter(copyLessons);
+    }
 }
+
+

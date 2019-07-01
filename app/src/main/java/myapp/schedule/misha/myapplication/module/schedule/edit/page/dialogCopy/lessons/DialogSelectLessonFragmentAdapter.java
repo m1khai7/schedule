@@ -1,9 +1,8 @@
-package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy;
+package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.lessons;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,27 +14,28 @@ import java.util.List;
 
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.SimpleItemClickListener;
-import myapp.schedule.misha.myapplication.entity.CopyLesson;
+import myapp.schedule.misha.myapplication.entity.SimpleItem;
 
 
-public class DialogCopyFragmentAdapter extends RecyclerView.Adapter<DialogCopyFragmentAdapter.ViewHolder> {
+public class DialogSelectLessonFragmentAdapter extends RecyclerView.Adapter<DialogSelectLessonFragmentAdapter.ViewHolder> {
 
-    private List<CopyLesson> listItems;
+    private List<SimpleItem> listItems;
+
     private SimpleItemClickListener itemClickListener;
 
-    public DialogCopyFragmentAdapter(ArrayList<CopyLesson> items, SimpleItemClickListener simpleItemClickListener) {
+    public DialogSelectLessonFragmentAdapter(ArrayList<SimpleItem> items, SimpleItemClickListener simpleItemClickListener) {
         this.listItems = items;
         this.itemClickListener = simpleItemClickListener;
     }
 
     @Override
-    public DialogCopyFragmentAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+    public DialogSelectLessonFragmentAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_copy_lesson, parent, false);
+                .inflate(R.layout.item_row, parent, false);
         return new ViewHolder(view);
     }
 
-    public void setLessonList(List<CopyLesson> lessonList) {
+    public void setLessonList(List<SimpleItem> lessonList) {
         this.listItems = lessonList;
     }
 
@@ -51,22 +51,19 @@ public class DialogCopyFragmentAdapter extends RecyclerView.Adapter<DialogCopyFr
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView day;
-        private final TextView timeLesson;
-        private final ImageView imageDelete;
+        private final TextView item;
 
         private ViewHolder(View view) {
             super(view);
-            day = view.findViewById(R.id.day);
-            timeLesson = view.findViewById(R.id.timeLesson);
-            imageDelete = view.findViewById(R.id.imageDelete);
-            imageDelete.setOnClickListener(this);
+            item = view.findViewById(R.id.item);
+            view.setOnClickListener(this);
+
         }
 
         private void onBindView(int position) {
-            CopyLesson item = listItems.get(position);
-            day.setText(item.getDay());
-            timeLesson.setText(item.getTimeLesson());
+            SimpleItem item = listItems.get(position);
+            this.item.setText(item.getName());
+
         }
 
         @Override

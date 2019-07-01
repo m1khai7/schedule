@@ -1,10 +1,8 @@
-package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.weeks;
+package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.days;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,21 +17,21 @@ import myapp.schedule.misha.myapplication.SimpleItemClickListener;
 import myapp.schedule.misha.myapplication.entity.SimpleItem;
 
 
-public class DialogFragmentWeeksAdapter extends RecyclerView.Adapter<DialogFragmentWeeksAdapter.ViewHolder> {
+public class DialogSelectDayFragmentAdapter extends RecyclerView.Adapter<DialogSelectDayFragmentAdapter.ViewHolder> {
 
     private List<SimpleItem> listItems;
 
     private SimpleItemClickListener itemClickListener;
 
-    public DialogFragmentWeeksAdapter(ArrayList<SimpleItem> items, SimpleItemClickListener simpleItemClickListener) {
+    public DialogSelectDayFragmentAdapter(ArrayList<SimpleItem> items, SimpleItemClickListener simpleItemClickListener) {
         this.listItems = items;
         this.itemClickListener = simpleItemClickListener;
     }
 
     @Override
-    public DialogFragmentWeeksAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+    public DialogSelectDayFragmentAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_row_week, parent, false);
+                .inflate(R.layout.item_row, parent, false);
         return new ViewHolder(view);
     }
 
@@ -52,26 +50,25 @@ public class DialogFragmentWeeksAdapter extends RecyclerView.Adapter<DialogFragm
         return listItems.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements CompoundButton.OnCheckedChangeListener {
-        private final TextView textViewWeek;
-        private final CheckBox checkBoxSelected;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private final TextView item;
 
         private ViewHolder(View view) {
             super(view);
-            textViewWeek = view.findViewById(R.id.textViewWeek);
-            checkBoxSelected = view.findViewById(R.id.checkBoxSelected);
-            checkBoxSelected.setOnCheckedChangeListener(this);
+            item = view.findViewById(R.id.item);
+            view.setOnClickListener(this);
+
         }
 
         private void onBindView(int position) {
             SimpleItem item = listItems.get(position);
-            this.textViewWeek.setText(item.getName());
+            this.item.setText(item.getName());
 
         }
 
         @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            itemClickListener.onItemClick(getAdapterPosition(), buttonView);
+        public void onClick(View v) {
+            itemClickListener.onItemClick(getAdapterPosition(), v);
         }
     }
 }

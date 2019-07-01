@@ -98,4 +98,9 @@
     <string name="title_dialog_rv_weeks">Выбор недель</string>
     <string name="text_view_select_all">Выбрать/снять все недели</string>
     <string name="current_day">Текущая дата</string>
+    <string name="menu_weeks_select_all">Выбрать все</string>
+    <string name="menu_weeks_select_uneven_week">Нечетные</string>
+    <string name="menu_weeks_select_even_week">Четные</string>
+    <string name="menu_weeks_select_selectively_week">Выборочно</string>
+    <string name="text_view_day_dialog_copy_lesson">Понедельник</string>
 </resources>

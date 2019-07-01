@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.entity.SimpleItem;
 
-public interface DialogFragmentWeeksPresenterInterface {
+public interface DialogSelectWeekFragmentPresenterInterface {
 
     void onItemClick();
 

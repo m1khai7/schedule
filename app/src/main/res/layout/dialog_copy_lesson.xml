@@ -49,7 +49,7 @@
             android:maxLines="1"
             android:singleLine="true"
             android:textSize="16sp"
-            tools:text="Понедельник" />
+            android:text="@string/text_view_day_dialog_copy_lesson" />
 
         <TextView
             android:id="@+id/timeLesson"
@@ -57,18 +57,19 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="@dimen/spacing_normal"
-            android:layout_toStartOf="@id/imageDelete"
+            android:layout_toStartOf="@id/imageAdd"
             android:maxLines="1"
             android:singleLine="true"
             android:textSize="16sp"
             tools:text="8:00-10:00" />
 
         <ImageView
-            android:id="@+id/imageDelete"
+            android:id="@+id/imageAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginEnd="0dp"
             android:maxLines="1"
             android:singleLine="true"
             android:src="@drawable/ic_add_black"
@@ -79,7 +80,7 @@
 
 
     <TextView
-        android:id="@+id/subject"
+        android:id="@+id/weeks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/relLay"

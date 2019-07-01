@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/selectAll"
+            android:title="@string/menu_weeks_select_all" />
+        <item
+            android:id="@+id/selectUnevens"
+            android:title="@string/menu_weeks_select_uneven_week" />
+        <item
+            android:id="@+id/selectEvens"
+            android:title="@string/menu_weeks_select_even_week" />
+        <item
+            android:id="@+id/selectSelectively"
+            android:title="@string/menu_weeks_select_selectively_week" />
+    </group>
+</menu>

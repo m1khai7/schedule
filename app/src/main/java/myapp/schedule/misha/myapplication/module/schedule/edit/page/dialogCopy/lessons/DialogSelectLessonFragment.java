@@ -1,4 +1,4 @@
-package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit;
+package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.lessons;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -34,18 +34,15 @@ import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_SUBJECTS;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
 import static myapp.schedule.misha.myapplication.Constants.ITEMS_LIST;
 
-//Todo прочитать про наследование инкапсуляцию интерфейсы абстрактные классы и generic.
 
-public class DialogEditFragmentListItems extends BaseAlertDialog implements DialogEditFragmentListItemsView {
+public class DialogSelectLessonFragment extends BaseAlertDialog implements DialogSelectLessonFragmentView {
 
-    private DialogEditFragmentPresenter presenter;
+    private DialogSelectLessonFragmentPresenter presenter;
     private RecyclerView rvItems;
-    private DialogEditFragmentListItemsAdapter dialogFragmentListItemsAdapter;
+    private DialogSelectLessonFragmentAdapter dialogFragmentListItemsAdapter;
 
-    public static DialogEditFragmentListItems newInstance(Bundle args) {
-        DialogEditFragmentListItems fragment = new DialogEditFragmentListItems();
-        fragment.setArguments(args);
-        return fragment;
+    public static DialogSelectLessonFragment newInstance() {
+        return new DialogSelectLessonFragment();
     }
 
     @Override
@@ -71,9 +68,11 @@ public class DialogEditFragmentListItems extends BaseAlertDialog implements Dial
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
         ArrayList<SimpleItem> listItems = getArguments().getParcelableArrayList(ITEMS);
-        presenter = new DialogEditFragmentPresenter(fragmentCode);
+        presenter = new DialogSelectLessonFragmentPresenter(fragmentCode);
 
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+
+        @SuppressLint("InflateParams")
         View view = layoutInflater.inflate(R.layout.dialog_rv_list, null);
         TextView title_dialog = view.findViewById(R.id.dialog_textView);
         if (fragmentCode == FRAGMENT_SUBJECTS) {
@@ -111,12 +110,12 @@ public class DialogEditFragmentListItems extends BaseAlertDialog implements Dial
         int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
         int clickedPosition = getArguments().getInt(POSITION);
 
-        dialogFragmentListItemsAdapter = new DialogEditFragmentListItemsAdapter(subjectList, (position, view1) -> {
+        dialogFragmentListItemsAdapter = new DialogSelectLessonFragmentAdapter(subjectList, (position, view1) -> {
             Intent intent = new Intent();
             intent.putExtra(POSITION, clickedPosition);
             intent.putExtra(ITEMS_LIST, subjectList.get(position));
-            DialogEditFragmentListItems.this.getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
-            DialogEditFragmentListItems.this.dismiss();
+            DialogSelectLessonFragment.this.getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
+            DialogSelectLessonFragment.this.dismiss();
         });
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         rvItems.setAdapter(dialogFragmentListItemsAdapter);

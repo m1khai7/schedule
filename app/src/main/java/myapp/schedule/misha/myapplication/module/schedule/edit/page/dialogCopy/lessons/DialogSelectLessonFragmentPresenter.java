@@ -1,4 +1,4 @@
-package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.weeks;
+package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.lessons;
 
 import java.util.ArrayList;
 
@@ -15,11 +15,24 @@ import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_EDUCATORS;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_SUBJECTS;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
 
-public class DialogFragmentWeeksPresenter extends BaseMainPresenter<DialogFragmentWeeksView> implements DialogFragmentWeeksPresenterInterface {
+public class DialogSelectLessonFragmentPresenter extends BaseMainPresenter<DialogSelectLessonFragmentView> implements DialogSelectLessonFragmentPresenterInterface {
 
+    private AbsDao absDao;
     private ArrayList<SimpleItem> listItems = new ArrayList<>();
 
-    public DialogFragmentWeeksPresenter() {
+    public DialogSelectLessonFragmentPresenter(int fragmentCode) {
+        if (fragmentCode == FRAGMENT_SUBJECTS) {
+            absDao = SubjectDao.getInstance();
+        }
+        if (fragmentCode == FRAGMENT_AUDIENCES) {
+            absDao = AudienceDao.getInstance();
+        }
+        if (fragmentCode == FRAGMENT_EDUCATORS) {
+            absDao = EducatorDao.getInstance();
+        }
+        if (fragmentCode == FRAGMENT_TYPELESSONS) {
+            absDao = TypelessonDao.getInstance();
+        }
     }
 
     @Override
@@ -28,11 +41,12 @@ public class DialogFragmentWeeksPresenter extends BaseMainPresenter<DialogFragme
 
 
     @Override
-    public void onItemClick() {
-
+    public void onItemClick(int fragmentCode) {
+        getView().showAddDataDialog(listItems, fragmentCode);
     }
 
     public ArrayList<SimpleItem> getItemList() {
+        listItems = absDao.getAllData();
         return listItems;
     }
 
