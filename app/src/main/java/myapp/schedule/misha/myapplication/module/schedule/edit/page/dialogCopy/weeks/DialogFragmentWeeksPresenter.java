@@ -17,22 +17,9 @@ import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
 
 public class DialogFragmentWeeksPresenter extends BaseMainPresenter<DialogFragmentWeeksView> implements DialogFragmentWeeksPresenterInterface {
 
-    private AbsDao absDao;
     private ArrayList<SimpleItem> listItems = new ArrayList<>();
 
-    public DialogFragmentWeeksPresenter(int fragmentCode) {
-        if (fragmentCode == FRAGMENT_SUBJECTS) {
-            absDao = SubjectDao.getInstance();
-        }
-        if (fragmentCode == FRAGMENT_AUDIENCES) {
-            absDao = AudienceDao.getInstance();
-        }
-        if (fragmentCode == FRAGMENT_EDUCATORS) {
-            absDao = EducatorDao.getInstance();
-        }
-        if (fragmentCode == FRAGMENT_TYPELESSONS) {
-            absDao = TypelessonDao.getInstance();
-        }
+    public DialogFragmentWeeksPresenter() {
     }
 
     @Override
@@ -41,12 +28,11 @@ public class DialogFragmentWeeksPresenter extends BaseMainPresenter<DialogFragme
 
 
     @Override
-    public void onItemClick(int fragmentCode) {
+    public void onItemClick() {
 
     }
 
     public ArrayList<SimpleItem> getItemList() {
-        listItems = absDao.getAllData();
         return listItems;
     }
 

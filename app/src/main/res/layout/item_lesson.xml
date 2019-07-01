@@ -30,7 +30,7 @@
                 android:singleLine="true"
                 android:textAlignment="center"
                 android:textSize="17sp"
-                tools:text="@string/string_time_One" />
+                tools:text="@string/string_time_one" />
 
 
             <TextView
@@ -43,7 +43,7 @@
                 android:singleLine="true"
                 android:textAlignment="center"
                 android:textSize="13sp"
-                tools:text="@string/string_time_Two" />
+                tools:text="@string/string_time_two" />
 
 
             <RelativeLayout

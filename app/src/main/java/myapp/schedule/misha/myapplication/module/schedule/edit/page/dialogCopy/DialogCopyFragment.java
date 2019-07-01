@@ -50,18 +50,17 @@ public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFra
 
     @NotNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
         ArrayList<CopyLesson> listItems = getArguments().getParcelableArrayList(ITEMS);
-        presenter = new DialogCopyFragmentPresenter(fragmentCode);
+        presenter = new DialogCopyFragmentPresenter();
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         @SuppressLint("InflateParams")
         View view = layoutInflater.inflate(R.layout.dialog_copy_lesson, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
-        rvItems = view.findViewById(R.id.rv_dialog);
+        rvItems = view.findViewById(R.id.rv_dialog_weeks);
         updateItemsAdapter(listItems);
         Button buttonOk = view.findViewById(R.id.button_ok);
-        buttonOk.setOnClickListener(v -> presenter.onItemClick(fragmentCode));
+        buttonOk.setOnClickListener(v -> presenter.onItemClick());
         Button button_cancel = view.findViewById(R.id.button_cancel);
         button_cancel.setOnClickListener(v -> dismiss());
         return builder.create();
@@ -77,7 +76,6 @@ public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFra
 
     public void updateItemsAdapter(ArrayList<CopyLesson> itemList) {
          dialogFragmentListItemsAdapter = new DialogCopyFragmentAdapter(itemList, (position, view1) -> {
-            Toast.makeText(getContext(), "zzz", Toast.LENGTH_SHORT).show();
         });
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         rvItems.setAdapter(dialogFragmentListItemsAdapter);

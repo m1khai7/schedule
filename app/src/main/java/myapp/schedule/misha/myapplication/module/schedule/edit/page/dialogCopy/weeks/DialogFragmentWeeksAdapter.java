@@ -3,6 +3,8 @@ package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +33,7 @@ public class DialogFragmentWeeksAdapter extends RecyclerView.Adapter<DialogFragm
     @Override
     public DialogFragmentWeeksAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_row, parent, false);
+                .inflate(R.layout.item_row_week, parent, false);
         return new ViewHolder(view);
     }
 
@@ -50,25 +52,26 @@ public class DialogFragmentWeeksAdapter extends RecyclerView.Adapter<DialogFragm
         return listItems.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final TextView item;
+    public class ViewHolder extends RecyclerView.ViewHolder implements CompoundButton.OnCheckedChangeListener {
+        private final TextView textViewWeek;
+        private final CheckBox checkBoxSelected;
 
         private ViewHolder(View view) {
             super(view);
-            item = view.findViewById(R.id.item);
-            view.setOnClickListener(this);
-
+            textViewWeek = view.findViewById(R.id.textViewWeek);
+            checkBoxSelected = view.findViewById(R.id.checkBoxSelected);
+            checkBoxSelected.setOnCheckedChangeListener(this);
         }
 
         private void onBindView(int position) {
             SimpleItem item = listItems.get(position);
-            this.item.setText(item.getName());
+            this.textViewWeek.setText(item.getName());
 
         }
 
         @Override
-        public void onClick(View v) {
-            itemClickListener.onItemClick(getAdapterPosition(), v);
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            itemClickListener.onItemClick(getAdapterPosition(), buttonView);
         }
     }
 }

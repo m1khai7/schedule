@@ -62,8 +62,8 @@
 
     <string name="clear_day">Очистить день</string>
     <string name="string_empty_lesson">Занятие отсутствует</string>
-    <string name="string_time_One">13:10</string>
-    <string name="string_time_Two">14:00</string>
+    <string name="string_time_one">13:10</string>
+    <string name="string_time_two">14:00</string>
     <string name="transfer">Отправить / получить расписание</string>
     <string name="button_import">Импорт</string>
     <string name="button_export">Экспорт</string>
@@ -81,10 +81,10 @@
     <string name="dialog_fragment_title_subject">Предметы</string>
     <string name="dialog_button_edit">Сохранить</string>
     <string name="dialog_button_delete">Удалить</string>
-    <string name="title_editSubject">Редактировать предмет</string>
-    <string name="title_editAudience">Редактировать аудиторию</string>
-    <string name="title_editEducator">Редактировать преподавателя</string>
-    <string name="title_editTypelesson">Редактировать тип предмета</string>
+    <string name="title_edit_subject">Редактировать предмет</string>
+    <string name="title_edit_audience">Редактировать аудиторию</string>
+    <string name="title_edit_educator">Редактировать преподавателя</string>
+    <string name="title_edit_typelesson">Редактировать тип предмета</string>
     <string name="string_empty_day">Занятия отсутствуют ;)</string>
     <string name="menu_item_copy_previous_lesson">Скопировать в предыдущее занятие</string>
     <string name="menu_item_copy_next_lesson">Скопировать в следующее занятие</string>
@@ -95,4 +95,7 @@
     <string name="copy_other_day">Скопировать в другой день</string>
     <string name="dialog_button_copy">Скопировать</string>
     <string name="string_title_copy_lesson">Скопировать занятие</string>
+    <string name="title_dialog_rv_weeks">Выбор недель</string>
+    <string name="text_view_select_all">Выбрать/снять все недели</string>
+    <string name="current_day">Текущая дата</string>
 </resources>

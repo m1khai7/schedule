@@ -82,16 +82,16 @@ public class EditDataFragmentPage extends BaseMainFragment implements EditDataFr
     public void showEditDataDialog(ArrayList<? extends SimpleItem> items, int position) {
         DialogFragmentEditData dialogFragment = null;
         if (editDataModel.getType() == FRAGMENT_SUBJECTS) {
-            dialogFragment = DialogFragmentEditData.newInstance(new EditDataModel(R.string.error_subject, R.string.hint_subject, R.string.title_editSubject, InputType.TYPE_TEXT_FLAG_CAP_SENTENCES, 60, FRAGMENT_SUBJECTS, position, presenter.getNameAt(position)));
+            dialogFragment = DialogFragmentEditData.newInstance(new EditDataModel(R.string.error_subject, R.string.hint_subject, R.string.title_edit_subject, InputType.TYPE_TEXT_FLAG_CAP_SENTENCES, 60, FRAGMENT_SUBJECTS, position, presenter.getNameAt(position)));
         }
         if (editDataModel.getType() == FRAGMENT_AUDIENCES) {
-            dialogFragment = DialogFragmentEditData.newInstance(new EditDataModel(R.string.error_audience, R.string.hint_audience, R.string.title_editAudience, InputType.TYPE_TEXT_FLAG_CAP_SENTENCES, 14, FRAGMENT_AUDIENCES, position, presenter.getNameAt(position)));
+            dialogFragment = DialogFragmentEditData.newInstance(new EditDataModel(R.string.error_audience, R.string.hint_audience, R.string.title_edit_audience, InputType.TYPE_TEXT_FLAG_CAP_SENTENCES, 14, FRAGMENT_AUDIENCES, position, presenter.getNameAt(position)));
         }
         if (editDataModel.getType() == FRAGMENT_EDUCATORS) {
-            dialogFragment = DialogFragmentEditData.newInstance(new EditDataModel(R.string.error_educator, R.string.hint_educator, R.string.title_editEducator, InputType.TYPE_TEXT_FLAG_CAP_SENTENCES, 60, FRAGMENT_EDUCATORS, position, presenter.getNameAt(position)));
+            dialogFragment = DialogFragmentEditData.newInstance(new EditDataModel(R.string.error_educator, R.string.hint_educator, R.string.title_edit_educator, InputType.TYPE_TEXT_FLAG_CAP_SENTENCES, 60, FRAGMENT_EDUCATORS, position, presenter.getNameAt(position)));
         }
         if (editDataModel.getType() == FRAGMENT_TYPELESSONS) {
-            dialogFragment = DialogFragmentEditData.newInstance(new EditDataModel(R.string.error_typelesson, R.string.hint_typelesson, R.string.title_editTypelesson, InputType.TYPE_TEXT_FLAG_CAP_SENTENCES, 20, FRAGMENT_TYPELESSONS, position, presenter.getNameAt(position)));
+            dialogFragment = DialogFragmentEditData.newInstance(new EditDataModel(R.string.error_typelesson, R.string.hint_typelesson, R.string.title_edit_typelesson, InputType.TYPE_TEXT_FLAG_CAP_SENTENCES, 20, FRAGMENT_TYPELESSONS, position, presenter.getNameAt(position)));
         }
         dialogFragment.show(getChildFragmentManager(), DialogFragmentEditData.class.getSimpleName());
     }

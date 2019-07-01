@@ -39,7 +39,7 @@ public class DialogFragmentLicenses extends BaseDialog {
         ArrayList<Licenses> licensesList = getArguments().getParcelableArrayList(EditSchedulePageFragmentView.ITEMS);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
-        RecyclerView rvItems = view.findViewById(R.id.rv_dialog);
+        RecyclerView rvItems = view.findViewById(R.id.rv_dialog_weeks);
         DialogFragmentLicensesAdapter dialogFragmenLicensesAdapter = new DialogFragmentLicensesAdapter(licensesList);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         rvItems.setAdapter(dialogFragmenLicensesAdapter);

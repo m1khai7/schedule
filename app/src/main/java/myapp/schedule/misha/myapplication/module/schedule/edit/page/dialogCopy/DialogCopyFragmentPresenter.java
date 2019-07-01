@@ -18,22 +18,11 @@ import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
 
 public class DialogCopyFragmentPresenter extends BaseMainPresenter<DialogCopyFragmentView> implements DialogCopyFragmentPresenterInterface {
 
-    private AbsDao absDao;
+
     private ArrayList<CopyLesson> listItems = new ArrayList<>();
 
-    public DialogCopyFragmentPresenter(int fragmentCode) {
-        if (fragmentCode == FRAGMENT_SUBJECTS) {
-            absDao = SubjectDao.getInstance();
-        }
-        if (fragmentCode == FRAGMENT_AUDIENCES) {
-            absDao = AudienceDao.getInstance();
-        }
-        if (fragmentCode == FRAGMENT_EDUCATORS) {
-            absDao = EducatorDao.getInstance();
-        }
-        if (fragmentCode == FRAGMENT_TYPELESSONS) {
-            absDao = TypelessonDao.getInstance();
-        }
+    public DialogCopyFragmentPresenter() {
+
     }
 
     @Override
@@ -42,7 +31,7 @@ public class DialogCopyFragmentPresenter extends BaseMainPresenter<DialogCopyFra
 
 
     @Override
-    public void onItemClick(int fragmentCode) {
+    public void onItemClick() {
         //getView().showLessonsDialog(listItems, fragmentCode);
     }
 

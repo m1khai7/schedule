@@ -50,7 +50,7 @@ public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePag
 
     @Override
     public void init() {
-       updateList(Preferences.getInstance().getSelectedPositionTabDays(), positionWeek + 1);
+       updateList(Preferences.getInstance().getSelectedPositionTabDays(), positionWeek);
     }
 
 
@@ -58,8 +58,7 @@ public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePag
     public void onSubjectClick(int position) {
         ArrayList<Subject> subjectList = SubjectDao.getInstance().getAllData();
         getView().showEditDialog(subjectList, position, FRAGMENT_SUBJECTS);
-        updateList(day, positionWeek);
-    }
+          }
 
     @Override
     public void onAudienceClick(int position) {

@@ -43,25 +43,22 @@ public class DialogFragmentWeeks extends BaseAlertDialog implements DialogFragme
 
     @NotNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
         ArrayList<SimpleItem> listItems = getArguments().getParcelableArrayList(ITEMS);
-        presenter = new DialogFragmentWeeksPresenter(fragmentCode);
+        presenter = new DialogFragmentWeeksPresenter();
 
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
 
         @SuppressLint("InflateParams")
-        View view = layoutInflater.inflate(R.layout.dialog_rv_list, null);
+        View view = layoutInflater.inflate(R.layout.dialog_rv_weeks, null);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
-        rvItems = view.findViewById(R.id.rv_dialog);
+        rvItems = view.findViewById(R.id.rv_dialog_weeks);
         updateItemsAdapter(listItems);
-        Button buttonAllSelect = view.findViewById(R.id.button_ok);
-        buttonAllSelect.setOnClickListener(v -> presenter.onItemClick(fragmentCode));
-        Button buttonAllDeselect = view.findViewById(R.id.button_ok);
-        buttonAllDeselect.setOnClickListener(v -> presenter.onItemClick(fragmentCode));
+        Button buttonAllSelect = view.findViewById(R.id.checkBoxSelected);
+        buttonAllSelect.setOnClickListener(v -> presenter.onItemClick());
         Button buttonOk = view.findViewById(R.id.button_ok);
-        buttonOk.setOnClickListener(v -> presenter.onItemClick(fragmentCode));
+        buttonOk.setOnClickListener(v -> presenter.onItemClick());
         Button button_cancel = view.findViewById(R.id.button_cancel);
         button_cancel.setOnClickListener(v -> dismiss());
         return builder.create();
@@ -75,14 +72,14 @@ public class DialogFragmentWeeks extends BaseAlertDialog implements DialogFragme
         updateItemsAdapter(itemList);
     }
 
-    public void updateItemsAdapter(ArrayList<SimpleItem> subjectList) {
+    public void updateItemsAdapter(ArrayList<SimpleItem> itemList) {
         int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
         int clickedPosition = getArguments().getInt(POSITION);
 
-        dialogFragmentListItemsAdapter = new DialogFragmentWeeksAdapter(subjectList, (position, view1) -> {
+        dialogFragmentListItemsAdapter = new DialogFragmentWeeksAdapter(itemList, (position, view1) -> {
             Intent intent = new Intent();
             intent.putExtra(POSITION, clickedPosition);
-            intent.putExtra(ITEMS_LIST, subjectList.get(position));
+            intent.putExtra(ITEMS_LIST, itemList.get(position));
             DialogFragmentWeeks.this.getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
             DialogFragmentWeeks.this.dismiss();
         });

@@ -59,7 +59,7 @@ public class DialogCopyFragmentAdapter extends RecyclerView.Adapter<DialogCopyFr
         private ViewHolder(View view) {
             super(view);
             day = view.findViewById(R.id.day);
-            timeLesson = view.findViewById(R.id.call_timeTwo);
+            timeLesson = view.findViewById(R.id.timeLesson);
             imageDelete = view.findViewById(R.id.imageDelete);
             imageDelete.setOnClickListener(this);
         }

@@ -6,7 +6,7 @@ import myapp.schedule.misha.myapplication.entity.SimpleItem;
 
 public interface DialogFragmentWeeksPresenterInterface {
 
-    void onItemClick(int fragmentCode);
+    void onItemClick();
 
     ArrayList<SimpleItem> getItemList();
 

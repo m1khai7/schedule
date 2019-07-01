@@ -92,7 +92,7 @@ public class DialogEditFragmentListItems extends BaseAlertDialog implements Dial
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
-        rvItems = view.findViewById(R.id.rv_dialog);
+        rvItems = view.findViewById(R.id.rv_dialog_weeks);
         updateItemsAdapter(listItems);
         Button button_add = view.findViewById(R.id.button_ok);
         button_add.setOnClickListener(v -> presenter.onItemClick(fragmentCode));

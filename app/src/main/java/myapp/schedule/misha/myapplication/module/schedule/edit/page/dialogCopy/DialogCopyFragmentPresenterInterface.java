@@ -6,9 +6,8 @@ import myapp.schedule.misha.myapplication.entity.SimpleItem;
 
 public interface DialogCopyFragmentPresenterInterface {
 
-    void onItemClick(int fragmentCode);
+    void onItemClick();
 
   //  ArrayList<SimpleItem> getItemList();
-
 
 }
