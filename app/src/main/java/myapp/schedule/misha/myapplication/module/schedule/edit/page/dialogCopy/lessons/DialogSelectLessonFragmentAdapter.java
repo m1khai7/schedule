@@ -31,11 +31,12 @@ import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.D
 public class DialogSelectLessonFragmentAdapter extends RecyclerView.Adapter<DialogSelectLessonFragmentAdapter.ViewHolder> {
 
     private ArrayList<Calls> callsList = new ArrayList<>();
-    private DialogSelectLessonFragmentPresenter dialogSelectLessonFragmentPresenter;
+    private SimpleItemClickListener simpleItemClickListener;
 
 
-    public DialogSelectLessonFragmentAdapter (DialogSelectLessonFragmentPresenter dialogSelectLessonFragmentPresenter) {
-        this.dialogSelectLessonFragmentPresenter = dialogSelectLessonFragmentPresenter;
+    public DialogSelectLessonFragmentAdapter (ArrayList<Calls> calls, SimpleItemClickListener simpleItemClickListener) {
+        this.callsList=calls;
+        this.simpleItemClickListener = simpleItemClickListener;
     }
 
     @NotNull
@@ -89,7 +90,7 @@ public class DialogSelectLessonFragmentAdapter extends RecyclerView.Adapter<Dial
 
         @Override
         public void onClick(View v) {
-                dialogSelectLessonFragmentPresenter.onItemClick(getAdapterPosition());
+            simpleItemClickListener.onItemClick(getAdapterPosition(),v);
         }
     }
 }

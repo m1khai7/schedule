@@ -20,12 +20,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.R;
+import myapp.schedule.misha.myapplication.SimpleItemClickListener;
 import myapp.schedule.misha.myapplication.common.core.BaseAlertDialog;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.entity.Calls;
-import myapp.schedule.misha.myapplication.entity.SimpleItem;
-
-import static myapp.schedule.misha.myapplication.Constants.ITEMS_LIST;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit.DialogEditFragmentListItemsAdapter;
 
 
 public class DialogSelectLessonFragment extends BaseAlertDialog implements DialogSelectLessonFragmentView {
@@ -52,7 +51,7 @@ public class DialogSelectLessonFragment extends BaseAlertDialog implements Dialo
         builder.setView(view);
         rvItems = view.findViewById(R.id.rv_dialog_weeks);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
-       // updateItemsAdapter(listItems);
+        // updateItemsAdapter(listItems);
         Button button_cancel = view.findViewById(R.id.button_cancel);
         button_cancel.setOnClickListener(v -> dismiss());
         return builder.create();
@@ -70,13 +69,15 @@ public class DialogSelectLessonFragment extends BaseAlertDialog implements Dialo
         int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
         int clickedPosition = getArguments().getInt(POSITION);
 
-        dialogFragmentListItemsAdapter = new DialogSelectLessonFragmentAdapter(itemList, (position, view1) -> {
-            Intent intent = new Intent();
-            intent.putExtra(POSITION, clickedPosition);
-            DialogSelectLessonFragment.this.getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
-            DialogSelectLessonFragment.this.dismiss();
+        dialogFragmentListItemsAdapter = new DialogSelectLessonFragmentAdapter(itemList, new SimpleItemClickListener() {
+            @Override
+            public void onItemClick(int position, View view1) {
+                Intent intent = new Intent();
+                intent.putExtra(POSITION, clickedPosition);
+                DialogSelectLessonFragment.this.getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
+                DialogSelectLessonFragment.this.dismiss();
+            }
         });
-
         rvItems.setAdapter(dialogFragmentListItemsAdapter);
     }
 
