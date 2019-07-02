@@ -11,11 +11,9 @@ public interface DialogCopyFragmentView extends BaseView {
     String FRAGMENT_CODE = "FRAGMENT_CODE";
     String POSITION = "POSITION";
 
-    void showDayDialog();
+    void showLessonDialog();
 
     void showWeekDialog();
-
-    void showLessonDialog();
 
     void updateItemsAdapter(ArrayList<CopyLesson> itemList);
 }

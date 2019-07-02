@@ -103,4 +103,11 @@
     <string name="menu_weeks_select_even_week">Четные</string>
     <string name="menu_weeks_select_selectively_week">Выборочно</string>
     <string name="text_view_day_dialog_copy_lesson">Понедельник</string>
+    <string name="monday">Понедельник</string>
+    <string name="tuesday">Вторник</string>
+    <string name="wednesday">Среда</string>
+    <string name="friday">Пятница</string>
+    <string name="thuesday">Четверг</string>
+    <string name="saturday">Суббота</string>
+    <string name="title_dialog_rv_lessons">Выбор занятия</string>
 </resources>

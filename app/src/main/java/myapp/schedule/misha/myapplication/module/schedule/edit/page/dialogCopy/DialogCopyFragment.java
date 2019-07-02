@@ -5,10 +5,11 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,19 +26,17 @@ import myapp.schedule.misha.myapplication.common.core.BaseAlertDialog;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
 import myapp.schedule.misha.myapplication.entity.CopyLesson;
-import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.days.DialogSelectDayFragment;
 import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.lessons.DialogSelectLessonFragment;
 
 //Todo прочитать про наследование инкапсуляцию интерфейсы абстрактные классы и generic.
 
-public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFragmentView, View.OnClickListener {
+public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFragmentView, View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
     private DialogCopyFragmentPresenter presenter;
     private RecyclerView rvItems;
-    private ImageView imageAdd;
     private TextView day;
     private TextView timeLesson;
-    private Spinner weeks;
+    private TextView weeks;
     private DialogCopyFragmentAdapter dialogFragmentListItemsAdapter;
 
 
@@ -48,20 +47,14 @@ public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFra
     }
 
     @Override
-    public void showDayDialog() {
-        DialogSelectDayFragment dialogFragment = DialogSelectDayFragment.newInstance();
-        dialogFragment.show(getChildFragmentManager(), DialogSelectDayFragment.class.getSimpleName());
+    public void showLessonDialog() {
+        DialogSelectLessonFragment dialogFragment = DialogSelectLessonFragment.newInstance();
+        dialogFragment.show(getChildFragmentManager(), DialogSelectLessonFragment.class.getSimpleName());
     }
 
     @Override
     public void showWeekDialog() {
 
-    }
-
-    @Override
-    public void showLessonDialog() {
-        DialogSelectLessonFragment dialogFragment = DialogSelectLessonFragment.newInstance();
-        dialogFragment.show(getChildFragmentManager(), DialogSelectLessonFragment.class.getSimpleName());
     }
 
     @NotNull
@@ -72,10 +65,13 @@ public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFra
         View view = layoutInflater.inflate(R.layout.dialog_copy_lesson, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
-        imageAdd = view.findViewById(R.id.imageAdd);
+        ImageView imageAdd = view.findViewById(R.id.imageAdd);
         rvItems = view.findViewById(R.id.rv_dialog_weeks);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         day = view.findViewById(R.id.day);
+        weeks = view.findViewById(R.id.weeks);
+        weeks.setOnClickListener(this);
+        day.setOnClickListener(this);
         timeLesson = view.findViewById(R.id.timeLesson);
         timeLesson.setText(CallDao.getInstance().getItemByID(1).getName() + " - " + CallDao.getInstance().getItemByID(2).getName());
 
@@ -119,11 +115,52 @@ public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFra
         if (v.getId() == R.id.imageAdd) {
             presenter.onImageAddClick(day.getText().toString(), timeLesson.getText().toString());
         }
+        if (v.getId() == R.id.weeks) {
+            PopupMenu popup = new PopupMenu(v.getContext(), weeks);
+            popup.inflate(R.menu.menu_weeks);
+            popup.setOnMenuItemClickListener(this);
+            popup.show();
+        }
         if (v.getId() == R.id.day) {
-            presenter.onDialogDayClick();
+            PopupMenu popup = new PopupMenu(v.getContext(), day);
+            popup.inflate(R.menu.menu_days);
+            popup.setOnMenuItemClickListener(this);
+            popup.show();
         }
         if (v.getId() == R.id.timeLesson) {
             presenter.onDialogLessonClick();
         }
     }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            //TODO  WEEKS
+            case R.id.selectAll:
+                return true;
+            case R.id.selectUnevens:
+                return true;
+            case R.id.selectEvens:
+                return true;
+            case R.id.selectSelectively:
+                return true;
+            //TODO  DAYS
+            case R.id.monday:
+                return true;
+            case R.id.tuesday:
+                return true;
+            case R.id.wednesday:
+                return true;
+            case R.id.thuesday:
+                return true;
+            case R.id.friday:
+                return true;
+            case R.id.saturday:
+                return true;
+            default:
+                return false;
+        }
+
+    }
 }
+

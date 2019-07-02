@@ -186,7 +186,6 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
 
 
     public void animateFAB() {
-
         if (Preferences.getInstance().getFabOpen()) {
             mainFab.startAnimation(rotateBackward);
             evenWeekFab.startAnimation(fabClose);

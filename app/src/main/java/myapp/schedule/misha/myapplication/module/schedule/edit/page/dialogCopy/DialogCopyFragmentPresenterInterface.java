@@ -6,8 +6,6 @@ import myapp.schedule.misha.myapplication.entity.CopyLesson;
 
 public interface DialogCopyFragmentPresenterInterface {
 
-    void onDialogDayClick();
-
     void onDialogWeekClick();
 
     void onDialogLessonClick();

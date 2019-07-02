@@ -16,11 +16,6 @@ public class DialogCopyFragmentPresenter extends BaseMainPresenter<DialogCopyFra
     }
 
     @Override
-    public void onDialogDayClick() {
-        getView().showDayDialog();
-    }
-
-    @Override
     public void onDialogWeekClick() {
         getView().showWeekDialog();
     }

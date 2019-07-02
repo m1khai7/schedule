@@ -2,13 +2,14 @@ package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.
 
 import java.util.ArrayList;
 
+import myapp.schedule.misha.myapplication.entity.Calls;
 import myapp.schedule.misha.myapplication.entity.SimpleItem;
 
 public interface DialogSelectLessonFragmentPresenterInterface {
 
-    void onItemClick(int fragmentCode);
+    void onItemClick(int position);
 
-    ArrayList<SimpleItem> getItemList();
+    ArrayList<Calls> getItemList();
 
 
 }
