@@ -4,9 +4,6 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
@@ -15,22 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.SimpleItemClickListener;
 import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
 import myapp.schedule.misha.myapplication.entity.Calls;
-import myapp.schedule.misha.myapplication.entity.CopyLesson;
-import myapp.schedule.misha.myapplication.entity.SimpleItem;
-import myapp.schedule.misha.myapplication.module.calls.CallsFragmentAdapter;
-import myapp.schedule.misha.myapplication.module.calls.CallsPresenter;
-import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.DialogCopyFragmentAdapter;
 
 
 public class DialogSelectLessonFragmentAdapter extends RecyclerView.Adapter<DialogSelectLessonFragmentAdapter.ViewHolder> {
 
-    private ArrayList<Calls> callsList = new ArrayList<>();
+    private ArrayList<Calls> callsList;
     private SimpleItemClickListener simpleItemClickListener;
 
 
@@ -49,7 +40,7 @@ public class DialogSelectLessonFragmentAdapter extends RecyclerView.Adapter<Dial
 
     @Override
     public void onBindViewHolder(DialogSelectLessonFragmentAdapter.ViewHolder holder, final int position) {
-        holder.onBindView(position);
+        holder.render(position);
     }
 
     public void setLessonsList(ArrayList<Calls> callsList) {
@@ -81,7 +72,7 @@ public class DialogSelectLessonFragmentAdapter extends RecyclerView.Adapter<Dial
         }
 
         @SuppressLint("SetTextI18n")
-        public void onBindView(int position) {
+        public void render(int position) {
             callsList = CallDao.getInstance().getAllData();
             numberCall.setText(callsList.get(position).getId());
             call_timeOne.setText(callsList.get(position * 2).getName());
