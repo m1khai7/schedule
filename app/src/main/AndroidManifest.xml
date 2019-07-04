@@ -38,6 +38,11 @@
                 android:resource="@xml/searchable" />
         </activity>
 
+        <activity
+            android:name="myapp.schedule.misha.myapplication.activity.ActivityCopyLesson"
+            android:screenOrientation="portrait">
+        </activity>
+
         <provider
             android:name="myapp.schedule.misha.myapplication.data.database.AppContentProvider"
             android:authorities="com.schedule.misha.myapplication.provider"

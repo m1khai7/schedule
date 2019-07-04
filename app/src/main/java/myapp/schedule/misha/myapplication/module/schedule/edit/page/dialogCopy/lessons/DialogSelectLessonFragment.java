@@ -49,7 +49,7 @@ public class DialogSelectLessonFragment extends BaseAlertDialog implements Dialo
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
-        rvItems = view.findViewById(R.id.rv_dialog_weeks);
+        rvItems = view.findViewById(R.id.rv_dialog_lessons);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         // updateItemsAdapter(listItems);
         Button button_cancel = view.findViewById(R.id.button_cancel);

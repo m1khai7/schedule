@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.Constants;
 import myapp.schedule.misha.myapplication.R;
+import myapp.schedule.misha.myapplication.activity.ActivityCopyLesson;
 import myapp.schedule.misha.myapplication.common.core.BaseMainFragment;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.data.database.dao.LessonDao;
@@ -143,11 +144,9 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
 
     @Override
     public void showCopyDialog(ArrayList<CopyLesson> items, int position) {
-        Bundle args = new Bundle();
-        args.putParcelableArrayList(ITEMS, items);
-        args.putInt(POSITION, position);
-        DialogCopyFragment dialogFragment = DialogCopyFragment.newInstance(args);
-        dialogFragment.show(getChildFragmentManager(), DialogCopyFragment.class.getSimpleName());
+        Intent intent = new Intent(getActivity(), ActivityCopyLesson.class);
+        intent.putExtra(ITEMS, items);
+        startActivity(intent);
     }
 
 
