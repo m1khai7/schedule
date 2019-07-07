@@ -6,97 +6,6 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/spacing_medium">
 
-    <TextView
-        android:id="@+id/dialog_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_normal"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:layout_marginEnd="@dimen/spacing_small"
-        android:layout_marginBottom="@dimen/spacing_small"
-        android:text="@string/string_title_copy_lesson"
-        android:textSize="19sp" />
-
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_dialog_weeks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dialog_textView"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-
-    <View
-        android:id="@+id/viewLine"
-        style="?attr/lineColorStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="1dp"
-        android:layout_below="@+id/rv_dialog_weeks"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:layout_marginBottom="@dimen/spacing_medium"
-        />
-
-    <RelativeLayout
-        android:id="@+id/relLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/viewLine"
-        android:layout_marginStart="@dimen/spacing_normal"
-        android:layout_marginEnd="@dimen/spacing_normal">
-
-        <TextView
-            android:id="@+id/day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginEnd="@dimen/spacing_normal"
-            android:layout_toStartOf="@id/timeLesson"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textSize="16sp"
-            android:text="@string/text_view_day_dialog_copy_lesson" />
-
-        <TextView
-            android:id="@+id/timeLesson"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="@dimen/spacing_normal"
-            android:layout_toStartOf="@id/imageAdd"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textSize="16sp"
-            tools:text="8:00-10:00" />
-
-        <ImageView
-            android:id="@+id/imageAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginEnd="0dp"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:src="@drawable/ic_add_black"
-            android:textSize="16sp"
-            tools:text="8:00-10:00" />
-
-    </RelativeLayout>
-
-
-    <TextView
-        android:id="@+id/weeks"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/relLay"
-        android:layout_marginStart="@dimen/spacing_normal"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:layout_marginEnd="@dimen/spacing_normal"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textSize="16sp"
-        android:text="Недели:  2-5,6,7,10-15" />
 
     <LinearLayout
         android:id="@+id/linLay"
@@ -122,5 +31,84 @@
             android:text="@string/dialog_button_close"
             android:textSize="14sp" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/weeks"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/spacing_normal">
+
+        <ImageView
+            android:id="@+id/imageAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginEnd="0dp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:src="@drawable/ic_add_black"
+            android:textSize="16sp"
+            tools:text="8:00-10:00" />
+
+        <TextView
+            android:id="@+id/timeLesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:layout_toStartOf="@id/imageAdd"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="16sp"
+            tools:text="8:00-10:00" />
+
+        <TextView
+            android:id="@+id/day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="@dimen/spacing_normal"
+            android:layout_toStartOf="@id/timeLesson"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="@string/text_view_day_dialog_copy_lesson"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/weeks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linLay"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:layout_marginBottom="410dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:text="Недели:  2-5,6,7,10-15"
+        android:textSize="16sp" />
+
+
+    <View
+        android:id="@+id/viewLine"
+        style="?attr/lineColorStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rv_dialog_weeks"
+        android:layout_marginTop="@dimen/spacing_medium"
+        android:layout_marginBottom="@dimen/spacing_medium" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_dialog_weeks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/linLay"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 </RelativeLayout>

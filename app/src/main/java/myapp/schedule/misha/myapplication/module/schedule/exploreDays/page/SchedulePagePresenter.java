@@ -42,6 +42,7 @@ public class SchedulePagePresenter extends BaseMainPresenter<SchedulePageFragmen
                     getView().hideProgressBar();
                     getView().showErrorView();
                     processGlobalError(throwable);
+
                 })
         );
     }
