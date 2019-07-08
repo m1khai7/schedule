@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.R;
-import myapp.schedule.misha.myapplication.ScheduleApp;
 import myapp.schedule.misha.myapplication.common.core.BaseActivity;
 import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
 import myapp.schedule.misha.myapplication.entity.CopyLesson;
@@ -115,25 +114,35 @@ public class ActivityCopyLesson extends BaseActivity implements View.OnClickList
         switch (item.getItemId()) {
             //TODO  WEEKS
             case R.id.selectAll:
+                weeks.setText("Все недели");
                 return true;
             case R.id.selectUnevens:
+                weeks.setText("Нечетные недели");
                 return true;
             case R.id.selectEvens:
+                weeks.setText("Четные недели");
                 return true;
             case R.id.selectSelectively:
+
                 return true;
             //TODO  DAYS
             case R.id.monday:
+                day.setText("Понедельник");
                 return true;
             case R.id.tuesday:
+                day.setText("Вторник");
                 return true;
             case R.id.wednesday:
+                day.setText("Среда");
                 return true;
             case R.id.thuesday:
+                day.setText("Четверг");
                 return true;
             case R.id.friday:
+                day.setText("Пятница");
                 return true;
             case R.id.saturday:
+                day.setText("Суббота");
                 return true;
             default:
                 return false;

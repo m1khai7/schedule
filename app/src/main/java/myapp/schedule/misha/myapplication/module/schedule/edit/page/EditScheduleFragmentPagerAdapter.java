@@ -2,6 +2,7 @@ package myapp.schedule.misha.myapplication.module.schedule.edit.page;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -67,25 +68,28 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
             if (position == 5) {
                 popup.getMenu().removeItem(R.id.copyDown);
             }
-            popup.setOnMenuItemClickListener(item -> {
-                switch (item.getItemId()) {
-                    case R.id.copyUp:
-                        callback.onCopyUpClick(position);
-                        return true;
-                    case R.id.copyDown:
-                        callback.onCopyDownClick(position);
-                        return true;
-                    case R.id.copyOtherDay:
-                        callback.onCopyLessonOtherDay(position);
-                        return true;
-                    case R.id.clearLesson:
-                        callback.onClearLessonClick(position);
-                        return true;
-                    case R.id.clearDay:
-                        callback.onClearDayClick();
-                        return true;
-                    default:
-                        return false;
+            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.copyUp:
+                            callback.onCopyUpClick(position);
+                            return true;
+                        case R.id.copyDown:
+                            callback.onCopyDownClick(position);
+                            return true;
+                        case R.id.copyOtherDay:
+                            callback.onCopyLessonOtherDay(position);
+                            return true;
+                        case R.id.clearLesson:
+                            callback.onClearLessonClick(position);
+                            return true;
+                        case R.id.clearDay:
+                            callback.onClearDayClick();
+                            return true;
+                        default:
+                            return false;
+                    }
                 }
             });
             popup.show();

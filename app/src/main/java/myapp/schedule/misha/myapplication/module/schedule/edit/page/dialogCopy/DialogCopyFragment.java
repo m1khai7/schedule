@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -138,6 +139,7 @@ public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFra
         switch (item.getItemId()) {
             //TODO  WEEKS
             case R.id.selectAll:
+                Toast.makeText(getContext(), "aaa", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.selectUnevens:
                 return true;
@@ -147,6 +149,7 @@ public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFra
                 return true;
             //TODO  DAYS
             case R.id.monday:
+                Toast.makeText(getContext(), "aaa", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.tuesday:
                 return true;

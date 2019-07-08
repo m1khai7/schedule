@@ -74,7 +74,6 @@
             android:layout_toStartOf="@id/timeLesson"
             android:maxLines="1"
             android:singleLine="true"
-            android:text="@string/text_view_day_dialog_copy_lesson"
             android:textSize="16sp" />
 
     </RelativeLayout>
