@@ -21,18 +21,17 @@ import java.util.ArrayList;
 import myapp.schedule.misha.myapplication.Constants;
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.activity.ActivityCopyLesson;
+import myapp.schedule.misha.myapplication.activity.MainActivity;
 import myapp.schedule.misha.myapplication.common.core.BaseMainFragment;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.data.database.dao.LessonDao;
 import myapp.schedule.misha.myapplication.data.preferences.Preferences;
 import myapp.schedule.misha.myapplication.entity.Audience;
-import myapp.schedule.misha.myapplication.entity.CopyLesson;
 import myapp.schedule.misha.myapplication.entity.Educator;
 import myapp.schedule.misha.myapplication.entity.Lesson;
 import myapp.schedule.misha.myapplication.entity.SimpleItem;
 import myapp.schedule.misha.myapplication.entity.Subject;
 import myapp.schedule.misha.myapplication.entity.Typelesson;
-import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.DialogCopyFragment;
 import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit.DialogEditFragmentListItems;
 
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_AUDIENCES;
@@ -143,9 +142,8 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
     }
 
     @Override
-    public void showCopyDialog(ArrayList<CopyLesson> items, int position) {
+    public void showCopyDialog() {
         Intent intent = new Intent(getActivity(), ActivityCopyLesson.class);
-        intent.putExtra(ITEMS, items);
         startActivity(intent);
     }
 

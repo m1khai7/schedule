@@ -23,8 +23,8 @@ import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.SimpleItemClickListener;
 import myapp.schedule.misha.myapplication.common.core.BaseAlertDialog;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
+import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
 import myapp.schedule.misha.myapplication.entity.Calls;
-import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit.DialogEditFragmentListItemsAdapter;
 
 
 public class DialogSelectLessonFragment extends BaseAlertDialog implements DialogSelectLessonFragmentView {
@@ -40,43 +40,34 @@ public class DialogSelectLessonFragment extends BaseAlertDialog implements Dialo
     @NotNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         ArrayList<Calls> callsList = new ArrayList<>();
+        callsList = CallDao.getInstance().getAllData();
         presenter = new DialogSelectLessonFragmentPresenter();
 
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
 
         @SuppressLint("InflateParams")
-        View view = layoutInflater.inflate(R.layout.dialog_rv_weeks, null);
+        View view = layoutInflater.inflate(R.layout.dialog_rv_lessons, null);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
         rvItems = view.findViewById(R.id.rv_dialog_lessons);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
-        // updateItemsAdapter(listItems);
+
+        updateItemsAdapter(callsList);
         Button button_cancel = view.findViewById(R.id.button_cancel);
         button_cancel.setOnClickListener(v -> dismiss());
         return builder.create();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultOk, Intent data) {
-        ArrayList<Calls> itemList = presenter.getItemList();
-        dialogFragmentListItemsAdapter.setLessonsList(itemList);
-        dialogFragmentListItemsAdapter.notifyDataSetChanged();
-        updateItemsAdapter(itemList);
-    }
 
     public void updateItemsAdapter(ArrayList<Calls> itemList) {
-        int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
-        int clickedPosition = getArguments().getInt(POSITION);
 
-        dialogFragmentListItemsAdapter = new DialogSelectLessonFragmentAdapter(itemList, new SimpleItemClickListener() {
-            @Override
-            public void onItemClick(int position, View view1) {
-                Intent intent = new Intent();
-                intent.putExtra(POSITION, clickedPosition);
-                DialogSelectLessonFragment.this.getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
-                DialogSelectLessonFragment.this.dismiss();
-            }
+
+        dialogFragmentListItemsAdapter = new DialogSelectLessonFragmentAdapter(itemList, (position, view1) -> {
+            Intent intent = new Intent();
+            intent.putExtra(POSITION, position);
+            onActivityResult(213123, Activity.RESULT_OK, intent);
+            dismiss();
         });
         rvItems.setAdapter(dialogFragmentListItemsAdapter);
     }

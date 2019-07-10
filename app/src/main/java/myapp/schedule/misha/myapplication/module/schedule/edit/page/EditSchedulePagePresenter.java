@@ -134,7 +134,7 @@ public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePag
 
     @Override
     public void onCopyLessonOtherDay(int position) {
-       getView().showCopyDialog(lessonList1,position);
+       getView().showCopyDialog();
     }
 
     @Override

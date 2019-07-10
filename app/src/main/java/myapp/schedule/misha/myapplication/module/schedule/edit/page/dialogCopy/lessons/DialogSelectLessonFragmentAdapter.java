@@ -25,8 +25,8 @@ public class DialogSelectLessonFragmentAdapter extends RecyclerView.Adapter<Dial
     private SimpleItemClickListener simpleItemClickListener;
 
 
-    public DialogSelectLessonFragmentAdapter (ArrayList<Calls> calls, SimpleItemClickListener simpleItemClickListener) {
-        this.callsList=calls;
+    public DialogSelectLessonFragmentAdapter(ArrayList<Calls> calls, SimpleItemClickListener simpleItemClickListener) {
+        this.callsList = calls;
         this.simpleItemClickListener = simpleItemClickListener;
     }
 
@@ -43,35 +43,28 @@ public class DialogSelectLessonFragmentAdapter extends RecyclerView.Adapter<Dial
         holder.render(position);
     }
 
-    public void setLessonsList(ArrayList<Calls> callsList) {
-        this.callsList = callsList;
-    }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return callsList.size()/2;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final CardView cardViewCall;
         private final TextView numberCall;
         private final TextView call_timeOne;
         private final TextView call_timeTwo;
 
         public ViewHolder(View view) {
             super(view);
-            cardViewCall = view.findViewById(R.id.call_cardView);
             numberCall = view.findViewById(R.id.call_number);
             call_timeOne = view.findViewById(R.id.call_timeOne);
             call_timeTwo = view.findViewById(R.id.call_timeTwo);
-            cardViewCall.setOnClickListener(this);
             call_timeOne.setOnClickListener(this);
             call_timeTwo.setOnClickListener(this);
             view.setOnClickListener(this);
 
         }
 
-        @SuppressLint("SetTextI18n")
         public void render(int position) {
             callsList = CallDao.getInstance().getAllData();
             numberCall.setText(callsList.get(position).getId());
@@ -81,7 +74,7 @@ public class DialogSelectLessonFragmentAdapter extends RecyclerView.Adapter<Dial
 
         @Override
         public void onClick(View v) {
-            simpleItemClickListener.onItemClick(getAdapterPosition(),v);
+            simpleItemClickListener.onItemClick(getAdapterPosition(), v);
         }
     }
 }

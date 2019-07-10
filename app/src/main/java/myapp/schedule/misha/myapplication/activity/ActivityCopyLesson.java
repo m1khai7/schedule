@@ -1,41 +1,31 @@
 package myapp.schedule.misha.myapplication.activity;
 
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseActivity;
-import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
 import myapp.schedule.misha.myapplication.entity.CopyLesson;
+import myapp.schedule.misha.myapplication.module.container.Container;
 import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.DialogCopyFragmentAdapter;
-import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.lessons.DialogSelectLessonFragment;
 
-import static myapp.schedule.misha.myapplication.module.schedule.edit.page.EditSchedulePageFragmentView.ITEMS;
+public class ActivityCopyLesson extends BaseActivity {
 
-public class ActivityCopyLesson extends BaseActivity implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
-
-    private RecyclerView rvItems;
-    private TextView day;
-    private TextView timeLesson;
-    private TextView weeks;
-    private DialogCopyFragmentAdapter dialogFragmentListItemsAdapter;
-    private ArrayList<CopyLesson> copyLessons = new ArrayList<>();
-
+    private final Container container = Container.newInstance();
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCurrentTitle("Скопировать занятие");
+
+
+
+    }
+/*
+
         ArrayList<CopyLesson> listItems = (ArrayList<CopyLesson>) getIntent().getSerializableExtra(ITEMS);
         ImageView imageAdd = findViewById(R.id.imageAdd);
         rvItems = findViewById(R.id.rv_dialog_weeks);
@@ -59,6 +49,19 @@ public class ActivityCopyLesson extends BaseActivity implements View.OnClickList
         Button button_cancel = findViewById(R.id.button_cancel);
         button_cancel.setOnClickListener(v -> finish());
         imageAdd.setOnClickListener(this);
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultOk, Intent data) {
+        super.onActivityResult(requestCode, resultOk, data);
+        setText(data.getIntExtra(POSITION, 0));
+    }
+
+    public void setText(int position) {
+        TextView tvLesson = findViewById(R.id.timeLesson);
+        ArrayList<Calls> callsList = CallDao.getInstance().getAllData();
+        tvLesson.setText(callsList.get(position * 2).getName() + " - " + callsList.get((position * 2) + 1).getName());
     }
 
 
@@ -149,6 +152,7 @@ public class ActivityCopyLesson extends BaseActivity implements View.OnClickList
         }
 
     }
+*/
 
 
     @Override

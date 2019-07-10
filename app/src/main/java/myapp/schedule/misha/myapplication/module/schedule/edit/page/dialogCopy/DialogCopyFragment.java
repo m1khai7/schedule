@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -26,6 +25,7 @@ import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseAlertDialog;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
+import myapp.schedule.misha.myapplication.entity.Calls;
 import myapp.schedule.misha.myapplication.entity.CopyLesson;
 import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.lessons.DialogSelectLessonFragment;
 
@@ -39,12 +39,10 @@ public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFra
     private TextView timeLesson;
     private TextView weeks;
     private DialogCopyFragmentAdapter dialogFragmentListItemsAdapter;
+    private View view;
 
-
-    public static DialogCopyFragment newInstance(Bundle args) {
-        DialogCopyFragment fragment = new DialogCopyFragment();
-        fragment.setArguments(args);
-        return fragment;
+    public static DialogCopyFragment newInstance() {
+        return new DialogCopyFragment();
     }
 
     @Override
@@ -57,13 +55,13 @@ public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFra
     public void showWeekDialog() {
 
     }
-
+  //TODO replace dialog to fragment
     @NotNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         ArrayList<CopyLesson> listItems = getArguments().getParcelableArrayList(ITEMS);
         presenter = new DialogCopyFragmentPresenter();
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-        View view = layoutInflater.inflate(R.layout.dialog_copy_lesson, null);
+        view = layoutInflater.inflate(R.layout.dialog_copy_lesson, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
         ImageView imageAdd = view.findViewById(R.id.imageAdd);
@@ -91,13 +89,7 @@ public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFra
         return builder.create();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultOk, Intent data) {
-        //      ArrayList<CopyLesson> itemList = presenter.getItemList();
-        // dialogFragmentListItemsAdapter.setLessonList(itemList);
-        dialogFragmentListItemsAdapter.notifyDataSetChanged();
-    }
-
+    
     @Override
     public void updateItemsAdapter(ArrayList<CopyLesson> itemList) {
         dialogFragmentListItemsAdapter = new DialogCopyFragmentAdapter(itemList, (position, view1) -> {
@@ -139,7 +131,6 @@ public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFra
         switch (item.getItemId()) {
             //TODO  WEEKS
             case R.id.selectAll:
-                Toast.makeText(getContext(), "aaa", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.selectUnevens:
                 return true;
@@ -149,7 +140,6 @@ public class DialogCopyFragment extends BaseAlertDialog implements DialogCopyFra
                 return true;
             //TODO  DAYS
             case R.id.monday:
-                Toast.makeText(getContext(), "aaa", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.tuesday:
                 return true;

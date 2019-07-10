@@ -18,7 +18,7 @@ public interface EditSchedulePageFragmentView extends BaseView {
 
     void showEditDialog(ArrayList<? extends SimpleItem> subjectList, int position, int subject);
 
-    void showCopyDialog(ArrayList<CopyLesson> lessonList, int position);
+    void showCopyDialog();
 
     void setWeek(int position);
 
