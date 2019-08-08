@@ -5,6 +5,6 @@ import myapp.schedule.misha.myapplication.common.core.BaseView;
 public interface DialogSelectLessonFragmentView extends BaseView {
 
     String ITEMS = "ITEMS";
-    String FRAGMENT_CODE = "FRAGMENT_CODE";
-    String POSITION = "POSITION";
+
+    String POSITION = "5445";
 }

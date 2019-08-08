@@ -1,12 +1,10 @@
 package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.lessons;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -46,7 +44,7 @@ public class DialogSelectLessonFragmentAdapter extends RecyclerView.Adapter<Dial
 
     @Override
     public int getItemCount() {
-        return callsList.size()/2;
+        return callsList.size() / 2;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

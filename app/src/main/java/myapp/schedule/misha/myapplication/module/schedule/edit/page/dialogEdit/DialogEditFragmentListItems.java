@@ -1,6 +1,5 @@
 package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -111,7 +110,6 @@ public class DialogEditFragmentListItems extends BaseAlertDialog implements Dial
     public void updateItemsAdapter(ArrayList<SimpleItem> subjectList) {
         int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
         int clickedPosition = getArguments().getInt(POSITION);
-
         dialogFragmentListItemsAdapter = new DialogEditFragmentListItemsAdapter(subjectList, (position, view1) -> {
             Intent intent = new Intent();
             intent.putExtra(POSITION, clickedPosition);

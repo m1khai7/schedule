@@ -1,28 +1,18 @@
 package myapp.schedule.misha.myapplication.activity;
 
 import android.os.Bundle;
-import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseActivity;
-import myapp.schedule.misha.myapplication.entity.CopyLesson;
-import myapp.schedule.misha.myapplication.module.container.Container;
-import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.DialogCopyFragmentAdapter;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.DialogCopyFragment;
 
 public class ActivityCopyLesson extends BaseActivity {
 
-    private final Container container = Container.newInstance();
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setCurrentTitle("Скопировать занятие");
-
-
-
+        replaceFragment(new DialogCopyFragment());
     }
 /*
 

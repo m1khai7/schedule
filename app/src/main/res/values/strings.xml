@@ -96,7 +96,8 @@
     <string name="dialog_button_copy">Скопировать</string>
     <string name="string_title_copy_lesson">Скопировать занятие</string>
     <string name="title_dialog_rv_weeks">Выбор недель</string>
-    <string name="text_view_select_all">Выбрать/снять все недели</string>
+    <string name="select_all">Все недели</string>
+    <string name="tv_select_unselect_all">Выбрать/снять все недели</string>
     <string name="current_day">Текущая дата</string>
     <string name="menu_weeks_select_all">Выбрать все</string>
     <string name="menu_weeks_select_uneven_week">Нечетные</string>
@@ -110,4 +111,10 @@
     <string name="thuesday">Четверг</string>
     <string name="saturday">Суббота</string>
     <string name="title_dialog_rv_lessons">Выбор занятия</string>
+    <string name="title_select_day">Выберите день недели</string>
+    <string name="title_select_week">Недели: 2-5,6,7,10-15</string>
+    <string name="select_unevens">Нечетные</string>
+    <string name="select_evens">Четные</string>
+    <string name="selectively">Выборочно</string>
+    <string name="timelesson">%1$s - %2$s</string>
 </resources>

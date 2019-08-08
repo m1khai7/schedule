@@ -8,8 +8,10 @@ import myapp.schedule.misha.myapplication.entity.CopyLesson;
 public interface DialogCopyFragmentView extends BaseView {
 
     String ITEMS = "ITEMS";
-    String FRAGMENT_CODE = "FRAGMENT_CODE";
+
     String POSITION = "POSITION";
+
+    int SELECT_LESSON = 1233;
 
     void showLessonDialog();
 

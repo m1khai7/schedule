@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import myapp.schedule.misha.myapplication.Constants;
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.activity.ActivityCopyLesson;
-import myapp.schedule.misha.myapplication.activity.MainActivity;
 import myapp.schedule.misha.myapplication.common.core.BaseMainFragment;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.data.database.dao.LessonDao;

@@ -20,18 +20,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.R;
-import myapp.schedule.misha.myapplication.SimpleItemClickListener;
 import myapp.schedule.misha.myapplication.common.core.BaseAlertDialog;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
 import myapp.schedule.misha.myapplication.entity.Calls;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.DialogCopyFragmentView;
 
 
 public class DialogSelectLessonFragment extends BaseAlertDialog implements DialogSelectLessonFragmentView {
 
     private DialogSelectLessonFragmentPresenter presenter;
     private RecyclerView rvItems;
-    private DialogSelectLessonFragmentAdapter dialogFragmentListItemsAdapter;
 
     public static DialogSelectLessonFragment newInstance() {
         return new DialogSelectLessonFragment();
@@ -39,8 +38,7 @@ public class DialogSelectLessonFragment extends BaseAlertDialog implements Dialo
 
     @NotNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        ArrayList<Calls> callsList = new ArrayList<>();
-        callsList = CallDao.getInstance().getAllData();
+        ArrayList<Calls> callsList = CallDao.getInstance().getAllData();
         presenter = new DialogSelectLessonFragmentPresenter();
 
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
@@ -52,7 +50,6 @@ public class DialogSelectLessonFragment extends BaseAlertDialog implements Dialo
         builder.setView(view);
         rvItems = view.findViewById(R.id.rv_dialog_lessons);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
-
         updateItemsAdapter(callsList);
         Button button_cancel = view.findViewById(R.id.button_cancel);
         button_cancel.setOnClickListener(v -> dismiss());
@@ -61,12 +58,10 @@ public class DialogSelectLessonFragment extends BaseAlertDialog implements Dialo
 
 
     public void updateItemsAdapter(ArrayList<Calls> itemList) {
-
-
-        dialogFragmentListItemsAdapter = new DialogSelectLessonFragmentAdapter(itemList, (position, view1) -> {
+        DialogSelectLessonFragmentAdapter dialogFragmentListItemsAdapter = new DialogSelectLessonFragmentAdapter(itemList, (position, view1) -> {
             Intent intent = new Intent();
-            intent.putExtra(POSITION, position);
-            onActivityResult(213123, Activity.RESULT_OK, intent);
+            intent.putExtra(DialogSelectLessonFragmentView.POSITION, position);
+            getParentFragment().onActivityResult(DialogCopyFragmentView.SELECT_LESSON, Activity.RESULT_OK, intent);
             dismiss();
         });
         rvItems.setAdapter(dialogFragmentListItemsAdapter);

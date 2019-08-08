@@ -1,7 +1,5 @@
 package myapp.schedule.misha.myapplication.module.schedule.edit.page;
 
-import android.app.Dialog;
-
 import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.entity.Lesson;
