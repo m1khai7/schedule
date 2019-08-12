@@ -10,6 +10,7 @@ public class DialogSelectWeekFragmentPresenter extends BaseMainPresenter<DialogS
     private ArrayList<SimpleItem> listItems = new ArrayList<>();
 
     public DialogSelectWeekFragmentPresenter() {
+
     }
 
     @Override
@@ -18,8 +19,8 @@ public class DialogSelectWeekFragmentPresenter extends BaseMainPresenter<DialogS
 
 
     @Override
-    public void onItemClick() {
-
+    public void onSelectAllClicked() {
+        getView().selectAll();
     }
 
     public ArrayList<SimpleItem> getItemList() {

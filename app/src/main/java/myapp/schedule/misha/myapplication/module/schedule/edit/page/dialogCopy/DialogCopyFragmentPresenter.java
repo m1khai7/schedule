@@ -4,20 +4,14 @@ import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.common.core.BaseMainPresenter;
 import myapp.schedule.misha.myapplication.entity.CopyLesson;
+import myapp.schedule.misha.myapplication.entity.Weeks;
 
 public class DialogCopyFragmentPresenter extends BaseMainPresenter<DialogCopyFragmentView> implements DialogCopyFragmentPresenterInterface {
     private ArrayList<CopyLesson> copyLessons = new ArrayList<>();
 
-    public DialogCopyFragmentPresenter() {
-    }
 
     @Override
     public void init() {
-    }
-
-    @Override
-    public void onDialogWeekClick() {
-        getView().showWeekDialog();
     }
 
     @Override
@@ -39,6 +33,10 @@ public class DialogCopyFragmentPresenter extends BaseMainPresenter<DialogCopyFra
     public void onImageDeleteClick(ArrayList<CopyLesson> itemList, int position) {
         itemList.remove(position);
         getView().updateItemsAdapter(copyLessons);
+    }
+
+    public void showWeeks(ArrayList<Weeks> listWeeks) {
+        getView().openWeekDialog(listWeeks);
     }
 }
 

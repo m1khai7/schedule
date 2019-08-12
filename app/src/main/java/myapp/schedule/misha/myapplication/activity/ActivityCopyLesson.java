@@ -33,7 +33,7 @@ public class ActivityCopyLesson extends BaseActivity {
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // presenter.onItemClick();
+                // presenter.onSelectAllClicked();
             }
         });
         Button button_cancel = findViewById(R.id.button_cancel);

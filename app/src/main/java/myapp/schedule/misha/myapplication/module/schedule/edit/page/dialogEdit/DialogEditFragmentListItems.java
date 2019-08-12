@@ -89,12 +89,12 @@ public class DialogEditFragmentListItems extends BaseAlertDialog implements Dial
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
-        rvItems = view.findViewById(R.id.rv_dialog_weeks);
+        rvItems = view.findViewById(R.id.rv_dialog_list);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         updateItemsAdapter(listItems);
-        Button button_add = view.findViewById(R.id.button_ok);
+        Button button_add = view.findViewById(R.id.btn_ok);
         button_add.setOnClickListener(v -> presenter.onItemClick(fragmentCode));
-        Button button_cancel = view.findViewById(R.id.button_cancel);
+        Button button_cancel = view.findViewById(R.id.btn_cancel);
         button_cancel.setOnClickListener(v -> dismiss());
         return builder.create();
     }
@@ -114,8 +114,8 @@ public class DialogEditFragmentListItems extends BaseAlertDialog implements Dial
             Intent intent = new Intent();
             intent.putExtra(POSITION, clickedPosition);
             intent.putExtra(ITEMS_LIST, subjectList.get(position));
-            DialogEditFragmentListItems.this.getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
-            DialogEditFragmentListItems.this.dismiss();
+            getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
+            dismiss();
         });
 
         rvItems.setAdapter(dialogFragmentListItemsAdapter);

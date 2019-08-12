@@ -6,9 +6,8 @@ import myapp.schedule.misha.myapplication.entity.SimpleItem;
 
 public interface DialogSelectWeekFragmentPresenterInterface {
 
-    void onItemClick();
+    void onSelectAllClicked();
 
     ArrayList<SimpleItem> getItemList();
-
 
 }

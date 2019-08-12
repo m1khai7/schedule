@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.common.core.BaseView;
 import myapp.schedule.misha.myapplication.entity.CopyLesson;
+import myapp.schedule.misha.myapplication.entity.Weeks;
 
 public interface DialogCopyFragmentView extends BaseView {
 
@@ -15,7 +16,7 @@ public interface DialogCopyFragmentView extends BaseView {
 
     void showLessonDialog();
 
-    void showWeekDialog();
+    void openWeekDialog(ArrayList<Weeks> listWeeks);
 
     void updateItemsAdapter(ArrayList<CopyLesson> itemList);
 }

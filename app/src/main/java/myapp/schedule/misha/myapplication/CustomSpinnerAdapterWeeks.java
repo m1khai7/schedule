@@ -72,7 +72,6 @@ public class CustomSpinnerAdapterWeeks extends BaseAdapter implements SpinnerAda
 
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
-
         View view = View.inflate(activity, R.layout.drop_down_spinner_custom_weeks, null);
         List<String> arrayWeek = Arrays.asList(view.getResources().getStringArray(R.array.weeks));
         final TextView numberWeekTextView = view.findViewById(R.id.number_week_textView);

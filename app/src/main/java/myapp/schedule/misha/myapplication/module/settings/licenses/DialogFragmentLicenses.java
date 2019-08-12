@@ -39,11 +39,11 @@ public class DialogFragmentLicenses extends BaseDialog {
         ArrayList<Licenses> licensesList = getArguments().getParcelableArrayList(EditSchedulePageFragmentView.ITEMS);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
-        RecyclerView rvItems = view.findViewById(R.id.rv_dialog_weeks);
+        RecyclerView rvItems = view.findViewById(R.id.rv_dialog_list);
         DialogFragmentLicensesAdapter dialogFragmenLicensesAdapter = new DialogFragmentLicensesAdapter(licensesList);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         rvItems.setAdapter(dialogFragmenLicensesAdapter);
-        Button button_cancel = view.findViewById(R.id.button_cancel);
+        Button button_cancel = view.findViewById(R.id.btn_cancel);
         button_cancel.setOnClickListener(v -> dismiss());
         return builder.create();
     }

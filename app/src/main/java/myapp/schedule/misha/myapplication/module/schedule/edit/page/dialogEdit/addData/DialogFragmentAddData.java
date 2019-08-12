@@ -66,7 +66,7 @@ public class DialogFragmentAddData extends BaseAlertDialog implements TextView.O
         builder.setView(view);
         AlertDialog d = builder.create();
         d.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        Button button_cancel = view.findViewById(R.id.button_cancel);
+        Button button_cancel = view.findViewById(R.id.btn_cancel);
         button_cancel.setOnClickListener(v -> {
             DataUtil.showKeyboard(getContext());
             Intent intent = new Intent();

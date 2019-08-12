@@ -30,6 +30,7 @@ import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.D
 public class DialogSelectLessonFragment extends BaseAlertDialog implements DialogSelectLessonFragmentView {
 
     private DialogSelectLessonFragmentPresenter presenter;
+
     private RecyclerView rvItems;
 
     public static DialogSelectLessonFragment newInstance() {
@@ -51,11 +52,10 @@ public class DialogSelectLessonFragment extends BaseAlertDialog implements Dialo
         rvItems = view.findViewById(R.id.rv_dialog_lessons);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         updateItemsAdapter(callsList);
-        Button button_cancel = view.findViewById(R.id.button_cancel);
+        Button button_cancel = view.findViewById(R.id.btn_cancel);
         button_cancel.setOnClickListener(v -> dismiss());
         return builder.create();
     }
-
 
     public void updateItemsAdapter(ArrayList<Calls> itemList) {
         DialogSelectLessonFragmentAdapter dialogFragmentListItemsAdapter = new DialogSelectLessonFragmentAdapter(itemList, (position, view1) -> {

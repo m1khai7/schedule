@@ -31,7 +31,7 @@
         android:layout_below="@+id/viewLine"
         android:layout_marginStart="@dimen/spacing_small"
         android:layout_marginEnd="@dimen/spacing_small"
-        android:hint="@string/educator_edittext"
+        android:hint="@string/educator"
         android:imeOptions="actionDone"
         android:paddingBottom="@dimen/spacing_normal"
         android:textSize="17sp"
@@ -60,10 +60,10 @@
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/button_cancel"
+            android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/dialog_button_close"
+            android:text="@string/close"
             android:textSize="14sp" />
     </LinearLayout>
 </RelativeLayout>

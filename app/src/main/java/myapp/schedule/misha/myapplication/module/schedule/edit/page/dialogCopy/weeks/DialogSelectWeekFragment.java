@@ -1,6 +1,5 @@
 package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.weeks;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -19,70 +18,82 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
+import myapp.schedule.misha.myapplication.Constants;
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseAlertDialog;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
-import myapp.schedule.misha.myapplication.entity.SimpleItem;
-
-import static myapp.schedule.misha.myapplication.Constants.ITEMS_LIST;
-
+import myapp.schedule.misha.myapplication.entity.Weeks;
 
 
 public class DialogSelectWeekFragment extends BaseAlertDialog implements DialogSelectWeekFragmentView {
 
     private DialogSelectWeekFragmentPresenter presenter;
-    private RecyclerView rvItems;
+
     private DialogSelectWeekFragmentAdapter dialogFragmentListItemsAdapter;
 
-    public static DialogSelectWeekFragment newInstance() {
-        return new DialogSelectWeekFragment();
+    private ArrayList<Weeks> listWeeks = new ArrayList<>();
+
+    private RecyclerView rvItems;
+
+
+    public static DialogSelectWeekFragment newInstance(ArrayList<Weeks> listWeeks) {
+        Bundle args = new Bundle();
+        args.putParcelableArrayList(Constants.ITEMS_LIST, listWeeks);
+        DialogSelectWeekFragment fragment = new DialogSelectWeekFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @NotNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        ArrayList<SimpleItem> listItems = getArguments().getParcelableArrayList(ITEMS);
         presenter = new DialogSelectWeekFragmentPresenter();
-
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-
-        @SuppressLint("InflateParams")
+        listWeeks = getArguments().getParcelableArrayList(Constants.ITEMS_LIST);
         View view = layoutInflater.inflate(R.layout.dialog_rv_weeks, null);
-
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
-        rvItems = view.findViewById(R.id.rv_dialog_weeks);
+        rvItems = view.findViewById(R.id.rv_dialog_list);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
-        updateItemsAdapter(listItems);
-        Button buttonAllSelect = view.findViewById(R.id.checkBoxSelected);
-        buttonAllSelect.setOnClickListener(v -> presenter.onItemClick());
-        Button buttonOk = view.findViewById(R.id.button_ok);
-        buttonOk.setOnClickListener(v -> presenter.onItemClick());
-        Button button_cancel = view.findViewById(R.id.button_cancel);
-        button_cancel.setOnClickListener(v -> dismiss());
+        updateItemsAdapter();
+
+        Button btnOk = view.findViewById(R.id.btn_ok);
+        Button btnCancel = view.findViewById(R.id.btn_cancel);
+        Button btnSelectAll = view.findViewById(R.id.btn_select_all);
+
+        btnOk.setOnClickListener(v -> {
+            listWeeks = dialogFragmentListItemsAdapter.getListWeeks();
+            Intent intent = new Intent();
+            intent.putExtra(Constants.ITEMS_LIST, listWeeks);
+            getParentFragment().onActivityResult(DialogSelectWeekFragmentView.LIST_CODE, Activity.RESULT_OK, intent);
+            dismiss();
+        });
+        btnCancel.setOnClickListener(v -> dismiss());
+        btnSelectAll.setOnClickListener(v -> presenter.onSelectAllClicked());
         return builder.create();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultOk, Intent data) {
-        ArrayList<SimpleItem> itemList = presenter.getItemList();
-        dialogFragmentListItemsAdapter.setLessonList(itemList);
-        dialogFragmentListItemsAdapter.notifyDataSetChanged();
-        updateItemsAdapter(itemList);
+
+    public void selectAll() {
+        for (Weeks week : listWeeks) {
+            week.setCheck(getCheckOnFullSelect());
+        }
+        dialogFragmentListItemsAdapter.setListWeeks(listWeeks);
     }
 
-    public void updateItemsAdapter(ArrayList<SimpleItem> itemList) {
-        int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
-        int clickedPosition = getArguments().getInt(POSITION);
+    private Boolean getCheckOnFullSelect() {
+        Boolean checkOnFullSelect = false;
+        for (Weeks week : listWeeks) {
+            checkOnFullSelect = !week.isChecked();
+        }
+        return checkOnFullSelect;
+    }
 
-        dialogFragmentListItemsAdapter = new DialogSelectWeekFragmentAdapter(itemList, (position, view1) -> {
-            Intent intent = new Intent();
-            intent.putExtra(POSITION, clickedPosition);
-            intent.putExtra(ITEMS_LIST, itemList.get(position));
-            DialogSelectWeekFragment.this.getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
-            DialogSelectWeekFragment.this.dismiss();
+    public void updateItemsAdapter() {
+        dialogFragmentListItemsAdapter = new DialogSelectWeekFragmentAdapter((position, view1) -> {
+
         });
-
         rvItems.setAdapter(dialogFragmentListItemsAdapter);
+        dialogFragmentListItemsAdapter.setListWeeks(listWeeks);
     }
 
     @NonNull

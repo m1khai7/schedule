@@ -22,13 +22,23 @@
         android:layout_below="@+id/dialog_textView" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_dialog_lessons"
+        android:id="@+id/rv_dialog_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/viewLine"
+        android:layout_above="@+id/btn_select_all"
         android:layout_below="@+id/dialog_textView"
         android:layout_margin="@dimen/spacing_small"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <Button
+        android:id="@+id/btn_select_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linLay"
+        android:layout_marginBottom="@dimen/spacing_medium"
+        android:padding="@dimen/spacing_medium"
+        android:text="@string/dialog_select_all"
+        android:textSize="14sp" />
 
     <View
         android:id="@+id/viewLine"
@@ -46,13 +56,22 @@
         android:gravity="end"
         android:orientation="horizontal">
 
-
         <Button
-            android:id="@+id/button_cancel"
+            android:id="@+id/btn_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small"
             android:padding="@dimen/spacing_medium"
-            android:text="@string/dialog_button_close"
+            android:text="@string/add"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/spacing_small"
+            android:padding="@dimen/spacing_medium"
+            android:text="@string/close"
             android:textSize="14sp" />
     </LinearLayout>
 

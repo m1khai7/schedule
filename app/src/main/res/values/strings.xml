@@ -23,9 +23,10 @@
     <string name="app_name">Respect Schedule</string>
     <string name="data_start_semestr">Дата начала семестра</string>
     <string name="settings_change_theme">Изменить тему приложения</string>
-    <string name="dialog_button_add">Добавить</string>
-    <string name="dialog_button_close">Закрыть</string>
-    <string name="educator_edittext">Преподаватель</string>
+    <string name="add">Добавить</string>
+    <string name="select">Выбрать</string>
+    <string name="close">Закрыть</string>
+    <string name="educator">Преподаватель</string>
     <string name="clear_subjects">Очистить предметы?</string>
     <string name="clear_audience">Очистить аудитории?</string>
     <string name="clear_educators">Очистить преподавателей?</string>
@@ -117,4 +118,5 @@
     <string name="select_evens">Четные</string>
     <string name="selectively">Выборочно</string>
     <string name="timelesson">%1$s - %2$s</string>
+    <string name="dialog_select_all">Отметить/очистить все</string>
 </resources>

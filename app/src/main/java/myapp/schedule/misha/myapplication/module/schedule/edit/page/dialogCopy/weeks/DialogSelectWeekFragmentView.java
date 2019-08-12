@@ -5,6 +5,10 @@ import myapp.schedule.misha.myapplication.common.core.BaseView;
 public interface DialogSelectWeekFragmentView extends BaseView {
 
     String ITEMS = "ITEMS";
-    String FRAGMENT_CODE = "FRAGMENT_CODE";
+
+    int LIST_CODE = 1313;
+
     String POSITION = "POSITION";
+
+    void selectAll();
 }

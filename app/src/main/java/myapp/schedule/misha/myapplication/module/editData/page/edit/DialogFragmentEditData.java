@@ -65,7 +65,7 @@ public class DialogFragmentEditData extends BaseAlertDialog implements TextView.
 
         Button button_delete = view.findViewById(R.id.button_delete);
         Button button_edit = view.findViewById(R.id.button_edit);
-        Button button_cancel = view.findViewById(R.id.button_cancel);
+        Button button_cancel = view.findViewById(R.id.btn_cancel);
         button_delete.setOnClickListener(v -> {
             presenter.deleteItem(editDataModel.getPosition());
             Intent intent = new Intent();

@@ -12,21 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.SimpleItemClickListener;
-import myapp.schedule.misha.myapplication.entity.SimpleItem;
+import myapp.schedule.misha.myapplication.entity.Weeks;
 
 
 public class DialogSelectWeekFragmentAdapter extends RecyclerView.Adapter<DialogSelectWeekFragmentAdapter.ViewHolder> {
 
-    private List<SimpleItem> listItems;
+    private ArrayList<Weeks> listWeeks = new ArrayList<>();
 
     private SimpleItemClickListener itemClickListener;
 
-    public DialogSelectWeekFragmentAdapter(ArrayList<SimpleItem> items, SimpleItemClickListener simpleItemClickListener) {
-        this.listItems = items;
+    public DialogSelectWeekFragmentAdapter(SimpleItemClickListener simpleItemClickListener) {
         this.itemClickListener = simpleItemClickListener;
     }
 
@@ -37,19 +35,23 @@ public class DialogSelectWeekFragmentAdapter extends RecyclerView.Adapter<Dialog
         return new ViewHolder(view);
     }
 
-    public void setLessonList(List<SimpleItem> lessonList) {
-        this.listItems = lessonList;
-    }
-
-
     @Override
     public void onBindViewHolder(@NotNull ViewHolder holder, final int position) {
-        holder.onBindView(position);
+        holder.render(position);
+    }
+
+    public void setListWeeks(ArrayList<Weeks> arrayListWeeks) {
+        this.listWeeks = arrayListWeeks;
+        notifyDataSetChanged();
+    }
+
+    public ArrayList<Weeks> getListWeeks() {
+        return listWeeks;
     }
 
     @Override
     public int getItemCount() {
-        return listItems.size();
+        return listWeeks.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements CompoundButton.OnCheckedChangeListener {
@@ -63,15 +65,15 @@ public class DialogSelectWeekFragmentAdapter extends RecyclerView.Adapter<Dialog
             checkBoxSelected.setOnCheckedChangeListener(this);
         }
 
-        private void onBindView(int position) {
-            SimpleItem item = listItems.get(position);
-            this.textViewWeek.setText(item.getName());
-
+        private void render(int position) {
+            textViewWeek.setText(listWeeks.get(position).getName());
+            checkBoxSelected.setChecked(listWeeks.get(position).isChecked());
         }
 
         @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            itemClickListener.onItemClick(getAdapterPosition(), buttonView);
+        public void onCheckedChanged(CompoundButton viewChecked, boolean isChecked) {
+            itemClickListener.onItemClick(getAdapterPosition(), viewChecked);
+            listWeeks.get(getAdapterPosition()).setCheck(isChecked);
         }
     }
 }
