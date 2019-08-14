@@ -20,25 +20,23 @@ public class CopyLesson implements Parcelable {
             return new CopyLesson[size];
         }
     };
-    @Expose
-    @SerializedName("day")
-    private String day;
-    @Expose
-    @SerializedName("timeLesson")
+
+    private int day;
+
     private String timeLesson;
 
-    public CopyLesson(String day, String timeLesson) {
+    public CopyLesson(int day, String timeLesson) {
         this.day = day;
         this.timeLesson = timeLesson;
     }
 
     public CopyLesson(Cursor cursor) {
-        this.day = cursor.getString(0);
+        this.day = cursor.getInt(0);
         this.timeLesson = cursor.getString(1);
     }
 
     protected CopyLesson(Parcel in) {
-        day = in.readString();
+        day = in.readInt();
         timeLesson = in.readString();
     }
 
@@ -53,11 +51,11 @@ public class CopyLesson implements Parcelable {
         this.timeLesson = timeLesson;
     }
 
-    public String getDay() {
+    public int getDay() {
         return day;
     }
 
-    public void setDay(String day) {
+    public void setDay(int day) {
         this.day = day;
     }
 
@@ -68,7 +66,7 @@ public class CopyLesson implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(day);
+        dest.writeInt(day);
         dest.writeString(timeLesson);
     }
 

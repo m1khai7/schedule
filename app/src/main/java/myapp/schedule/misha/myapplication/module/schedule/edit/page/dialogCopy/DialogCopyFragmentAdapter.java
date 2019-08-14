@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import myapp.schedule.misha.myapplication.R;
+import myapp.schedule.misha.myapplication.ScheduleApp;
 import myapp.schedule.misha.myapplication.SimpleItemClickListener;
 import myapp.schedule.misha.myapplication.entity.CopyLesson;
 
@@ -21,6 +23,7 @@ import myapp.schedule.misha.myapplication.entity.CopyLesson;
 public class DialogCopyFragmentAdapter extends RecyclerView.Adapter<DialogCopyFragmentAdapter.ViewHolder> {
 
     private List<CopyLesson> listItems;
+
     private SimpleItemClickListener itemClickListener;
 
     public DialogCopyFragmentAdapter(ArrayList<CopyLesson> items, SimpleItemClickListener simpleItemClickListener) {
@@ -35,14 +38,9 @@ public class DialogCopyFragmentAdapter extends RecyclerView.Adapter<DialogCopyFr
         return new ViewHolder(view);
     }
 
-    public void setLessonList(List<CopyLesson> lessonList) {
-        this.listItems = lessonList;
-    }
-
-
     @Override
     public void onBindViewHolder(@NotNull ViewHolder holder, final int position) {
-        holder.onBindView(position);
+        holder.render(position);
     }
 
     @Override
@@ -51,21 +49,27 @@ public class DialogCopyFragmentAdapter extends RecyclerView.Adapter<DialogCopyFr
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
         private final TextView day;
+
         private final TextView timeLesson;
-        private final ImageView imageDelete;
 
         private ViewHolder(View view) {
             super(view);
             day = view.findViewById(R.id.day);
             timeLesson = view.findViewById(R.id.timeLesson);
-            imageDelete = view.findViewById(R.id.imageDelete);
+            ImageView imageDelete = view.findViewById(R.id.imageDelete);
             imageDelete.setOnClickListener(this);
         }
 
-        private void onBindView(int position) {
+        private String getDay(int position) {
+            List<String> listDays = Arrays.asList(ScheduleApp.getAppContext().getResources().getStringArray(R.array.days));
+            return listDays.get(position);
+        }
+
+        private void render(int position) {
             CopyLesson item = listItems.get(position);
-            day.setText(item.getDay());
+            day.setText(getDay(item.getDay()));
             timeLesson.setText(item.getTimeLesson());
         }
 

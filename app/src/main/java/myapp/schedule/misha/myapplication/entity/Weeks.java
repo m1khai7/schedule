@@ -27,16 +27,20 @@ public class Weeks implements Parcelable, SimpleItem {
 
     private boolean checked;
 
+    private int number;
 
-    public Weeks(String name, boolean checked) {
+
+    public Weeks(String name, boolean checked, int number) {
         this.name = name;
         this.checked = checked;
+        this.number = number;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
     protected Weeks(Parcel in) {
         name = in.readString();
         checked = in.readBoolean();
+        number = in.readInt();
     }
 
     public Weeks() {
@@ -56,6 +60,16 @@ public class Weeks implements Parcelable, SimpleItem {
     public void setId(String id) {
 
     }
+
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
 
     public String getName() {
         return name;
@@ -83,5 +97,6 @@ public class Weeks implements Parcelable, SimpleItem {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeBoolean(checked);
+        dest.writeInt(number);
     }
 }

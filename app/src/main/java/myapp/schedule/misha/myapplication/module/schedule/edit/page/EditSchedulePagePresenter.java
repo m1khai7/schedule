@@ -18,7 +18,6 @@ import myapp.schedule.misha.myapplication.data.database.dao.SubjectDao;
 import myapp.schedule.misha.myapplication.data.database.dao.TypelessonDao;
 import myapp.schedule.misha.myapplication.data.preferences.Preferences;
 import myapp.schedule.misha.myapplication.entity.Audience;
-import myapp.schedule.misha.myapplication.entity.CopyLesson;
 import myapp.schedule.misha.myapplication.entity.Educator;
 import myapp.schedule.misha.myapplication.entity.Lesson;
 import myapp.schedule.misha.myapplication.entity.Subject;
@@ -34,8 +33,9 @@ public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePag
 
 
     private ArrayList<Lesson> lessonList = new ArrayList<>();
-    private ArrayList<CopyLesson> lessonList1= new ArrayList<>();
+
     private List<Lesson> lessonListWeek = new ArrayList<>();
+
     private List<Lesson> lessonListWeekCurrent = new ArrayList<>();
 
     private int positionWeek;
@@ -50,7 +50,7 @@ public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePag
 
     @Override
     public void init() {
-       updateList(Preferences.getInstance().getSelectedPositionTabDays(), positionWeek);
+        updateList(Preferences.getInstance().getSelectedPositionTabDays(), positionWeek);
     }
 
 
@@ -58,7 +58,7 @@ public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePag
     public void onSubjectClick(int position) {
         ArrayList<Subject> subjectList = SubjectDao.getInstance().getAllData();
         getView().showEditDialog(subjectList, position, FRAGMENT_SUBJECTS);
-          }
+    }
 
     @Override
     public void onAudienceClick(int position) {
@@ -88,7 +88,6 @@ public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePag
         }
         if (id == R.id.clearDay) {
             Toast.makeText(context, "Пока здесь пусто :)", Toast.LENGTH_SHORT).show();
-
         }
     }
 
@@ -134,17 +133,23 @@ public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePag
 
     @Override
     public void onCopyLessonOtherDay(int position) {
-       getView().showCopyDialog();
+        Lesson currentLesson = new Lesson();
+        currentLesson.setId_subject(lessonList.get(position).getId_subject());
+        currentLesson.setId_audience(lessonList.get(position).getId_audience());
+        currentLesson.setId_typelesson(lessonList.get(position).getId_typelesson());
+        currentLesson.setId_educator(lessonList.get(position).getId_educator());
+        getView().showCopyDialog(currentLesson);
     }
 
     @Override
     public void onClearDayClick() {
-        for (int i=0;i<6;i++){
-        lessonList.get(i).setId_subject("0");
-        lessonList.get(i).setId_audience("0");
-        lessonList.get(i).setId_typelesson("0");
-        lessonList.get(i).setId_educator("0");
-        LessonDao.getInstance().updateItemByID(lessonList.get(i));}
+        for (int i = 0; i < 6; i++) {
+            lessonList.get(i).setId_subject("0");
+            lessonList.get(i).setId_audience("0");
+            lessonList.get(i).setId_typelesson("0");
+            lessonList.get(i).setId_educator("0");
+            LessonDao.getInstance().updateItemByID(lessonList.get(i));
+        }
         getView().updateView(lessonList);
     }
 

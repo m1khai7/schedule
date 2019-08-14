@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginTop="2dp"
             android:maxLines="1"
             android:singleLine="true"
             android:src="@drawable/ic_add_black"
@@ -64,6 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="2dp"
             android:layout_toStartOf="@id/imageAdd"
             android:maxLines="1"
             android:padding="@dimen/spacing_small"
@@ -71,19 +73,17 @@
             android:textSize="16sp"
             tools:text="8:00-10:00" />
 
-        <TextView
+
+        <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="@dimen/spacing_normal"
             android:layout_toStartOf="@id/timeLesson"
-            android:maxLines="1"
-            android:padding="@dimen/spacing_small"
-            android:singleLine="true"
-            android:text="@string/title_select_day"
-            android:textSize="16sp"
-            tools:text="Понедельник" />
+            android:background="@android:color/transparent"
+            android:textSize="16sp" />
 
     </RelativeLayout>
 

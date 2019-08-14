@@ -42,7 +42,7 @@ public class DialogEditFragmentListItemsAdapter extends RecyclerView.Adapter<Dia
 
     @Override
     public void onBindViewHolder(@NotNull ViewHolder holder, final int position) {
-        holder.onBindView(position);
+        holder.render(position);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class DialogEditFragmentListItemsAdapter extends RecyclerView.Adapter<Dia
 
         }
 
-        private void onBindView(int position) {
+        private void render(int position) {
             SimpleItem item = listItems.get(position);
             this.item.setText(item.getName());
 

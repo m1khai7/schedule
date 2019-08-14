@@ -8,6 +8,8 @@ import myapp.schedule.misha.myapplication.entity.Weeks;
 
 public interface DialogCopyFragmentView extends BaseView {
 
+    String CURRENT_LESSON= "CURRENT_LESSON";
+
     String ITEMS = "ITEMS";
 
     String POSITION = "POSITION";
@@ -19,4 +21,6 @@ public interface DialogCopyFragmentView extends BaseView {
     void openWeekDialog(ArrayList<Weeks> listWeeks);
 
     void updateItemsAdapter(ArrayList<CopyLesson> itemList);
+
+    void copyLesson();
 }

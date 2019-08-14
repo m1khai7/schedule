@@ -39,7 +39,7 @@ public class CallsFragmentAdapter extends RecyclerView.Adapter<CallsFragmentAdap
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.onBindView(position);
+        holder.render(position);
     }
 
     public void setCallsList(ArrayList<Calls> callsList) {
@@ -71,7 +71,7 @@ public class CallsFragmentAdapter extends RecyclerView.Adapter<CallsFragmentAdap
         }
 
         @SuppressLint("SetTextI18n")
-        public void onBindView(int position) {
+        public void render(int position) {
             callsList = CallDao.getInstance().getAllData();
             numberCall.setText(callsList.get(position).getId());
             call_timeOne.setText(callsList.get(position * 2).getName());

@@ -37,7 +37,7 @@ public class EditDataFragmentPageAdapter extends RecyclerView.Adapter<EditDataFr
 
     @Override
     public void onBindViewHolder(@NotNull ViewHolder holder, final int position) {
-        holder.onBindView(position);
+        holder.render(position);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class EditDataFragmentPageAdapter extends RecyclerView.Adapter<EditDataFr
 
         }
 
-        private void onBindView(int position) {
+        private void render(int position) {
             SimpleItem simpleItem = listItems.get(position);
             item.setText(simpleItem.getName());
 

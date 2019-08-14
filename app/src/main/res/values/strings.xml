@@ -1,5 +1,14 @@
 <resources>
 
+    <string-array name="days">
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+    </string-array>
+
     <string-array name="weeks">
         <item>1 неделя</item>
         <item>2 неделя</item>
@@ -119,4 +128,5 @@
     <string name="selectively">Выборочно</string>
     <string name="timelesson">%1$s - %2$s</string>
     <string name="dialog_select_all">Отметить/очистить все</string>
+    <string name="title_copy_lesson">Скопировать занятие</string>
 </resources>

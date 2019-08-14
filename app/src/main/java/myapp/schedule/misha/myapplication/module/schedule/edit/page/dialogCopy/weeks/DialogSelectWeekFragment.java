@@ -81,7 +81,7 @@ public class DialogSelectWeekFragment extends BaseAlertDialog implements DialogS
     }
 
     private Boolean getCheckOnFullSelect() {
-        Boolean checkOnFullSelect = false;
+        boolean checkOnFullSelect = false;
         for (Weeks week : listWeeks) {
             checkOnFullSelect = !week.isChecked();
         }

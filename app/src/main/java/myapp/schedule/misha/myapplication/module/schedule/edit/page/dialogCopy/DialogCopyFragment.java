@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,8 +30,10 @@ import myapp.schedule.misha.myapplication.ScheduleApp;
 import myapp.schedule.misha.myapplication.common.core.BaseMainFragment;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
+import myapp.schedule.misha.myapplication.data.database.dao.LessonDao;
 import myapp.schedule.misha.myapplication.entity.Calls;
 import myapp.schedule.misha.myapplication.entity.CopyLesson;
+import myapp.schedule.misha.myapplication.entity.Lesson;
 import myapp.schedule.misha.myapplication.entity.Weeks;
 import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.lessons.DialogSelectLessonFragment;
 import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.lessons.DialogSelectLessonFragmentView;
@@ -38,22 +42,31 @@ import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.w
 
 //Todo прочитать про наследование инкапсуляцию интерфейсы абстрактные классы и generic.
 
-public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFragmentView, View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFragmentView,
+        View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
     private DialogCopyFragmentPresenter presenter;
 
     private ArrayList<Weeks> listWeeks = new ArrayList<>();
 
+    private ArrayList<CopyLesson> listLessonsForCopy = new ArrayList<>();
+
+    private ArrayList<Weeks> listWeeksSelected = new ArrayList<>();
+
     private RecyclerView rvItems;
 
-    private TextView tvDay;
+    private Spinner spinnerDay;
 
     private TextView tvLesson;
 
     private TextView tvWeeks;
 
-    public static DialogCopyFragment newInstance() {
-        return new DialogCopyFragment();
+    public static DialogCopyFragment newInstance(Lesson lesson) {
+        Bundle args = new Bundle();
+        args.putParcelable(DialogCopyFragmentView.CURRENT_LESSON, lesson);
+        DialogCopyFragment fragment = new DialogCopyFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -80,12 +93,19 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_copy_lesson, null);
         ImageView imageAdd = view.findViewById(R.id.imageAdd);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item);
+        spinnerDay = view.findViewById(R.id.day);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        List<String> listDays = Arrays.asList(getResources().getStringArray(R.array.days));
+        spinnerAdapter.addAll(listDays);
+
+        spinnerDay.setAdapter(spinnerAdapter);
+        spinnerDay.setSelection(0);
         rvItems = view.findViewById(R.id.rv_dialog_list);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
-        tvDay = view.findViewById(R.id.day);
+
         tvWeeks = view.findViewById(R.id.weeks);
         tvWeeks.setOnClickListener(this);
-        tvDay.setOnClickListener(this);
         tvLesson = view.findViewById(R.id.timeLesson);
         tvLesson.setOnClickListener(this);
         tvLesson.setText(ScheduleApp.getStr(R.string.timelesson, CallDao.getInstance().getItemByID(1).getName(), CallDao.getInstance().getItemByID(2).getName()));
@@ -96,15 +116,27 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
             week.setName(stringWeek);
             listWeeks.add(week);
         }
-        //   updateItemsAdapter(listItems);
         Button buttonOk = view.findViewById(R.id.btn_ok);
-        buttonOk.setOnClickListener(v -> {
-            //presenter.onSelectAllClicked();
-        });
+        buttonOk.setOnClickListener(v -> presenter.onClickCopyLesson());
         Button button_cancel = view.findViewById(R.id.btn_cancel);
         button_cancel.setOnClickListener(v -> getActivity().finish());
         imageAdd.setOnClickListener(this);
         return view;
+    }
+
+    @Override
+    public void copyLesson() {
+        Lesson currentLesson = getArguments().getParcelable(DialogCopyFragmentView.CURRENT_LESSON);
+        ArrayList<Lesson> lessonListWeek;
+        for (Weeks weeks : listWeeksSelected) {
+            for (CopyLesson lesson : listLessonsForCopy) {
+                lessonListWeek = LessonDao.getInstance().getLessonByWeekAndDay(weeks.getNumber(), lesson.getDay());
+                lessonListWeek.get(lesson.getDay()).setData(currentLesson.getId_subject(), currentLesson.getId_audience(),
+                        currentLesson.getId_educator(), currentLesson.getId_typelesson());
+                LessonDao.getInstance().updateItemByID(lessonListWeek.get(lesson.getDay()));
+            }
+            getActivity().finish();
+        }
     }
 
     @Override
@@ -114,10 +146,10 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
 
 
     @Override
-    public void updateItemsAdapter(ArrayList<CopyLesson> itemList) {
-        DialogCopyFragmentAdapter dialogFragmentListItemsAdapter = new DialogCopyFragmentAdapter(itemList, (position, view1) -> {
-            presenter.onImageDeleteClick(itemList, position);
-        });
+    public void updateItemsAdapter(ArrayList<CopyLesson> listLessons) {
+        DialogCopyFragmentAdapter dialogFragmentListItemsAdapter = new DialogCopyFragmentAdapter(listLessons, (position, view1) ->
+                presenter.onImageDeleteClick(listLessons, position));
+        listLessonsForCopy = listLessons;
         rvItems.setAdapter(dialogFragmentListItemsAdapter);
     }
 
@@ -131,25 +163,33 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
                     callsList.get((lessonPosition * 2) + 1).getName()));
         }
         if (requestCode == DialogSelectWeekFragmentView.LIST_CODE) {
+            listWeeks = new ArrayList<>();
+            listWeeksSelected = new ArrayList<>();
             listWeeks = data.getParcelableArrayListExtra(Constants.ITEMS_LIST);
             String prefix = "";
             StringBuilder stringSelectedWeeks = new StringBuilder();
-            for (int i = 0, listWeeksSize = listWeeks.size(); i < listWeeksSize; i++) {
+            for (int i = 0; i < listWeeks.size(); i++) {
                 Weeks week = listWeeks.get(i);
+                week.setNumber(i + 1);
                 if (week.isChecked()) {
                     stringSelectedWeeks.append(prefix);
                     prefix = ", ";
                     stringSelectedWeeks.append(i + 1);
                 }
+                if (week.isChecked()) listWeeksSelected.add(week);
             }
-            tvWeeks.setText(stringSelectedWeeks);
+            if (listWeeksSelected.size() == listWeeks.size() || listWeeksSelected.isEmpty()) {
+                tvWeeks.setText(R.string.select_all);
+            } else {
+                tvWeeks.setText(stringSelectedWeeks);
+            }
         }
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.imageAdd) {
-            presenter.onImageAddClick(tvDay.getText().toString(), tvLesson.getText().toString());
+            presenter.onImageAddClick(spinnerDay.getSelectedItemPosition(), tvLesson.getText().toString());
         }
         if (v.getId() == R.id.weeks) {
             PopupMenu popup = new PopupMenu(v.getContext(), tvWeeks);
@@ -158,7 +198,7 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
             popup.show();
         }
         if (v.getId() == R.id.day) {
-            PopupMenu popup = new PopupMenu(v.getContext(), tvDay);
+            PopupMenu popup = new PopupMenu(v.getContext(), spinnerDay);
             popup.inflate(R.menu.menu_days);
             popup.setOnMenuItemClickListener(this);
             popup.show();
@@ -182,20 +222,8 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
             tvWeeks.setText(R.string.selectively);
             presenter.showWeeks(listWeeks);
         }
-        //TODO  DAYS
-        if (id == R.id.monday)
-            tvDay.setText(R.string.monday);
-        if (id == R.id.tuesday)
-            tvDay.setText(R.string.tuesday);
-        if (id == R.id.wednesday)
-            tvDay.setText(R.string.wednesday);
-        if (id == R.id.thuesday)
-            tvDay.setText(R.string.thuesday);
-        if (id == R.id.friday)
-            tvDay.setText(R.string.friday);
-        if (id == R.id.saturday)
-            tvDay.setText(R.string.saturday);
         return true;
+
     }
 
 

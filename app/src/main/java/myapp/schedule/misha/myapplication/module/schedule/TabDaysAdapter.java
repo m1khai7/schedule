@@ -61,7 +61,7 @@ public class TabDaysAdapter extends RecyclerView.Adapter<TabDaysAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NotNull ViewHolder holder, final int position) {
-        holder.onBindView(position);
+        holder.render(position);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class TabDaysAdapter extends RecyclerView.Adapter<TabDaysAdapter.ViewHold
             date = view.findViewById(R.id.date);
         }
 
-        private void onBindView(int position) {
+        private void render(int position) {
             date.setText(dayYear.get(position));
             String nameTheme = Preferences.getInstance().getSelectedTheme();
             if (nameTheme.equals(DARK_THEME)) {

@@ -141,8 +141,9 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
     }
 
     @Override
-    public void showCopyDialog() {
+    public void showCopyDialog(Lesson currentLesson) {
         Intent intent = new Intent(getActivity(), ActivityCopyLesson.class);
+        intent.putExtra(EditSchedulePageFragment.CURRENT_LESSON, currentLesson);
         startActivity(intent);
     }
 
