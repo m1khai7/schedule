@@ -15,6 +15,8 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.snackbar.Snackbar;
+
 //Todo Application и final/static
 public class ScheduleApp extends Application {
 

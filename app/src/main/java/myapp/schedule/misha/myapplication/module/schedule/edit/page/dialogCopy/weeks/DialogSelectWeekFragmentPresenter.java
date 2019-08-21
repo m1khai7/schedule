@@ -10,13 +10,11 @@ public class DialogSelectWeekFragmentPresenter extends BaseMainPresenter<DialogS
     private ArrayList<SimpleItem> listItems = new ArrayList<>();
 
     public DialogSelectWeekFragmentPresenter() {
-
     }
 
     @Override
     public void init() {
     }
-
 
     @Override
     public void onSelectAllClicked() {

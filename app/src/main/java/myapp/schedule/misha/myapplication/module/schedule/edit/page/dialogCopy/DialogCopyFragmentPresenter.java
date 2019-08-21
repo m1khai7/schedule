@@ -40,6 +40,7 @@ public class DialogCopyFragmentPresenter extends BaseMainPresenter<DialogCopyFra
 
     public void showWeeks(ArrayList<Weeks> listWeeks) {
         getView().openWeekDialog(listWeeks);
+
     }
 
     public void onClickCopyLesson() {

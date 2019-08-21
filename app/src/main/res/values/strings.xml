@@ -109,7 +109,7 @@
     <string name="select_all">Все недели</string>
     <string name="tv_select_unselect_all">Выбрать/снять все недели</string>
     <string name="current_day">Текущая дата</string>
-    <string name="menu_weeks_select_all">Выбрать все</string>
+    <string name="menu_weeks_select_all">Все недели</string>
     <string name="menu_weeks_select_uneven_week">Нечетные</string>
     <string name="menu_weeks_select_even_week">Четные</string>
     <string name="menu_weeks_select_selectively_week">Выборочно</string>
@@ -129,4 +129,5 @@
     <string name="timelesson">%1$s - %2$s</string>
     <string name="dialog_select_all">Отметить/очистить все</string>
     <string name="title_copy_lesson">Скопировать занятие</string>
+    <string name="empty_list_selected_day">Добавьте занятие (день недели и время)</string>
 </resources>

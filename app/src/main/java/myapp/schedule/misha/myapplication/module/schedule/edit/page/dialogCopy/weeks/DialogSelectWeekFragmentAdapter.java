@@ -29,7 +29,7 @@ public class DialogSelectWeekFragmentAdapter extends RecyclerView.Adapter<Dialog
     }
 
     @Override
-    public DialogSelectWeekFragmentAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_row_week, parent, false);
         return new ViewHolder(view);

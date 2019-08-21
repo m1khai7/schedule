@@ -12,7 +12,6 @@ public class DialogSelectLessonFragmentPresenter extends BaseMainPresenter<Dialo
     public void init() {
     }
 
-
     @Override
     public void onItemClick(int position) {
 

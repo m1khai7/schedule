@@ -79,6 +79,7 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
     public void openWeekDialog(ArrayList<Weeks> listWeeks) {
         DialogSelectWeekFragment dialogFragment = DialogSelectWeekFragment.newInstance(listWeeks);
         dialogFragment.show(getChildFragmentManager(), DialogSelectWeekFragment.class.getSimpleName());
+
     }
 
     //TODO replace dialog to fragment
@@ -126,16 +127,20 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
 
     @Override
     public void copyLesson() {
-        Lesson currentLesson = getArguments().getParcelable(DialogCopyFragmentView.CURRENT_LESSON);
-        ArrayList<Lesson> lessonListWeek;
-        for (Weeks weeks : listWeeksSelected) {
-            for (CopyLesson lesson : listLessonsForCopy) {
-                lessonListWeek = LessonDao.getInstance().getLessonByWeekAndDay(weeks.getNumber(), lesson.getDay());
-                lessonListWeek.get(lesson.getDay()).setData(currentLesson.getId_subject(), currentLesson.getId_audience(),
-                        currentLesson.getId_educator(), currentLesson.getId_typelesson());
-                LessonDao.getInstance().updateItemByID(lessonListWeek.get(lesson.getDay()));
+        if (listLessonsForCopy.isEmpty()) {
+            showError(R.string.empty_list_selected_day);
+        } else {
+            Lesson currentLesson = getArguments().getParcelable(DialogCopyFragmentView.CURRENT_LESSON);
+            ArrayList<Lesson> lessonListWeek;
+            for (Weeks weeks : listWeeksSelected) {
+                for (CopyLesson lesson : listLessonsForCopy) {
+                    lessonListWeek = LessonDao.getInstance().getLessonByWeekAndDay(weeks.getNumber(), lesson.getDay() + 1);
+                    lessonListWeek.get(lesson.getDay() + 1).setData(currentLesson.getId_subject(), currentLesson.getId_audience(),
+                            currentLesson.getId_educator(), currentLesson.getId_typelesson());
+                    LessonDao.getInstance().updateItemByID(lessonListWeek.get(lesson.getDay() + 1));
+                }
+                getActivity().finish();
             }
-            getActivity().finish();
         }
     }
 
@@ -219,11 +224,10 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
         if (id == R.id.menuSelectEvens)
             tvWeeks.setText(R.string.select_evens);
         if (id == R.id.menuSelectively) {
-            tvWeeks.setText(R.string.selectively);
+            tvWeeks.setText(R.string.select_all);
             presenter.showWeeks(listWeeks);
         }
         return true;
-
     }
 
 
