@@ -10,11 +10,7 @@ public interface DialogCopyFragmentView extends BaseView {
 
     String CURRENT_LESSON= "CURRENT_LESSON";
 
-    String ITEMS = "ITEMS";
-
-    String POSITION = "POSITION";
-
-    int SELECT_LESSON = 1233;
+    int LESSON = 1233;
 
     void showLessonDialog();
 

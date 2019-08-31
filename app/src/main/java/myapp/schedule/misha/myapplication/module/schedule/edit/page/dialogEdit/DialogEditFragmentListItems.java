@@ -31,7 +31,7 @@ import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_AUDIENCES;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_EDUCATORS;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_SUBJECTS;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
-import static myapp.schedule.misha.myapplication.Constants.ITEMS_LIST;
+import static myapp.schedule.misha.myapplication.Constants.LIST_ITEMS;
 
 //Todo прочитать про наследование инкапсуляцию интерфейсы абстрактные классы и generic.
 
@@ -113,7 +113,7 @@ public class DialogEditFragmentListItems extends BaseAlertDialog implements Dial
         dialogFragmentListItemsAdapter = new DialogEditFragmentListItemsAdapter(subjectList, (position, view1) -> {
             Intent intent = new Intent();
             intent.putExtra(POSITION, clickedPosition);
-            intent.putExtra(ITEMS_LIST, subjectList.get(position));
+            intent.putExtra(LIST_ITEMS, subjectList.get(position));
             getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
             dismiss();
         });

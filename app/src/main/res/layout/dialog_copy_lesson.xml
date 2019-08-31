@@ -99,7 +99,7 @@
         android:maxLines="1"
         android:padding="@dimen/spacing_small"
         android:singleLine="true"
-        android:text="@string/title_select_week"
+        android:text="@string/select_all"
         android:textSize="16sp" />
 
 

@@ -4,9 +4,6 @@ import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-
 public class CopyLesson implements Parcelable {
 
     public static final Creator<CopyLesson> CREATOR = new Creator<CopyLesson>() {
@@ -23,19 +20,24 @@ public class CopyLesson implements Parcelable {
 
     private int day;
 
+    private int id;
+
     private String timeLesson;
 
-    public CopyLesson(int day, String timeLesson) {
+    public CopyLesson(int day, int id, String timeLesson) {
+        this.id = id;
         this.day = day;
         this.timeLesson = timeLesson;
     }
 
     public CopyLesson(Cursor cursor) {
-        this.day = cursor.getInt(0);
-        this.timeLesson = cursor.getString(1);
+        this.id = cursor.getInt(0);
+        this.day = cursor.getInt(1);
+        this.timeLesson = cursor.getString(2);
     }
 
     protected CopyLesson(Parcel in) {
+        id = in.readInt();
         day = in.readInt();
         timeLesson = in.readString();
     }
@@ -49,6 +51,14 @@ public class CopyLesson implements Parcelable {
 
     public void setTimeLesson(String timeLesson) {
         this.timeLesson = timeLesson;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getDay() {
@@ -66,6 +76,7 @@ public class CopyLesson implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeInt(day);
         dest.writeString(timeLesson);
     }

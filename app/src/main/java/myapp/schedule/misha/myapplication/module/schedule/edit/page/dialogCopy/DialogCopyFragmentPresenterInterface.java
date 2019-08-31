@@ -9,7 +9,7 @@ public interface DialogCopyFragmentPresenterInterface {
 
     void onDialogLessonClick();
 
-    void onImageAddClick(int day, String timeLesson);
+    void onImageAddClick(int id, int day, String timeLesson);
 
     void onImageDeleteClick(ArrayList<CopyLesson> itemList, int position);
 

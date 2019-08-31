@@ -61,7 +61,7 @@ public class DialogSelectLessonFragment extends BaseAlertDialog implements Dialo
         DialogSelectLessonFragmentAdapter dialogFragmentListItemsAdapter = new DialogSelectLessonFragmentAdapter(itemList, (position, view1) -> {
             Intent intent = new Intent();
             intent.putExtra(DialogSelectLessonFragmentView.POSITION, position);
-            getParentFragment().onActivityResult(DialogCopyFragmentView.SELECT_LESSON, Activity.RESULT_OK, intent);
+            getParentFragment().onActivityResult(DialogCopyFragmentView.LESSON, Activity.RESULT_OK, intent);
             dismiss();
         });
         rvItems.setAdapter(dialogFragmentListItemsAdapter);

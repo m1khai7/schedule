@@ -4,11 +4,7 @@ import myapp.schedule.misha.myapplication.common.core.BaseView;
 
 public interface DialogSelectWeekFragmentView extends BaseView {
 
-    String ITEMS = "ITEMS";
-
-    int LIST_CODE = 1313;
-
-    String POSITION = "POSITION";
+    int LIST_ITEMS = 1313;
 
     void selectAll();
 }

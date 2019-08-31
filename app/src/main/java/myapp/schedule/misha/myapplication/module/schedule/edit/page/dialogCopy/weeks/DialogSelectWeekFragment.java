@@ -38,7 +38,7 @@ public class DialogSelectWeekFragment extends BaseAlertDialog implements DialogS
 
     public static DialogSelectWeekFragment newInstance(ArrayList<Weeks> listWeeks) {
         Bundle args = new Bundle();
-        args.putParcelableArrayList(Constants.ITEMS_LIST, listWeeks);
+        args.putParcelableArrayList(Constants.LIST_ITEMS, listWeeks);
         DialogSelectWeekFragment fragment = new DialogSelectWeekFragment();
         fragment.setArguments(args);
         return fragment;
@@ -48,30 +48,27 @@ public class DialogSelectWeekFragment extends BaseAlertDialog implements DialogS
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         presenter = new DialogSelectWeekFragmentPresenter();
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-        listWeeks = getArguments().getParcelableArrayList(Constants.ITEMS_LIST);
+        listWeeks = getArguments().getParcelableArrayList(Constants.LIST_ITEMS);
         View view = layoutInflater.inflate(R.layout.dialog_rv_weeks, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
         rvItems = view.findViewById(R.id.rv_dialog_list);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         updateItemsAdapter();
-
         Button btnOk = view.findViewById(R.id.btn_ok);
         Button btnCancel = view.findViewById(R.id.btn_cancel);
         Button btnSelectAll = view.findViewById(R.id.btn_select_all);
-
         btnOk.setOnClickListener(v -> {
             listWeeks = dialogFragmentListItemsAdapter.getListWeeks();
             Intent intent = new Intent();
-            intent.putExtra(Constants.ITEMS_LIST, listWeeks);
-            getParentFragment().onActivityResult(DialogSelectWeekFragmentView.LIST_CODE, Activity.RESULT_OK, intent);
+            intent.putExtra(Constants.LIST_ITEMS, listWeeks);
+            getParentFragment().onActivityResult(DialogSelectWeekFragmentView.LIST_ITEMS, Activity.RESULT_OK, intent);
             dismiss();
         });
         btnCancel.setOnClickListener(v -> dismiss());
         btnSelectAll.setOnClickListener(v -> presenter.onSelectAllClicked());
         return builder.create();
     }
-
 
     public void selectAll() {
         for (Weeks week : listWeeks) {
@@ -90,7 +87,6 @@ public class DialogSelectWeekFragment extends BaseAlertDialog implements DialogS
 
     public void updateItemsAdapter() {
         dialogFragmentListItemsAdapter = new DialogSelectWeekFragmentAdapter((position, view1) -> {
-
         });
         rvItems.setAdapter(dialogFragmentListItemsAdapter);
         dialogFragmentListItemsAdapter.setListWeeks(listWeeks);

@@ -61,6 +61,8 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
 
     private TextView tvWeeks;
 
+    private int lessonPosition;
+
     public static DialogCopyFragment newInstance(Lesson lesson) {
         Bundle args = new Bundle();
         args.putParcelable(DialogCopyFragmentView.CURRENT_LESSON, lesson);
@@ -88,6 +90,7 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new DialogCopyFragmentPresenter();
+        setAllWeeks();
     }
 
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -135,9 +138,9 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
             for (Weeks weeks : listWeeksSelected) {
                 for (CopyLesson lesson : listLessonsForCopy) {
                     lessonListWeek = LessonDao.getInstance().getLessonByWeekAndDay(weeks.getNumber(), lesson.getDay() + 1);
-                    lessonListWeek.get(lesson.getDay() + 1).setData(currentLesson.getId_subject(), currentLesson.getId_audience(),
+                    lessonListWeek.get(lesson.getId()).setData(currentLesson.getId_subject(), currentLesson.getId_audience(),
                             currentLesson.getId_educator(), currentLesson.getId_typelesson());
-                    LessonDao.getInstance().updateItemByID(lessonListWeek.get(lesson.getDay() + 1));
+                    LessonDao.getInstance().updateItemByID(lessonListWeek.get(lesson.getId()));
                 }
                 getActivity().finish();
             }
@@ -158,19 +161,18 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
         rvItems.setAdapter(dialogFragmentListItemsAdapter);
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultOk, Intent data) {
-        if (requestCode == DialogCopyFragmentView.SELECT_LESSON) {
-            int lessonPosition = data.getIntExtra(DialogSelectLessonFragmentView.POSITION, 0);
+        if (requestCode == DialogCopyFragmentView.LESSON) {
+            lessonPosition = data.getIntExtra(DialogSelectLessonFragmentView.POSITION, 0);
             ArrayList<Calls> callsList = CallDao.getInstance().getAllData();
             tvLesson.setText(ScheduleApp.getStr(R.string.timelesson, callsList.get(lessonPosition * 2).getName(),
                     callsList.get((lessonPosition * 2) + 1).getName()));
         }
-        if (requestCode == DialogSelectWeekFragmentView.LIST_CODE) {
+        if (requestCode == DialogSelectWeekFragmentView.LIST_ITEMS) {
             listWeeks = new ArrayList<>();
             listWeeksSelected = new ArrayList<>();
-            listWeeks = data.getParcelableArrayListExtra(Constants.ITEMS_LIST);
+            listWeeks = data.getParcelableArrayListExtra(Constants.LIST_ITEMS);
             String prefix = "";
             StringBuilder stringSelectedWeeks = new StringBuilder();
             for (int i = 0; i < listWeeks.size(); i++) {
@@ -194,7 +196,7 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.imageAdd) {
-            presenter.onImageAddClick(spinnerDay.getSelectedItemPosition(), tvLesson.getText().toString());
+            presenter.onImageAddClick(lessonPosition, spinnerDay.getSelectedItemPosition(), tvLesson.getText().toString());
         }
         if (v.getId() == R.id.weeks) {
             PopupMenu popup = new PopupMenu(v.getContext(), tvWeeks);
@@ -219,6 +221,7 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
         //TODO  WEEKS
         if (id == R.id.menuSelectAll)
             tvWeeks.setText(R.string.select_all);
+        setAllWeeks();
         if (id == R.id.menuSelectUnevens)
             tvWeeks.setText(R.string.select_unevens);
         if (id == R.id.menuSelectEvens)
@@ -230,6 +233,16 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
         return true;
     }
 
+    private void setAllWeeks() {
+        ArrayList<Weeks> AllWeeks = new ArrayList<>();
+        for (int i = 1; i < 18; i++) {
+            Weeks week = new Weeks();
+            week.setNumber(i);
+            week.setCheck(true);
+            AllWeeks.add(week);
+        }
+        listWeeksSelected = AllWeeks;
+    }
 
     @NonNull
     @Override

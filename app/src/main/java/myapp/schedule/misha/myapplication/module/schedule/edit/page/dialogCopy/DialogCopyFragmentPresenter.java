@@ -24,8 +24,9 @@ public class DialogCopyFragmentPresenter extends BaseMainPresenter<DialogCopyFra
     }
 
     @Override
-    public void onImageAddClick(int numberDay, String timeLesson) {
+    public void onImageAddClick(int id, int numberDay, String timeLesson) {
         CopyLesson copyLesson = new CopyLesson();
+        copyLesson.setId(id);
         copyLesson.setDay(numberDay);
         copyLesson.setTimeLesson(timeLesson);
         listLessonsForCopy.add(copyLesson);
