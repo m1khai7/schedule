@@ -6,6 +6,13 @@ import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import myapp.schedule.misha.myapplication.R;
+import myapp.schedule.misha.myapplication.ScheduleApp;
+
 
 //Todo прочитать про сериализацию и Parcelable
 public class Weeks implements Parcelable, SimpleItem {
@@ -98,5 +105,16 @@ public class Weeks implements Parcelable, SimpleItem {
         dest.writeString(name);
         dest.writeBoolean(checked);
         dest.writeInt(number);
+    }
+
+    public ArrayList<Weeks> getNewListWeeks() {
+        ArrayList<Weeks> listWeeks = new ArrayList<>();
+        List<String> arrayWeek = Arrays.asList(ScheduleApp.getAppContext().getResources().getStringArray(R.array.weeks));
+        for (String stringWeek : arrayWeek) {
+            Weeks week = new Weeks();
+            week.setName(stringWeek);
+            listWeeks.add(week);
+        }
+        return listWeeks;
     }
 }

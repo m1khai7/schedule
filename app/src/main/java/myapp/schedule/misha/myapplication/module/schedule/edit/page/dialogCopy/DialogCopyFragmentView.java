@@ -14,7 +14,7 @@ public interface DialogCopyFragmentView extends BaseView {
 
     void showLessonDialog();
 
-    void openWeekDialog(ArrayList<Weeks> listWeeks);
+    void openWeekDialog();
 
     void updateItemsAdapter(ArrayList<CopyLesson> itemList);
 

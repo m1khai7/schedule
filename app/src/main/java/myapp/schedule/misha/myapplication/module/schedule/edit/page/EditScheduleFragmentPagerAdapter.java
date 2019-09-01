@@ -1,18 +1,22 @@
 package myapp.schedule.misha.myapplication.module.schedule.edit.page;
 
+import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import myapp.schedule.misha.myapplication.R;
+import myapp.schedule.misha.myapplication.ScheduleApp;
 import myapp.schedule.misha.myapplication.data.database.dao.AudienceDao;
 import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
 import myapp.schedule.misha.myapplication.data.database.dao.EducatorDao;
@@ -27,7 +31,6 @@ import myapp.schedule.misha.myapplication.entity.Subject;
 import myapp.schedule.misha.myapplication.entity.Typelesson;
 
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DARK_THEME;
-import static myapp.schedule.misha.myapplication.data.preferences.Preferences.LIGHT_THEME;
 
 public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditScheduleFragmentPagerAdapter.ViewHolder> {
 
@@ -37,9 +40,11 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
     private Audience audience;
     private Educator educator;
     private Typelesson typelesson;
+    private Context context;
 
-    public EditScheduleFragmentPagerAdapter(EditSchedulePagePresenterInterface editScheduleCallback) {
+    public EditScheduleFragmentPagerAdapter(EditSchedulePagePresenterInterface editScheduleCallback, Context context) {
         this.callback = editScheduleCallback;
+        this.context = context;
     }
 
     public void setLessonList(List<Lesson> lessonList) {
@@ -57,39 +62,6 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.render(position);
-        holder.textViewOptions.setOnClickListener(view -> {
-            PopupMenu popup = new PopupMenu(view.getContext(), holder.textViewOptions);
-            popup.inflate(R.menu.menu_item_edit_lesson);
-            if (position == 0) {
-                popup.getMenu().removeItem(R.id.copyUp);
-            }
-            if (position == 5) {
-                popup.getMenu().removeItem(R.id.copyDown);
-            }
-            popup.setOnMenuItemClickListener(item -> {
-                switch (item.getItemId()) {
-                    case R.id.copyUp:
-                        callback.onCopyUpClick(position);
-                        return true;
-                    case R.id.copyDown:
-                        callback.onCopyDownClick(position);
-                        return true;
-                    case R.id.copyOtherDay:
-                        callback.onCopyLessonOtherDay(position);
-                        return true;
-                    case R.id.clearLesson:
-                        callback.onClearLessonClick(position);
-                        return true;
-                    case R.id.clearDay:
-                        callback.onClearDayClick();
-                        return true;
-                    default:
-                        return false;
-                }
-            });
-            popup.show();
-        });
-
     }
 
     @Override
@@ -98,7 +70,8 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
+            PopupMenu.OnMenuItemClickListener {
 
         private final TextView timeEditOne;
         private final TextView timeEditTwo;
@@ -107,6 +80,7 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
         private final TextView educatorEdit;
         private final TextView typeLessonEdit;
         private final ImageView textViewOptions;
+        private PopupMenu popup;
 
 
         public ViewHolder(View view) {
@@ -114,84 +88,92 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
             timeEditOne = view.findViewById(R.id.timeOne);
             timeEditTwo = view.findViewById(R.id.timeTwo);
             subjectEdit = view.findViewById(R.id.subject);
-            audienceEdit = view.findViewById(R.id.timeLesson);
-            educatorEdit = view.findViewById(R.id.day);
+            audienceEdit = view.findViewById(R.id.audience);
+            educatorEdit = view.findViewById(R.id.educator);
             typeLessonEdit = view.findViewById(R.id.typelesson);
             textViewOptions = view.findViewById(R.id.menuOptions);
             subjectEdit.setOnClickListener(this);
             audienceEdit.setOnClickListener(this);
             educatorEdit.setOnClickListener(this);
             typeLessonEdit.setOnClickListener(this);
-            view.setOnClickListener(this);
+            textViewOptions.setOnClickListener(this);
+            popup = new PopupMenu(view.getContext(), textViewOptions);
+            popup.inflate(R.menu.menu_item_edit_lesson);
+            popup.setOnMenuItemClickListener(this);
         }
-
 
         private void render(int position) {
             Lesson lesson = lessonList.get(position);
             ArrayList<Calls> callsList = CallDao.getInstance().getAllData();
             timeEditOne.setText(callsList.get(position * 2).getName());
             timeEditTwo.setText(callsList.get((position * 2) + 1).getName());
+            if (position == 0) {
+                popup.getMenu().removeItem(R.id.copyUp);
+            }
+            if (position == 5) {
+                popup.getMenu().removeItem(R.id.copyDown);
+            }
             try {
                 subject = SubjectDao.getInstance().getItemByID(Long.parseLong(lesson.getId_subject()));
-            } catch (NumberFormatException ignored) {
-            }
-            try {
                 audience = AudienceDao.getInstance().getItemByID(Long.parseLong(lesson.getId_audience()));
-            } catch (NumberFormatException ignored) {
-            }
-            try {
                 educator = EducatorDao.getInstance().getItemByID(Long.parseLong(lesson.getId_educator()));
-            } catch (NumberFormatException ignored) {
-            }
-            try {
                 typelesson = TypelessonDao.getInstance().getItemByID(Long.parseLong(lesson.getId_typelesson()));
             } catch (NumberFormatException ignored) {
             }
-
-            if (subject == null) {
-                subjectEdit.setText(R.string.hint_subject);
-            } else {
-                subjectEdit.setText(subject.getName());
-            }
-            if (audience == null) {
-                audienceEdit.setText(R.string.hint_audience);
-            } else {
-                audienceEdit.setText(audience.getName());
-            }
-            if (educator == null) {
-                educatorEdit.setText(R.string.hint_educator);
-            } else {
-                educatorEdit.setText(educator.getName());
-            }
-            if (typelesson == null) {
-                typeLessonEdit.setText(R.string.hint_typelesson);
-            } else {
-                typeLessonEdit.setText(typelesson.getName());
-            }
-
-            if (Preferences.getInstance().getSelectedTheme().equals(DARK_THEME)) {
-                textViewOptions.setImageResource(R.drawable.ic_more_vert_white);
-            }
-            if (Preferences.getInstance().getSelectedTheme().equals(LIGHT_THEME)) {
-                textViewOptions.setImageResource(R.drawable.ic_more_vert_black);
-            }
-
+            subjectEdit.setText(subject == null ? ScheduleApp.getStr(R.string.hint_subject) : subject.getName());
+            audienceEdit.setText(audience == null ? ScheduleApp.getStr(R.string.hint_audience) : audience.getName());
+            educatorEdit.setText(educator == null ? ScheduleApp.getStr(R.string.hint_educator) : educator.getName());
+            typeLessonEdit.setText(typelesson == null ? ScheduleApp.getStr(R.string.hint_typelesson) : typelesson.getName());
+            String selectedTheme = Preferences.getInstance().getSelectedTheme();
+            textViewOptions.setImageResource(selectedTheme.equals(DARK_THEME) ? R.drawable.ic_more_vert_white : R.drawable.ic_more_vert_black);
         }
 
         @Override
         public void onClick(View v) {
-            if (v.getId() == R.id.subject) {
-                callback.onSubjectClick(getAdapterPosition());
+            int id = v.getId();
+            int position = getAdapterPosition();
+            if (id == R.id.subject) {
+                callback.onSubjectClick(position);
             }
-            if (v.getId() == R.id.timeLesson) {
-                callback.onAudienceClick(getAdapterPosition());
+            if (id == R.id.audience) {
+                callback.onAudienceClick(position);
             }
-            if (v.getId() == R.id.day) {
-                callback.onEducatorClick(getAdapterPosition());
+            if (id == R.id.educator) {
+                callback.onEducatorClick(position);
             }
-            if (v.getId() == R.id.typelesson) {
-                callback.onTypelessonClick(getAdapterPosition());
+            if (id == R.id.typelesson) {
+                callback.onTypelessonClick(position);
             }
+            if (id == R.id.menuOptions) {
+                popup.show();
+            }
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            int id = menuItem.getItemId();
+            int position = getAdapterPosition();
+            if (id == R.id.copyUp) {
+                callback.onCopyUpClick(position);
+            }
+            if (id == R.id.copyDown) {
+                callback.onCopyDownClick(position);
+            }
+            if (id == R.id.copyOtherDay) {
+                callback.onCopyLessonOtherDay(position);
+            }
+            if (id == R.id.clearLesson) {
+                callback.onClearLessonClick(position);
+            }
+            if (id == R.id.clearDay) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle(ScheduleApp.getStr(R.string.dialog_clear_day))
+                        .setCancelable(false)
+                        .setPositiveButton(ScheduleApp.getStr(R.string.ack), (dialog, idButton) -> callback.onClearDayClick())
+                        .setNegativeButton(ScheduleApp.getStr(R.string.cancel), (dialog, idButton) -> dialog.cancel());
+                builder.create().show();
+            }
+            return true;
         }
     }
 }

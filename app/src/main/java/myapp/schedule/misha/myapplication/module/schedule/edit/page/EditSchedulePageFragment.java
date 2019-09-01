@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
@@ -61,12 +63,12 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
         int positionWeek = getArguments().getInt(Constants.SELECTED_WEEK);
         int day = getArguments().getInt(Constants.DAY);
         presenter = new EditSchedulePagePresenter(getContext(), positionWeek, day);
-        rvadapter = new EditScheduleFragmentPagerAdapter(presenter);
+        rvadapter = new EditScheduleFragmentPagerAdapter(presenter,getContext());
     }
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View fragmentView = inflater.inflate(R.layout.item_edit_schedule_recycler, container, false);
+        View view = inflater.inflate(R.layout.item_edit_schedule_recycler, container, false);
         mainFab = getActivity().findViewById(R.id.main_fab);
         evenWeekFab = getActivity().findViewById(R.id.copyWeek);
         unevenWeekFab = getActivity().findViewById(R.id.clearDay);
@@ -77,7 +79,7 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
         fabClose = AnimationUtils.loadAnimation(getContext(), R.anim.fab_close);
         rotateForward = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_forward);
         rotateBackward = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_backward);
-        RecyclerView rvLessons = fragmentView.findViewById(R.id.rv_lessons_edit);
+        RecyclerView rvLessons = view.findViewById(R.id.rv_lessons_edit);
         rvLessons.setAdapter(rvadapter);
         rvLessons.addOnScrollListener(new OnScrollListener() {
             @Override
@@ -104,7 +106,7 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
                 }
             }
         });
-        return fragmentView;
+        return view;
     }
 
     @Override

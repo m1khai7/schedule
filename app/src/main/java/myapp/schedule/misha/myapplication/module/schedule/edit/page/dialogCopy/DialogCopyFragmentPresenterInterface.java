@@ -13,5 +13,5 @@ public interface DialogCopyFragmentPresenterInterface {
 
     void onImageDeleteClick(ArrayList<CopyLesson> itemList, int position);
 
-    void showWeeks(ArrayList<Weeks> listWeeks);
+    void showWeeks();
 }

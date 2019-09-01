@@ -7,8 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -61,6 +59,8 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
 
     private TextView tvWeeks;
 
+    private PopupMenu popupMenu;
+
     private int lessonPosition;
 
     public static DialogCopyFragment newInstance(Lesson lesson) {
@@ -78,10 +78,9 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
     }
 
     @Override
-    public void openWeekDialog(ArrayList<Weeks> listWeeks) {
+    public void openWeekDialog() {
         DialogSelectWeekFragment dialogFragment = DialogSelectWeekFragment.newInstance(listWeeks);
         dialogFragment.show(getChildFragmentManager(), DialogSelectWeekFragment.class.getSimpleName());
-
     }
 
     //TODO replace dialog to fragment
@@ -96,36 +95,36 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_copy_lesson, null);
-        ImageView imageAdd = view.findViewById(R.id.imageAdd);
+        setView(view);
+        setListeners(view);
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item);
-        spinnerDay = view.findViewById(R.id.day);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         List<String> listDays = Arrays.asList(getResources().getStringArray(R.array.days));
         spinnerAdapter.addAll(listDays);
-
         spinnerDay.setAdapter(spinnerAdapter);
         spinnerDay.setSelection(0);
-        rvItems = view.findViewById(R.id.rv_dialog_list);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
-
-        tvWeeks = view.findViewById(R.id.weeks);
-        tvWeeks.setOnClickListener(this);
-        tvLesson = view.findViewById(R.id.timeLesson);
-        tvLesson.setOnClickListener(this);
         tvLesson.setText(ScheduleApp.getStr(R.string.timelesson, CallDao.getInstance().getItemByID(1).getName(), CallDao.getInstance().getItemByID(2).getName()));
-        listWeeks = new ArrayList<>();
-        List<String> arrayWeek = Arrays.asList(getResources().getStringArray(R.array.weeks));
-        for (String stringWeek : arrayWeek) {
-            Weeks week = new Weeks();
-            week.setName(stringWeek);
-            listWeeks.add(week);
-        }
-        Button buttonOk = view.findViewById(R.id.btn_ok);
-        buttonOk.setOnClickListener(v -> presenter.onClickCopyLesson());
-        Button button_cancel = view.findViewById(R.id.btn_cancel);
-        button_cancel.setOnClickListener(v -> getActivity().finish());
-        imageAdd.setOnClickListener(this);
+        listWeeks = new Weeks().getNewListWeeks();
         return view;
+    }
+
+    private void setView(View view) {
+        spinnerDay = view.findViewById(R.id.educator);
+        rvItems = view.findViewById(R.id.rv_dialog_list);
+        tvWeeks = view.findViewById(R.id.weeks);
+        tvLesson = view.findViewById(R.id.audience);
+    }
+
+    private void setListeners(View view) {
+        popupMenu = new PopupMenu(view.getContext(), tvWeeks);
+        popupMenu.inflate(R.menu.menu_weeks);
+        popupMenu.setOnMenuItemClickListener(this);
+        view.findViewById(R.id.btn_ok).setOnClickListener(v -> presenter.onClickCopyLesson());
+        view.findViewById(R.id.btn_cancel).setOnClickListener(v -> getActivity().finish());
+        view.findViewById(R.id.imageAdd).setOnClickListener(this);
+        tvWeeks.setOnClickListener(this);
+        tvLesson.setOnClickListener(this);
     }
 
     @Override
@@ -151,7 +150,6 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
-
 
     @Override
     public void updateItemsAdapter(ArrayList<CopyLesson> listLessons) {
@@ -199,18 +197,15 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
             presenter.onImageAddClick(lessonPosition, spinnerDay.getSelectedItemPosition(), tvLesson.getText().toString());
         }
         if (v.getId() == R.id.weeks) {
-            PopupMenu popup = new PopupMenu(v.getContext(), tvWeeks);
-            popup.inflate(R.menu.menu_weeks);
-            popup.setOnMenuItemClickListener(this);
-            popup.show();
+            popupMenu.show();
         }
-        if (v.getId() == R.id.day) {
+        if (v.getId() == R.id.educator) {
             PopupMenu popup = new PopupMenu(v.getContext(), spinnerDay);
             popup.inflate(R.menu.menu_days);
             popup.setOnMenuItemClickListener(this);
             popup.show();
         }
-        if (v.getId() == R.id.timeLesson) {
+        if (v.getId() == R.id.audience) {
             presenter.onDialogLessonClick();
         }
     }
@@ -218,7 +213,6 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         int id = item.getItemId();
-        //TODO  WEEKS
         if (id == R.id.menuSelectAll)
             tvWeeks.setText(R.string.select_all);
         setAllWeeks();
@@ -228,7 +222,7 @@ public class DialogCopyFragment extends BaseMainFragment implements DialogCopyFr
             tvWeeks.setText(R.string.select_evens);
         if (id == R.id.menuSelectively) {
             tvWeeks.setText(R.string.select_all);
-            presenter.showWeeks(listWeeks);
+            presenter.showWeeks();
         }
         return true;
     }

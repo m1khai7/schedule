@@ -153,8 +153,8 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
             timeEditOne = view.findViewById(R.id.timeOne);
             timeEditTwo = view.findViewById(R.id.timeTwo);
             subjectEdit = view.findViewById(R.id.subject);
-            audienceEdit = view.findViewById(R.id.timeLesson);
-            educatorEdit = view.findViewById(R.id.day);
+            audienceEdit = view.findViewById(R.id.audience);
+            educatorEdit = view.findViewById(R.id.educator);
             typelessonEdit = view.findViewById(R.id.typelesson);
             subjectHint = view.findViewById(R.id.subject_hint);
             audienceHint = view.findViewById(R.id.audience_hint);

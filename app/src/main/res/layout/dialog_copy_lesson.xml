@@ -61,7 +61,7 @@
             tools:text="8:00-10:00" />
 
         <TextView
-            android:id="@+id/timeLesson"
+            android:id="@+id/audience"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -75,13 +75,13 @@
 
 
         <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/day"
+            android:id="@+id/educator"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="@dimen/spacing_normal"
-            android:layout_toStartOf="@id/timeLesson"
+            android:layout_toStartOf="@id/audience"
             android:background="@android:color/transparent"
             android:textSize="16sp" />
 
