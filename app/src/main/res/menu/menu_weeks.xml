@@ -3,15 +3,15 @@
     <group>
         <item
             android:id="@+id/menuSelectAll"
-            android:title="@string/menu_weeks_select_all" />
+            android:title="@string/select_all" />
         <item
             android:id="@+id/menuSelectUnevens"
-            android:title="@string/menu_weeks_select_uneven_week" />
+            android:title="@string/select_unevens" />
         <item
             android:id="@+id/menuSelectEvens"
-            android:title="@string/menu_weeks_select_even_week" />
+            android:title="@string/select_evens" />
         <item
             android:id="@+id/menuSelectively"
-            android:title="@string/menu_weeks_select_selectively_week" />
+            android:title="@string/selectively_week" />
     </group>
 </menu>

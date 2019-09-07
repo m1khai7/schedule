@@ -21,11 +21,22 @@ public abstract class BaseMainFragment extends BaseFragment implements BaseView 
 
     @Override
     public void replaceFragment(Fragment fragment) {
+        replaceFragment(fragment, true);
+    }
+
+    @Override
+    public void replaceFragment(Fragment fragment, boolean animate) {
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        if (getChildFragmentManager().getBackStackEntryCount() >= 1 && animate) {
+            transaction.setCustomAnimations(R.anim.tr_child_up, R.anim.tr_exit_left,
+                    R.anim.tr_parent_back, R.anim.tr_child_back);
+        }
         transaction.replace(R.id.fragment_container, fragment, fragment.getClass().getName());
         transaction.addToBackStack(fragment.getClass().getName());
         transaction.commitAllowingStateLoss();
     }
+
+
 
     public void clearBackStack() {
         if (getChildFragmentManager().getBackStackEntryCount() != 0 && isAdded()) {
@@ -94,8 +105,8 @@ public abstract class BaseMainFragment extends BaseFragment implements BaseView 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getSchedulePagePresenter().setRoot(getRoot());
-        getSchedulePagePresenter().setView(this);
+        getPresenter().setRoot(getRoot());
+        getPresenter().setView(this);
     }
 
     public Root getRoot() {
@@ -177,28 +188,28 @@ public abstract class BaseMainFragment extends BaseFragment implements BaseView 
     public void onDestroyView() {
         super.onDestroyView();
         //noinspection unchecked
-        getSchedulePagePresenter().setRoot(null);
+        getPresenter().setRoot(null);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getSchedulePagePresenter().getCompositeDisposable().dispose();
+        getPresenter().getCompositeDisposable().dispose();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        getSchedulePagePresenter().onStart();
+        getPresenter().onStart();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        getSchedulePagePresenter().onStop();
+        getPresenter().onStop();
 
     }
 
     @NonNull
-    protected abstract BasePresenter getSchedulePagePresenter();
+    protected abstract BasePresenter getPresenter();
 }

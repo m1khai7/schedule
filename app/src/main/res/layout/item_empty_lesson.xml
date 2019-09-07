@@ -17,20 +17,11 @@
 
 
         <TextView
-            android:id="@+id/timeOne"
+            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_medium"
             android:layout_marginTop="@dimen/spacing_medium"
-            android:background="@null"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/timeTwo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:layout_toEndOf="@+id/timeOne"
             android:background="@null"
             android:textSize="17sp" />
 

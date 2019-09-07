@@ -49,12 +49,22 @@ public abstract class BaseAlertDialog extends BaseDialog implements BaseDialogVi
     }
 
     @Override
-    public final void replaceFragment(Fragment fragment) {
+    public void replaceFragment(Fragment fragment) {
+        replaceFragment(fragment, true);
+    }
+
+    @Override
+    public void replaceFragment(Fragment fragment, boolean animate) {
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        if (getChildFragmentManager().getBackStackEntryCount() >= 1 && animate) {
+            transaction.setCustomAnimations(R.anim.tr_child_up, R.anim.tr_exit_left,
+                    R.anim.tr_parent_back, R.anim.tr_child_back);
+        }
         transaction.replace(R.id.fragment_container, fragment, fragment.getClass().getName());
         transaction.addToBackStack(fragment.getClass().getName());
         transaction.commitAllowingStateLoss();
     }
+
 
     @Override
     public void showSnack(String message) {

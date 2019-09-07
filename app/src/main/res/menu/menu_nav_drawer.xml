@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/what"
+        android:id="@+id/calls"
         android:icon="@android:drawable/ic_popup_reminder"
         android:title=""/>
     <item
@@ -17,7 +17,7 @@
         android:icon="@drawable/ic_list_white"
         android:title="" />
     <item
-        android:id="@+id/settings"
+        android:id="@+id/settingsMenu"
         android:icon="@android:drawable/ic_dialog_info"
         android:title="" />
 </menu>

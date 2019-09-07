@@ -24,7 +24,7 @@ import myapp.schedule.misha.myapplication.common.core.BaseAlertDialog;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
 import myapp.schedule.misha.myapplication.entity.Calls;
-import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.DialogCopyFragmentView;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.CopyFragmentView;
 
 
 public class DialogSelectLessonFragment extends BaseAlertDialog implements DialogSelectLessonFragmentView {
@@ -61,7 +61,7 @@ public class DialogSelectLessonFragment extends BaseAlertDialog implements Dialo
         DialogSelectLessonFragmentAdapter dialogFragmentListItemsAdapter = new DialogSelectLessonFragmentAdapter(itemList, (position, view1) -> {
             Intent intent = new Intent();
             intent.putExtra(DialogSelectLessonFragmentView.POSITION, position);
-            getParentFragment().onActivityResult(DialogCopyFragmentView.LESSON, Activity.RESULT_OK, intent);
+            getParentFragment().onActivityResult(CopyFragmentView.LESSON, Activity.RESULT_OK, intent);
             dismiss();
         });
         rvItems.setAdapter(dialogFragmentListItemsAdapter);

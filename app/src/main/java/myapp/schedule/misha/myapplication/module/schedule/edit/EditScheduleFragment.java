@@ -110,7 +110,7 @@ public class EditScheduleFragment extends BaseMainFragment implements EditSchedu
 
     @NonNull
     @Override
-    protected BasePresenter getSchedulePagePresenter() {
+    protected BasePresenter getPresenter() {
         return presenter;
     }
 

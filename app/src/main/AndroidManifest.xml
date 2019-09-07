@@ -8,40 +8,50 @@
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <application
         android:name="myapp.schedule.misha.myapplication.ScheduleApp"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_scheme"
         android:icon="@mipmap/ic_launcher_app"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_app"
-        tools:ignore="GoogleAppIndexingWarning">
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:targetApi="m">
+
+        <uses-library
+            android:name="android.test.runner"
+            android:required="false" />
+
+        <uses-library
+            android:name="android.test.base"
+            android:required="false" />
+
+        <uses-library
+            android:name="android.test.mock"
+            android:required="false" />
 
         <activity
-            android:name="myapp.schedule.misha.myapplication.activity.MainActivity"
-            android:screenOrientation="portrait">
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-
+            android:name=".activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/splashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
         </activity>
 
         <activity
+            android:name="myapp.schedule.misha.myapplication.activity.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+
+        <activity
             android:name="myapp.schedule.misha.myapplication.activity.ActivityCopyLesson"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="myapp.schedule.misha.myapplication.data.database.AppContentProvider"
@@ -50,4 +60,5 @@
             android:multiprocess="true" />
 
     </application>
+
 </manifest>

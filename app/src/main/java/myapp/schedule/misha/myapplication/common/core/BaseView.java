@@ -24,4 +24,6 @@ public interface BaseView {
     void showGlobalError(String message);
 
     void replaceFragment(Fragment fragment);
+
+    void replaceFragment(Fragment fragment, boolean animate);
 }

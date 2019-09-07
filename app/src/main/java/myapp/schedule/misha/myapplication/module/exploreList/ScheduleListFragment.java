@@ -145,7 +145,7 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
 
     @NonNull
     @Override
-    protected BasePresenter getSchedulePagePresenter() {
+    protected BasePresenter getPresenter() {
         return presenter;
     }
 

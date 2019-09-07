@@ -198,7 +198,6 @@
         <item name="itemIconTint">@drawable/nav_bottom_view_light</item>
     </style>
 
-
     <style name="TabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
         <item name="android:textSize">16sp</item>
     </style>
@@ -207,5 +206,10 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="splashScreenTheme" parent="DarkTheme">
+        <item name="android:windowBackground">@drawable/splash_image</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
 </resources>

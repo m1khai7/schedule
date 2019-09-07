@@ -14,12 +14,10 @@ import myapp.schedule.misha.myapplication.entity.Typelesson;
 
 public class DialogFragmentEditDataPresenter extends BaseMainPresenter<DialogFragmentEditDataView> implements DialogFragmentEditDataPresenterInterface {
 
-    private final EditDataModel editDataModel;
     private AbsDao absDao;
     private ArrayList<SimpleItem> listItems = new ArrayList<>();
 
     public DialogFragmentEditDataPresenter(EditDataModel editDataModel) {
-        this.editDataModel = editDataModel;
         absDao = editDataModel.getDao();
     }
 

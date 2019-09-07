@@ -133,12 +133,7 @@ public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePag
 
     @Override
     public void onCopyLessonOtherDay(int position) {
-        Lesson currentLesson = new Lesson();
-        currentLesson.setId_subject(lessonList.get(position).getId_subject());
-        currentLesson.setId_audience(lessonList.get(position).getId_audience());
-        currentLesson.setId_typelesson(lessonList.get(position).getId_typelesson());
-        currentLesson.setId_educator(lessonList.get(position).getId_educator());
-        getView().showCopyDialog(currentLesson);
+        getView().showCopyLesson(lessonList.get(position));
     }
 
     @Override

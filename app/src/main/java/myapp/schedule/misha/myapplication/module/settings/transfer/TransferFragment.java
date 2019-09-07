@@ -34,6 +34,10 @@ public class TransferFragment extends BaseMainFragment implements TransferFragme
     private static final int READ_EXTERNAL = 2;
     private TransferPresenter presenter;
 
+    public static TransferFragment newInstance() {
+        return new TransferFragment();
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -134,7 +138,7 @@ public class TransferFragment extends BaseMainFragment implements TransferFragme
 
     @NonNull
     @Override
-    protected BasePresenter getSchedulePagePresenter() {
+    protected BasePresenter getPresenter() {
         return presenter;
     }
 

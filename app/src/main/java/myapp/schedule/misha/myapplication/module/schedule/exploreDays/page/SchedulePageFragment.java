@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import myapp.schedule.misha.myapplication.Constants;
 import myapp.schedule.misha.myapplication.R;
@@ -22,6 +23,7 @@ public class SchedulePageFragment extends BaseMainFragment implements SchedulePa
 
     private ScheduleFragmentPagerAdapter rvadapter;
     private SchedulePagePresenter presenter;
+    private View view;
 
     public static SchedulePageFragment newInstance(int selectedWeek, int position) {
         Bundle args = new Bundle();
@@ -44,10 +46,10 @@ public class SchedulePageFragment extends BaseMainFragment implements SchedulePa
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View fragmentView = inflater.inflate(R.layout.item_edit_schedule_recycler, container, false);
-        RecyclerView rvLessons = fragmentView.findViewById(R.id.rv_lessons_edit);
+        view = inflater.inflate(R.layout.item_edit_schedule_recycler, container, false);
+        RecyclerView rvLessons = view.findViewById(R.id.rv_lessons_edit);
         rvLessons.setAdapter(rvadapter);
-        return fragmentView;
+        return view;
     }
 
     @Override
@@ -58,13 +60,18 @@ public class SchedulePageFragment extends BaseMainFragment implements SchedulePa
 
     @NonNull
     @Override
-    protected BasePresenter getSchedulePagePresenter() {
+    protected BasePresenter getPresenter() {
         return presenter;
     }
 
-    public void updateList(ArrayList<Lesson> lessonList) {
+    @Override
+    public void setEmptyDay() {
+        view.findViewById(R.id.view_empty_day).setVisibility(View.VISIBLE);
+    }
+
+    public void updateView(List<Lesson> lessonList) {
+        view.findViewById(R.id.view_empty_day).setVisibility(View.GONE);
         rvadapter.setLessonList(lessonList);
-        rvadapter.notifyDataSetChanged();
     }
 
     public void setWeek(int selectedWeek) {

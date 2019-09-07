@@ -57,7 +57,7 @@ public class CallsFragment extends BaseMainFragment implements CallsFragmentView
 
     @NonNull
     @Override
-    protected BasePresenter getSchedulePagePresenter() {
+    protected BasePresenter getPresenter() {
         return presenter;
     }
 

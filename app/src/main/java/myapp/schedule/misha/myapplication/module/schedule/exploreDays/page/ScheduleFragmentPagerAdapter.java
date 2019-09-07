@@ -12,8 +12,10 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import myapp.schedule.misha.myapplication.R;
+import myapp.schedule.misha.myapplication.ScheduleApp;
 import myapp.schedule.misha.myapplication.data.database.dao.AudienceDao;
 import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
 import myapp.schedule.misha.myapplication.data.database.dao.EducatorDao;
@@ -28,7 +30,7 @@ import myapp.schedule.misha.myapplication.entity.Typelesson;
 
 public class ScheduleFragmentPagerAdapter extends RecyclerView.Adapter {
 
-    private ArrayList<Lesson> lessonList = new ArrayList<>();
+    private List<Lesson> lessonList = new ArrayList<>();
     private Subject subject;
     private Audience audience;
     private Educator educator;
@@ -48,12 +50,8 @@ public class ScheduleFragmentPagerAdapter extends RecyclerView.Adapter {
         if (subject == null || audience == null || educator == null || typelesson == null) {
             codeViewType = 1;
         }
-        if (getItemCount() == 1) {
-            codeViewType = 2;
-        }
         return codeViewType;
     }
-
 
     @NotNull
     @Override
@@ -66,15 +64,13 @@ public class ScheduleFragmentPagerAdapter extends RecyclerView.Adapter {
             case 1:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_empty_lesson, parent, false);
                 return new ViewHolderEmptyLesson(view);
-            case 2:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_empty_day, parent, false);
-                return new ViewHolderEmptyDay(view);
         }
         return null;
     }
 
-    public void setLessonList(ArrayList<Lesson> lessonList) {
+    public void setLessonList(List<Lesson> lessonList) {
         this.lessonList = lessonList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -110,61 +106,28 @@ public class ScheduleFragmentPagerAdapter extends RecyclerView.Adapter {
                     ((ViewHolderLesson) holder).educatorHint.setHint("Преподаватель");
                     ((ViewHolderLesson) holder).educatorEdit.setText(educator.getName());
                 }
-                if (typelesson == null) {
-                    break;
-                } else {
-                    ((ViewHolderLesson) holder).typelessonEdit.setText(typelesson.getName());
-                }
+                if (typelesson == null) break;
+                else ((ViewHolderLesson) holder).typelessonEdit.setText(typelesson.getName());
                 break;
-
             case 1:
                 callsList = CallDao.getInstance().getAllData();
-                ((ViewHolderEmptyLesson) holder).timeEditOne.setText(callsList.get(position * 2).getName());
-                ((ViewHolderEmptyLesson) holder).timeEditTwo.setText(" - " + callsList.get((position * 2) + 1).getName());
+                ((ViewHolderEmptyLesson) holder).time.setText(ScheduleApp.getStr(R.string.timelesson,
+                        callsList.get(position * 2).getName(), callsList.get((position * 2) + 1).getName()));
                 break;
         }
     }
 
     @Override
     public int getItemCount() {
-        int numberItem = lessonList.size();
-        if (!lessonList.isEmpty()) {
-            int countPositiveItems = 0;
-            for (int i = 0; i < 6; i++) {
-                Lesson lesson = lessonList.get(i);
-                try {
-                    subject = SubjectDao.getInstance().getItemByID(Long.parseLong(lesson.getId_subject()));
-                    audience = AudienceDao.getInstance().getItemByID(Long.parseLong(lesson.getId_audience()));
-                    educator = EducatorDao.getInstance().getItemByID(Long.parseLong(lesson.getId_educator()));
-                    typelesson = TypelessonDao.getInstance().getItemByID(Long.parseLong(lesson.getId_typelesson()));
-                } catch (NumberFormatException ignored) {
-                }
-                if (subject == null || audience == null || educator == null || typelesson == null) {
-                    countPositiveItems += 1;
-                }
-            }
-            if (countPositiveItems == 6) {
-                numberItem = 1;
-            }
-        }
-        return numberItem;
+        return lessonList.size();
     }
-
 
     public static class ViewHolderEmptyLesson extends RecyclerView.ViewHolder {
-        private final TextView timeEditOne;
-        private final TextView timeEditTwo;
+        private final TextView time;
 
-        public ViewHolderEmptyLesson(View view) {
+        ViewHolderEmptyLesson(View view) {
             super(view);
-            timeEditOne = view.findViewById(R.id.timeOne);
-            timeEditTwo = view.findViewById(R.id.timeTwo);
-        }
-    }
-
-    public static class ViewHolderEmptyDay extends RecyclerView.ViewHolder {
-        public ViewHolderEmptyDay(View view) {
-            super(view);
+            time = view.findViewById(R.id.time);
         }
     }
 
@@ -181,18 +144,17 @@ public class ScheduleFragmentPagerAdapter extends RecyclerView.Adapter {
         private final TextInputLayout educatorHint;
 
 
-        public ViewHolderLesson(View view) {
+        ViewHolderLesson(View view) {
             super(view);
             timeEditOne = view.findViewById(R.id.timeOne);
             timeEditTwo = view.findViewById(R.id.timeTwo);
             subjectEdit = view.findViewById(R.id.subject);
-            audienceEdit = view.findViewById(R.id.audience);
-            educatorEdit = view.findViewById(R.id.educator);
+            audienceEdit = view.findViewById(R.id.timeLesson);
+            educatorEdit = view.findViewById(R.id.day);
             typelessonEdit = view.findViewById(R.id.typelesson);
             subjectHint = view.findViewById(R.id.subject_hint);
             audienceHint = view.findViewById(R.id.audience_hint);
             educatorHint = view.findViewById(R.id.educator_hint);
-
         }
     }
 }

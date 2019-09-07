@@ -53,7 +53,6 @@
                 android:layout_marginTop="1dp"
                 android:layout_toEndOf="@id/timeOne">
 
-
                 <TextView
                     android:id="@+id/typelesson"
                     style="?attr/typelessonStyle"
@@ -64,6 +63,7 @@
                     android:textAlignment="center"
                     android:textSize="16sp"
                     tools:text="Тип занятия" />
+
             </RelativeLayout>
 
         </RelativeLayout>
@@ -126,7 +126,7 @@
                     tools:hint="Преподаватель">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/educator"
+                        android:id="@+id/day"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
@@ -157,7 +157,7 @@
                     tools:hint="Аудитория">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/audience"
+                        android:id="@+id/timeLesson"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/audience_hint"

@@ -54,8 +54,7 @@ public class TabDaysAdapter extends RecyclerView.Adapter<TabDaysAdapter.ViewHold
     @NotNull
     @Override
     public ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_tab_day, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tab_day, parent, false);
         return new ViewHolder(view);
     }
 

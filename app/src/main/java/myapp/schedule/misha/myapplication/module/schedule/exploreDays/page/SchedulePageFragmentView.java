@@ -1,6 +1,7 @@
 package myapp.schedule.misha.myapplication.module.schedule.exploreDays.page;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import myapp.schedule.misha.myapplication.common.core.BaseView;
 import myapp.schedule.misha.myapplication.entity.Lesson;
@@ -15,8 +16,9 @@ public interface SchedulePageFragmentView extends BaseView {
 
     void hideErrorView();
 
-    void updateList(ArrayList<Lesson> lessonList);
+    void updateView(List<Lesson> lessonList);
 
     void setWeek(int position);
 
+    void setEmptyDay();
 }

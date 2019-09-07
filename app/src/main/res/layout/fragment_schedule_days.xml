@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -14,15 +16,16 @@
 
     <View
         android:id="@+id/viewLine"
+        style="?attr/lineColorStyle"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_below="@+id/rv_tab"
-        style="?attr/lineColorStyle"/>
+        android:layout_below="@+id/rv_tab" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:layout_below="@+id/viewLine" />
+        android:layout_below="@+id/viewLine"
+        android:layout_marginTop="@dimen/spacing_small" />
+
 </RelativeLayout>

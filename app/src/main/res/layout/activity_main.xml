@@ -37,7 +37,6 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -76,7 +75,6 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:menu="@menu/menu_nav_drawer" />
 
-    <include layout="@layout/recycler_view" />
 </RelativeLayout>
 
 

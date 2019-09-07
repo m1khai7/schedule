@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.PopupMenu;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
@@ -63,7 +61,7 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
         int positionWeek = getArguments().getInt(Constants.SELECTED_WEEK);
         int day = getArguments().getInt(Constants.DAY);
         presenter = new EditSchedulePagePresenter(getContext(), positionWeek, day);
-        rvadapter = new EditScheduleFragmentPagerAdapter(presenter,getContext());
+        rvadapter = new EditScheduleFragmentPagerAdapter(presenter, getContext());
     }
 
     @Override
@@ -118,7 +116,7 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
 
     @NonNull
     @Override
-    protected BasePresenter getSchedulePagePresenter() {
+    protected BasePresenter getPresenter() {
         return presenter;
     }
 
@@ -143,12 +141,11 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
     }
 
     @Override
-    public void showCopyDialog(Lesson currentLesson) {
+    public void showCopyLesson(Lesson currentLesson) {
         Intent intent = new Intent(getActivity(), ActivityCopyLesson.class);
         intent.putExtra(EditSchedulePageFragment.CURRENT_LESSON, currentLesson);
         startActivity(intent);
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultOk, Intent data) {

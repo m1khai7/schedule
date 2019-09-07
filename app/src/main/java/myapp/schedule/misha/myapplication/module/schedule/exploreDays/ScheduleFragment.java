@@ -41,6 +41,13 @@ public class ScheduleFragment extends BaseMainFragment implements ScheduleFragme
     private CustomSpinnerAdapterWeeks customSpinnerAdapterWeeks;
     private SchedulePresenter presenter;
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getContext().getToolbar().removeView(spinner);
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -52,17 +59,6 @@ public class ScheduleFragment extends BaseMainFragment implements ScheduleFragme
         getContext().setCurrentTitle(null);
         presenter.init();
     }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        presenter.onWeekSelected(position);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -89,14 +85,7 @@ public class ScheduleFragment extends BaseMainFragment implements ScheduleFragme
         viewPager.setOffscreenPageLimit(6);
         dayTabs = view.findViewById(R.id.rv_tab);
         dayTabs.setAdapter(adapterTabDays);
-
         return view;
-    }
-
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -133,11 +122,6 @@ public class ScheduleFragment extends BaseMainFragment implements ScheduleFragme
         viewPager.setCurrentItem(position);
     }
 
-    @NonNull
-    @Override
-    protected BasePresenter getSchedulePagePresenter() {
-        return presenter;
-    }
 
     @Override
     public void onCreateOptionsMenu(@NotNull Menu menu, @NotNull MenuInflater inflater) {
@@ -159,9 +143,20 @@ public class ScheduleFragment extends BaseMainFragment implements ScheduleFragme
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        getContext().getToolbar().removeView(spinner);
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        presenter.onWeekSelected(position);
     }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    @NonNull
+    @Override
+    protected BasePresenter getPresenter() {
+        return presenter;
+    }
+
 
 }

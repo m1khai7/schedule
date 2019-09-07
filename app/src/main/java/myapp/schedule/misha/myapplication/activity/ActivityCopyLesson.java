@@ -6,7 +6,7 @@ import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseActivity;
 import myapp.schedule.misha.myapplication.entity.Lesson;
 import myapp.schedule.misha.myapplication.module.schedule.edit.page.EditSchedulePageFragmentView;
-import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.DialogCopyFragment;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.CopyFragment;
 
 public class ActivityCopyLesson extends BaseActivity {
 
@@ -15,7 +15,7 @@ public class ActivityCopyLesson extends BaseActivity {
         super.onCreate(savedInstanceState);
         Lesson lesson = getIntent().getParcelableExtra(EditSchedulePageFragmentView.CURRENT_LESSON);
         setCurrentTitle(getString(R.string.title_copy_lesson));
-        replaceFragment(DialogCopyFragment.newInstance(lesson));
+        replaceFragment(CopyFragment.newInstance(lesson));
     }
 
     @Override

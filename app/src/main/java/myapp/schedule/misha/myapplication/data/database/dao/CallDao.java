@@ -12,9 +12,9 @@ import myapp.schedule.misha.myapplication.entity.Calls;
 
 public class CallDao extends AbsDao<Calls> {
 
-    public final static String ID = "id";
-    public final static String TIME = "time_lesson";
-    public static final String[] ALL_SET_PROPERTIES = new String[]{ID, TIME};
+    private final static String ID = "id";
+    private final static String TIME = "time_lesson";
+    private static final String[] ALL_SET_PROPERTIES = new String[]{ID, TIME};
     private static volatile CallDao instance;
 
     private CallDao() {
@@ -45,7 +45,6 @@ public class CallDao extends AbsDao<Calls> {
         return calls;
     }
 
-
     @Override
     protected ContentValues makeContentValuesFromInstance(Calls instance) {
         ContentValues set = new ContentValues();
@@ -55,10 +54,8 @@ public class CallDao extends AbsDao<Calls> {
     }
 
     public void initTable() {
-        ArrayList<Calls> dd = getAllData();
-        if (!dd.isEmpty()) return;
+        if (!getAllData().isEmpty()) return;
         ArrayList<Calls> calls = new ArrayList<>();
-
         calls.add(new Calls(String.valueOf(1), "8:30"));
         calls.add(new Calls(String.valueOf(2), "10:00"));
         calls.add(new Calls(String.valueOf(3), "10:10"));
@@ -71,7 +68,6 @@ public class CallDao extends AbsDao<Calls> {
         calls.add(new Calls(String.valueOf(10), "17:10"));
         calls.add(new Calls(String.valueOf(11), "17:30"));
         calls.add(new Calls(String.valueOf(12), "19:00"));
-
         insertAll(calls);
     }
 

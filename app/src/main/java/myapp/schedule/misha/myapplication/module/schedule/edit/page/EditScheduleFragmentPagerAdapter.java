@@ -88,8 +88,8 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
             timeEditOne = view.findViewById(R.id.timeOne);
             timeEditTwo = view.findViewById(R.id.timeTwo);
             subjectEdit = view.findViewById(R.id.subject);
-            audienceEdit = view.findViewById(R.id.audience);
-            educatorEdit = view.findViewById(R.id.educator);
+            audienceEdit = view.findViewById(R.id.timeLesson);
+            educatorEdit = view.findViewById(R.id.day);
             typeLessonEdit = view.findViewById(R.id.typelesson);
             textViewOptions = view.findViewById(R.id.menuOptions);
             subjectEdit.setOnClickListener(this);
@@ -135,10 +135,10 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
             if (id == R.id.subject) {
                 callback.onSubjectClick(position);
             }
-            if (id == R.id.audience) {
+            if (id == R.id.timeLesson) {
                 callback.onAudienceClick(position);
             }
-            if (id == R.id.educator) {
+            if (id == R.id.day) {
                 callback.onEducatorClick(position);
             }
             if (id == R.id.typelesson) {

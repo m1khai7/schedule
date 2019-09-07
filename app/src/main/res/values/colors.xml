@@ -14,4 +14,9 @@
     <color name="whiteE6">#e6e6e6</color>
     <color name="greyB3">#b3b3b3</color>
     <color name="greyBF">#bfbfbf</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="body_text_1">#de000000</color>
+    <color name="body_text_2">#8a000000</color>
+    <color name="body_text_3">#60000000</color>
 </resources>

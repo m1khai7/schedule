@@ -100,7 +100,7 @@ public class EditDataFragmentPage extends BaseMainFragment implements EditDataFr
 
     @NotNull
     @Override
-    protected BasePresenter getSchedulePagePresenter() {
+    protected BasePresenter getPresenter() {
         return presenter;
     }
 
