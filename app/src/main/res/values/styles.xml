@@ -165,7 +165,7 @@
 
 
     <style name="ToolBarLightStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@color/whiteEF</item>
+        <item name="android:background">@color/whiteFA</item>
     </style>
 
     <style name="LightLineColorStyle" parent="Widget.AppCompat.Toolbar">
@@ -194,7 +194,7 @@
     </style>
 
     <style name="BottomNavigationLightView" parent="Widget.Design.BottomNavigationView">
-        <item name="itemBackground">@color/whiteEF</item>
+        <item name="itemBackground">@color/whiteFA</item>
         <item name="itemIconTint">@drawable/nav_bottom_view_light</item>
     </style>
 

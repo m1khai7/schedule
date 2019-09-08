@@ -1,107 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/spacing_small">
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_middle">
 
-    <LinearLayout
-        android:id="@+id/linLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="end"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnSelect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/spacing_medium"
-            android:text="@string/dialog_button_copy"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/spacing_medium"
-            android:text="@string/close"
-            android:textSize="14sp" />
-    </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/relLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/weeks"
-        android:layout_marginEnd="@dimen/spacing_normal"
-        android:layout_marginBottom="@dimen/spacing_small">
+        android:layout_marginTop="@dimen/spacing_small">
 
         <ImageView
-            android:id="@+id/imageAdd"
+            android:id="@+id/imageSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/spacing_middle"
+            android:src="@drawable/ic_subject_black" />
+
+        <EditText
+            android:id="@+id/textSubject"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:layout_toStartOf="@+id/imageSelectSubject"
+            android:layout_toEndOf="@+id/imageSubject"
+            android:hint="@string/subject"
+            android:textSize="@dimen/text_size_large"
+            tools:text="@string/subject" />
+
+        <ImageView
+            android:id="@+id/imageSelectSubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="2dp"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textSize="16sp"
-            tools:text="8:00-10:00" />
-
-        <TextView
-            android:id="@+id/timeLesson"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="2dp"
-            android:layout_toStartOf="@id/imageAdd"
-            android:maxLines="1"
-            android:padding="@dimen/spacing_small"
-            android:singleLine="true"
-            android:textSize="16sp"
-            tools:text="8:00-10:00" />
-
-
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/day"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="@dimen/spacing_normal"
-            android:layout_toStartOf="@id/timeLesson"
-            android:background="@android:color/transparent"
-            android:textSize="16sp" />
+            android:layout_margin="@dimen/spacing_middle"
+            tools:src="@drawable/ic_down_arrow_black" />
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/weeks"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linLay"
-        android:layout_marginStart="@dimen/spacing_normal"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:layout_marginEnd="@dimen/spacing_normal"
-        android:layout_marginBottom="@dimen/spacing_medium"
-        android:maxLines="1"
-        android:padding="@dimen/spacing_small"
-        android:singleLine="true"
-        android:text="@string/select_all"
-        android:textSize="16sp" />
+        android:layout_marginTop="@dimen/spacing_small">
+
+        <ImageView
+            android:id="@+id/imageEducator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/spacing_middle"
+            android:src="@drawable/ic_educator_black" />
+
+        <EditText
+            android:id="@+id/textEducator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:layout_toStartOf="@+id/imageSelectEducator"
+            android:layout_toEndOf="@+id/imageEducator"
+            android:hint="@string/educator"
+            android:textSize="@dimen/text_size_large"
+            tools:text="@string/educator" />
+
+        <ImageView
+            android:id="@+id/imageSelectEducator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/spacing_middle"
+            tools:src="@drawable/ic_down_arrow_black" />
+
+    </RelativeLayout>
 
 
-    <View
-        android:id="@+id/viewLine"
-        style="?attr/lineColorStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="0.5dp"
-        android:layout_above="@+id/relLay"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:layout_marginBottom="@dimen/spacing_medium" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small">
+
+        <ImageView
+            android:id="@+id/imageAudience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/spacing_middle"
+            android:src="@drawable/ic_audience_black" />
+
+        <EditText
+            android:id="@+id/textAudience"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:layout_toStartOf="@+id/imageSelectAudience"
+            android:layout_toEndOf="@+id/imageAudience"
+            android:hint="@string/audience"
+            android:textSize="@dimen/text_size_large"
+            tools:text="@string/audience" />
+
+        <ImageView
+            android:id="@+id/imageSelectAudience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/spacing_middle"
+            tools:src="@drawable/ic_down_arrow_black" />
+
+    </RelativeLayout>
 
 
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small">
+
+        <ImageView
+            android:id="@+id/imageTypelesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_margin="@dimen/spacing_middle"
+            android:src="@drawable/ic_typelesson_black" />
+
+        <EditText
+            android:id="@+id/textTypelesson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:layout_toStartOf="@+id/imageSelectTypelesson"
+            android:layout_toEndOf="@+id/imageTypelesson"
+            android:hint="@string/typelesson"
+            android:textSize="@dimen/text_size_large"
+            tools:text="@string/typelesson" />
+
+        <ImageView
+            android:id="@+id/imageSelectTypelesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="@dimen/spacing_middle"
+            tools:src="@drawable/ic_down_arrow_black" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_medium"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/spacing_medium"
+        android:gravity="end"
+        android:paddingTop="@dimen/spacing_normal"
+        android:text="@string/next"
+        android:textAlignment="center"
+        android:textSize="14sp" />
+
+</LinearLayout>

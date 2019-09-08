@@ -35,6 +35,9 @@
     <string name="add">Добавить</string>
     <string name="close">Закрыть</string>
     <string name="educator">Преподаватель</string>
+    <string name="subject">Предмет</string>
+    <string name="audience">Аудитория</string>
+    <string name="typelesson">Тип предмета</string>
     <string name="clear_subjects">Очистить предметы?</string>
     <string name="clear_audience">Очистить аудитории?</string>
     <string name="clear_educators">Очистить преподавателей?</string>
@@ -89,8 +92,6 @@
     <string name="dialog_fragment_title_audience">Аудитории</string>
     <string name="dialog_fragment_title_subject">Предметы</string>
     <string name="dialog_button_edit">Сохранить</string>
-    <string name="dialog_button_select_data">Выбрать данные</string>
-    <string name="dialog_button_create_data">Добавить данные</string>
     <string name="title_edit_subject">Редактировать предмет</string>
     <string name="title_edit_audience">Редактировать аудиторию</string>
     <string name="title_edit_educator">Редактировать преподавателя</string>
@@ -99,9 +100,8 @@
     <string name="menu_item_copy_previous_lesson">Скопировать в предыдущее занятие</string>
     <string name="menu_item_copy_next_lesson">Скопировать в следующее занятие</string>
     <string name="clear_lesson">Очистить занятие</string>
-    <string name="menu_main_title">Выберите группу</string>
-    <string name="licenses">Лицензии открытого ПО</string>
     <string name="create_lesson">Добавить занятие</string>
+    <string name="title_create_lesson">Данные занятия</string>
     <string name="title_dialog_licenses">Лицензии открытого ПО</string>
     <string name="copy_other_day">Скопировать в другой день</string>
     <string name="dialog_button_copy">Скопировать</string>
@@ -124,6 +124,6 @@
     <string name="empty_list_selected_day">Добавьте занятие (день недели и время)</string>
     <string name="dialog_clear_day">Вы уверены что хотите очистить день?</string>
     <string name="title_select_theme">Выберите тему</string>
-    <string name="title_select_action">Выберите действие</string>
     <string name="dialog_button_delete">Удалить</string>
+    <string name="next">Далее</string>
 </resources>

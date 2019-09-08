@@ -80,13 +80,13 @@ public class MenuFragment extends BaseMainFragment implements MenuFragmentView, 
 
     private void setThemeColorViews() {
         if (Preferences.getInstance().getSelectedTheme().equals(DARK_THEME)) {
-            createLesson.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_date_white, 0, R.drawable.ic_arrow_white, 0);
+            createLesson.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_createlesson_white, 0, R.drawable.ic_arrow_white, 0);
             dataStartSemester.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_palette_white, 0, R.drawable.ic_arrow_white, 0);
             changeTheme.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_send_white, 0, R.drawable.ic_arrow_white, 0);
             transferData.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_person_white, 0, R.drawable.ic_arrow_white, 0);
             developerInfo.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_info_white, 0, R.drawable.ic_arrow_white, 0);
         } else {
-            createLesson.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_date_black, 0, R.drawable.ic_arrow_black, 0);
+            createLesson.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_createlesson_black, 0, R.drawable.ic_arrow_black, 0);
             dataStartSemester.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_palette_black, 0, R.drawable.ic_arrow_black, 0);
             changeTheme.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_send_black, 0, R.drawable.ic_arrow_black, 0);
             transferData.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_person_black, 0, R.drawable.ic_arrow_black, 0);
