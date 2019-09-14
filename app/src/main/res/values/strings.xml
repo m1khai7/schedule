@@ -126,4 +126,6 @@
     <string name="title_select_theme">Выберите тему</string>
     <string name="dialog_button_delete">Удалить</string>
     <string name="next">Далее</string>
+    <string name="selected_weeks">Выбранные недели: %1$s</string>
+    <string name="error_selected_week">Выберите минимум одну неделю</string>
 </resources>

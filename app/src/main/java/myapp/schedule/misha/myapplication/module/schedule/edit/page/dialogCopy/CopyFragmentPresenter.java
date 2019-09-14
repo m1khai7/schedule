@@ -29,9 +29,9 @@ public class CopyFragmentPresenter extends BaseMainPresenter<CopyFragmentView> i
     }
 
     @Override
-    public void onImageDeleteClick(ArrayList<CopyLesson> itemList, int position) {
-        itemList.remove(position);
-        getView().updateItemsAdapter(listLessonsForCopy);
+    public void onImageDeleteClick(ArrayList<CopyLesson> listLessons, int position) {
+        listLessons.remove(position);
+        getView().updateItemsAdapter(listLessons);
     }
 
     public void showWeeks() {

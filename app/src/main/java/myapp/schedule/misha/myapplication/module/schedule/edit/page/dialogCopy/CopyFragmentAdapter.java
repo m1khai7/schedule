@@ -25,12 +25,12 @@ import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DA
 
 public class CopyFragmentAdapter extends RecyclerView.Adapter<CopyFragmentAdapter.ViewHolder> {
 
-    private List<CopyLesson> listItems;
+    private ArrayList<CopyLesson> listItems;
 
     private SimpleItemClickListener itemClickListener;
 
-    public CopyFragmentAdapter(ArrayList<CopyLesson> items, SimpleItemClickListener simpleItemClickListener) {
-        this.listItems = items;
+    public CopyFragmentAdapter(ArrayList<CopyLesson> listLessons, SimpleItemClickListener simpleItemClickListener) {
+        this.listItems = listLessons;
         this.itemClickListener = simpleItemClickListener;
     }
 
@@ -38,6 +38,11 @@ public class CopyFragmentAdapter extends RecyclerView.Adapter<CopyFragmentAdapte
     public CopyFragmentAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_copy_lesson, parent, false);
         return new ViewHolder(view);
+    }
+
+    public void setListItems(ArrayList<CopyLesson> listLessons) {
+        this.listItems = listLessons;
+        notifyDataSetChanged();
     }
 
     @Override

@@ -7,4 +7,5 @@ public interface DialogSelectWeekFragmentView extends BaseView {
     int LIST_ITEMS = 1313;
 
     void selectAll();
+
 }

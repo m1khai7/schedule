@@ -42,8 +42,6 @@ import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.w
 
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DARK_THEME;
 
-//Todo прочитать про наследование инкапсуляцию интерфейсы абстрактные классы и generic.
-
 public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
         View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
@@ -52,6 +50,8 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
     private ArrayList<Weeks> listWeeks = new ArrayList<>();
 
     private ArrayList<CopyLesson> listLessonsForCopy = new ArrayList<>();
+
+    private CopyFragmentAdapter adapter;
 
     private ArrayList<Weeks> listWeeksSelected = new ArrayList<>();
 
@@ -108,6 +108,8 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
         spinnerAdapter.addAll(listDays);
         spinnerDay.setAdapter(spinnerAdapter);
         spinnerDay.setSelection(0);
+        adapter = new CopyFragmentAdapter(listLessonsForCopy, (position, view1) ->  presenter.onImageDeleteClick(listLessonsForCopy, position));
+        rvItems.setAdapter(adapter);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         tvLesson.setText(ScheduleApp.getStr(R.string.timelesson, CallDao.getInstance().getItemByID(1).getName(), CallDao.getInstance().getItemByID(2).getName()));
         listWeeks = new Weeks().getNewListWeeks();
@@ -139,8 +141,6 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
         imageAdd.setOnClickListener(this);
         view.findViewById(R.id.btn_ok).setOnClickListener(v -> presenter.onClickCopyLesson());
         view.findViewById(R.id.btn_cancel).setOnClickListener(v -> getActivity().finish());
-
-
     }
 
     @Override
@@ -163,16 +163,9 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
     public void updateItemsAdapter(ArrayList<CopyLesson> listLessons) {
-        CopyFragmentAdapter dialogFragmentListItemsAdapter = new CopyFragmentAdapter(listLessons, (position, view1) ->
-                presenter.onImageDeleteClick(listLessons, position));
-        listLessonsForCopy = listLessons;
-        rvItems.setAdapter(dialogFragmentListItemsAdapter);
+        this.listLessonsForCopy = listLessons;
+        adapter.setListItems(listLessons);
     }
 
     @Override
@@ -203,7 +196,7 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
                 tvWeeks.setText(R.string.select_all);
                 setAllWeeks();
             } else {
-                tvWeeks.setText(stringSelectedWeeks);
+                tvWeeks.setText(ScheduleApp.getStr(R.string.selected_weeks, stringSelectedWeeks));
             }
         }
     }

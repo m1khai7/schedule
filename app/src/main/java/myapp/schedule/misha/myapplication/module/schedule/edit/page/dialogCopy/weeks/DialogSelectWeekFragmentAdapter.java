@@ -14,7 +14,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.R;
-import myapp.schedule.misha.myapplication.SimpleItemClickListener;
 import myapp.schedule.misha.myapplication.entity.Weeks;
 
 
@@ -22,16 +21,10 @@ public class DialogSelectWeekFragmentAdapter extends RecyclerView.Adapter<Dialog
 
     private ArrayList<Weeks> listWeeks = new ArrayList<>();
 
-    private SimpleItemClickListener itemClickListener;
-
-    public DialogSelectWeekFragmentAdapter(SimpleItemClickListener simpleItemClickListener) {
-        this.itemClickListener = simpleItemClickListener;
-    }
-
+    @NotNull
     @Override
     public ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_row_week, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_row_week, parent, false);
         return new ViewHolder(view);
     }
 
@@ -54,7 +47,7 @@ public class DialogSelectWeekFragmentAdapter extends RecyclerView.Adapter<Dialog
         return listWeeks.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements CompoundButton.OnCheckedChangeListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
         private final TextView textViewWeek;
         private final CheckBox checkBoxSelected;
 
@@ -62,6 +55,7 @@ public class DialogSelectWeekFragmentAdapter extends RecyclerView.Adapter<Dialog
             super(view);
             textViewWeek = view.findViewById(R.id.textViewWeek);
             checkBoxSelected = view.findViewById(R.id.checkBoxSelected);
+            itemView.setOnClickListener(this);
             checkBoxSelected.setOnCheckedChangeListener(this);
         }
 
@@ -71,9 +65,21 @@ public class DialogSelectWeekFragmentAdapter extends RecyclerView.Adapter<Dialog
         }
 
         @Override
-        public void onCheckedChanged(CompoundButton viewChecked, boolean isChecked) {
-            itemClickListener.onItemClick(getAdapterPosition(), viewChecked);
-            listWeeks.get(getAdapterPosition()).setCheck(isChecked);
+        public void onClick(View view) {
+            if (view.getId() != R.id.checkBoxSelected) {
+                if (checkBoxSelected.isChecked()) {
+                    checkBoxSelected.setChecked(false);
+                    listWeeks.get(getAdapterPosition()).setCheck(false);
+                } else {
+                    checkBoxSelected.setChecked(true);
+                    listWeeks.get(getAdapterPosition()).setCheck(true);
+                }
+            }
+        }
+
+        @Override
+        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            listWeeks.get(getAdapterPosition()).setCheck(b);
         }
     }
 }

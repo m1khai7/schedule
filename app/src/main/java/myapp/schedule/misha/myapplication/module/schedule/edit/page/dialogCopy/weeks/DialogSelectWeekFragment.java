@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -33,9 +32,6 @@ public class DialogSelectWeekFragment extends BaseAlertDialog implements DialogS
 
     private ArrayList<Weeks> listWeeks = new ArrayList<>();
 
-    private RecyclerView rvItems;
-
-
     public static DialogSelectWeekFragment newInstance(ArrayList<Weeks> listWeeks) {
         Bundle args = new Bundle();
         args.putParcelableArrayList(Constants.LIST_ITEMS, listWeeks);
@@ -47,26 +43,33 @@ public class DialogSelectWeekFragment extends BaseAlertDialog implements DialogS
     @NotNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         presenter = new DialogSelectWeekFragmentPresenter();
+        dialogFragmentListItemsAdapter = new DialogSelectWeekFragmentAdapter();
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         listWeeks = getArguments().getParcelableArrayList(Constants.LIST_ITEMS);
         View view = layoutInflater.inflate(R.layout.dialog_rv_weeks, null);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setView(view);
-        rvItems = view.findViewById(R.id.rv_dialog_list);
+        RecyclerView rvItems = view.findViewById(R.id.rv_dialog_list);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
-        updateItemsAdapter();
-        Button btnOk = view.findViewById(R.id.btn_ok);
-        Button btnCancel = view.findViewById(R.id.btn_cancel);
-        Button btnSelectAll = view.findViewById(R.id.btn_select_all);
-        btnOk.setOnClickListener(v -> {
-            listWeeks = dialogFragmentListItemsAdapter.getListWeeks();
-            Intent intent = new Intent();
-            intent.putExtra(Constants.LIST_ITEMS, listWeeks);
-            getParentFragment().onActivityResult(DialogSelectWeekFragmentView.LIST_ITEMS, Activity.RESULT_OK, intent);
-            dismiss();
+        rvItems.setAdapter(dialogFragmentListItemsAdapter);
+        updateAdapter();
+        view.findViewById(R.id.btn_ok).setOnClickListener(v -> {
+            int countUnselectedWeek = 0;
+            for (Weeks week : listWeeks) {
+                if (!week.isChecked()) countUnselectedWeek += 1;
+            }
+            if (listWeeks.size() == countUnselectedWeek) {
+                showError(R.string.error_selected_week);
+            } else {
+                listWeeks = dialogFragmentListItemsAdapter.getListWeeks();
+                Intent intent = new Intent();
+                intent.putExtra(Constants.LIST_ITEMS, listWeeks);
+                getParentFragment().onActivityResult(DialogSelectWeekFragmentView.LIST_ITEMS, Activity.RESULT_OK, intent);
+                dismiss();
+            }
         });
-        btnCancel.setOnClickListener(v -> dismiss());
-        btnSelectAll.setOnClickListener(v -> presenter.onSelectAllClicked());
+        view.findViewById(R.id.btn_cancel).setOnClickListener(v -> dismiss());
+        view.findViewById(R.id.btn_select_all).setOnClickListener(v -> presenter.onSelectAllClicked());
         return builder.create();
     }
 
@@ -85,10 +88,7 @@ public class DialogSelectWeekFragment extends BaseAlertDialog implements DialogS
         return checkOnFullSelect;
     }
 
-    public void updateItemsAdapter() {
-        dialogFragmentListItemsAdapter = new DialogSelectWeekFragmentAdapter((position, view1) -> {
-        });
-        rvItems.setAdapter(dialogFragmentListItemsAdapter);
+    public void updateAdapter() {
         dialogFragmentListItemsAdapter.setListWeeks(listWeeks);
     }
 

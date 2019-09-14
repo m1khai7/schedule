@@ -149,5 +149,4 @@ public class MenuFragment extends BaseMainFragment implements MenuFragmentView, 
         return presenter;
     }
 
-
 }

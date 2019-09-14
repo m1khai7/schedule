@@ -8,6 +8,7 @@ import myapp.schedule.misha.myapplication.data.Repository;
 import myapp.schedule.misha.myapplication.data.RepositoryManager;
 
 public abstract class BasePresenter<View, Root> {
+
     private View view;
 
     private Root root;
