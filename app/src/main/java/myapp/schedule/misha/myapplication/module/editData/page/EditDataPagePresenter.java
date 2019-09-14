@@ -46,7 +46,6 @@ public class EditDataPagePresenter extends BaseMainPresenter<EditDataFragmentPag
         return listItems;
     }
 
-
     @Override
     public void insert(String itemName, int type) {
         SimpleItem item = null;
@@ -64,7 +63,6 @@ public class EditDataPagePresenter extends BaseMainPresenter<EditDataFragmentPag
         }
         item.setName(itemName);
         absDao.insertItem(item);
-        listItems.add(item);
         listItems = absDao.getAllData();
         getView().updateItemsAdapter(listItems);
     }

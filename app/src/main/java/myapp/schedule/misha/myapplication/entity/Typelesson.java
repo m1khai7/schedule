@@ -35,6 +35,10 @@ public class Typelesson implements Parcelable, SimpleItem {
         this.name = name;
     }
 
+    public Typelesson(String name) {
+        this.name = name;
+    }
+
     public Typelesson(Cursor cursor) {
         this.id = cursor.getString(0);
         this.name = cursor.getString(1);

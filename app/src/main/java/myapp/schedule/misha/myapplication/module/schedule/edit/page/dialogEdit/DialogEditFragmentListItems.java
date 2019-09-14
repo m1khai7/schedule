@@ -107,13 +107,13 @@ public class DialogEditFragmentListItems extends BaseAlertDialog implements Dial
         updateItemsAdapter(itemList);
     }
 
-    public void updateItemsAdapter(ArrayList<SimpleItem> subjectList) {
+    public void updateItemsAdapter(ArrayList<SimpleItem> listItems) {
         int fragmentCode = getArguments().getInt(FRAGMENT_CODE);
         int clickedPosition = getArguments().getInt(POSITION);
-        dialogFragmentListItemsAdapter = new DialogEditFragmentListItemsAdapter(subjectList, (position, view1) -> {
+        dialogFragmentListItemsAdapter = new DialogEditFragmentListItemsAdapter(listItems, (position, view1) -> {
             Intent intent = new Intent();
             intent.putExtra(POSITION, clickedPosition);
-            intent.putExtra(LIST_ITEMS, subjectList.get(position));
+            intent.putExtra(LIST_ITEMS, listItems.get(position));
             getParentFragment().onActivityResult(fragmentCode, Activity.RESULT_OK, intent);
             dismiss();
         });

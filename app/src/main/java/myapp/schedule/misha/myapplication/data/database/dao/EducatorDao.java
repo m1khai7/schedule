@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 
+import java.util.ArrayList;
+
 import myapp.schedule.misha.myapplication.data.database.AbsDao;
 import myapp.schedule.misha.myapplication.data.database.AppContentProvider;
 import myapp.schedule.misha.myapplication.entity.Educator;
@@ -23,6 +25,13 @@ public class EducatorDao extends AbsDao<Educator> {
             instance = new EducatorDao();
         }
         return instance;
+    }
+
+    public Educator getItemByName(String name) {
+        Cursor cursor = getContentResolver().query(getTableUri(), getAllColumns(),
+                EDUCATOR + EQUALS, new String[]{String.valueOf(name)}, null);
+        ArrayList<Educator> models = extractItemsFromCursor(cursor);
+        return models.isEmpty() ? null : models.get(0);
     }
 
     @Override

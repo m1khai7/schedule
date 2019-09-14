@@ -1,5 +1,6 @@
 package myapp.schedule.misha.myapplication.module.settings.lesson;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +13,34 @@ import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseMainFragment;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
+import myapp.schedule.misha.myapplication.data.database.dao.AudienceDao;
+import myapp.schedule.misha.myapplication.data.database.dao.EducatorDao;
+import myapp.schedule.misha.myapplication.data.database.dao.SubjectDao;
+import myapp.schedule.misha.myapplication.data.database.dao.TypelessonDao;
 import myapp.schedule.misha.myapplication.data.preferences.Preferences;
+import myapp.schedule.misha.myapplication.entity.Audience;
+import myapp.schedule.misha.myapplication.entity.Educator;
+import myapp.schedule.misha.myapplication.entity.Lesson;
+import myapp.schedule.misha.myapplication.entity.SimpleItem;
+import myapp.schedule.misha.myapplication.entity.Subject;
+import myapp.schedule.misha.myapplication.entity.Typelesson;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.CopyFragment;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit.DialogEditFragmentListItems;
 
+import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_AUDIENCES;
+import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_EDUCATORS;
+import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_SUBJECTS;
+import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
+import static myapp.schedule.misha.myapplication.Constants.LIST_ITEMS;
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DARK_THEME;
+import static myapp.schedule.misha.myapplication.module.schedule.edit.page.EditSchedulePageFragmentView.FRAGMENT_CODE;
+import static myapp.schedule.misha.myapplication.module.schedule.edit.page.EditSchedulePageFragmentView.ITEMS;
+import static myapp.schedule.misha.myapplication.module.schedule.edit.page.EditSchedulePageFragmentView.POSITION;
 
 //Todo прочитать про наследование инкапсуляцию интерфейсы абстрактные классы и generic.
 
@@ -38,8 +61,8 @@ public class CreateLessonFragment extends BaseMainFragment implements CreateLess
     private ImageView imageSelectAudience;
     private ImageView imageSelectEducator;
     private ImageView imageSelectTypelesson;
-
     private Button btnNext;
+    private Lesson lesson;
 
 
     public static CreateLessonFragment newInstance() {
@@ -67,6 +90,42 @@ public class CreateLessonFragment extends BaseMainFragment implements CreateLess
         setThemeColorViews();
         return view;
     }
+
+    @Override
+    public void showEditDialog(ArrayList<? extends SimpleItem> itemList, int fragmentCode) {
+        Bundle args = new Bundle();
+        args.putParcelableArrayList(ITEMS, itemList);
+        args.putInt(POSITION, 0);
+        args.putInt(FRAGMENT_CODE, fragmentCode);
+        DialogEditFragmentListItems dialogFragment = DialogEditFragmentListItems.newInstance(args);
+        dialogFragment.show(getChildFragmentManager(), DialogEditFragmentListItems.class.getSimpleName());
+    }
+
+    @Override
+    public void showCopyLesson(Lesson lesson) {
+        replaceFragment(CopyFragment.newInstance(lesson));
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultOk, Intent data) {
+        if (requestCode == FRAGMENT_SUBJECTS) {
+            Subject subject = data.getParcelableExtra(LIST_ITEMS);
+            textSubject.setText(subject.getName());
+        }
+        if (requestCode == FRAGMENT_TYPELESSONS) {
+            Typelesson typelesson = data.getParcelableExtra(LIST_ITEMS);
+            textTypelesson.setText(typelesson.getName());
+        }
+        if (requestCode == FRAGMENT_AUDIENCES) {
+            Audience audience = data.getParcelableExtra(LIST_ITEMS);
+            textAudience.setText(audience.getName());
+        }
+        if (requestCode == FRAGMENT_EDUCATORS) {
+            Educator educator = data.getParcelableExtra(LIST_ITEMS);
+            textEducator.setText(educator.getName());
+        }
+    }
+
 
     private void setThemeColorViews() {
         if (Preferences.getInstance().getSelectedTheme().equals(DARK_THEME)) {
@@ -118,19 +177,20 @@ public class CreateLessonFragment extends BaseMainFragment implements CreateLess
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.imageSelectSubject) {
-            presenter.showSubjects();
+            presenter.onSubjectClick();
         }
         if (id == R.id.imageSelectAudience) {
-            presenter.showAudiences();
+            presenter.onAudienceClick();
         }
         if (id == R.id.imageSelectEducator) {
-            presenter.showEducators();
+            presenter.onEducatorClick();
         }
         if (id == R.id.imageSelectTypelesson) {
-            presenter.showTypelessons();
+            presenter.onTypelessonClick();
         }
         if (id == R.id.btnNext) {
-            presenter.onNext();
+            presenter.onNext(textSubject.getText().toString(), textAudience.getText().toString(),
+                    textEducator.getText().toString(), textTypelesson.getText().toString());
         }
     }
 

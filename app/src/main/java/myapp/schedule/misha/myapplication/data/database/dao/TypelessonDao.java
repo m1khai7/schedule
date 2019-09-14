@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 
+import java.util.ArrayList;
+
 import myapp.schedule.misha.myapplication.data.database.AbsDao;
 import myapp.schedule.misha.myapplication.data.database.AppContentProvider;
 import myapp.schedule.misha.myapplication.entity.Typelesson;
@@ -23,6 +25,13 @@ public class TypelessonDao extends AbsDao<Typelesson> {
             instance = new TypelessonDao();
         }
         return instance;
+    }
+
+    public Typelesson getItemByName(String name) {
+        Cursor cursor = getContentResolver().query(getTableUri(), getAllColumns(),
+                TYPELESSON + EQUALS, new String[]{String.valueOf(name)}, null);
+        ArrayList<Typelesson> models = extractItemsFromCursor(cursor);
+        return models.isEmpty() ? null : models.get(0);
     }
 
     @Override

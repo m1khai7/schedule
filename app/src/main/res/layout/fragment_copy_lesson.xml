@@ -43,7 +43,7 @@
         android:id="@+id/relLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/weeks"
+        android:layout_above="@+id/relLayWeeks"
         android:layout_marginEnd="@dimen/spacing_normal"
         android:layout_marginBottom="@dimen/spacing_small">
 
@@ -83,11 +83,10 @@
             android:layout_toStartOf="@id/timeLesson"
             android:background="@android:color/transparent"
             android:textSize="16sp" />
-
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/weeks"
+    <RelativeLayout
+        android:id="@+id/relLayWeeks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linLay"
@@ -95,12 +94,26 @@
         android:layout_marginTop="@dimen/spacing_small"
         android:layout_marginEnd="@dimen/spacing_normal"
         android:layout_marginBottom="@dimen/spacing_medium"
-        android:maxLines="1"
-        android:padding="@dimen/spacing_small"
-        android:singleLine="true"
-        android:text="@string/select_all"
-        android:textSize="16sp" />
+        android:padding="@dimen/spacing_small">
 
+        <TextView
+            android:id="@+id/titleWeeks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@string/selected_weeks"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/weeks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:layout_toEndOf="@+id/titleWeeks"
+            android:text="@string/select_all"
+            android:textSize="16sp" />
+    </RelativeLayout>
 
     <View
         android:id="@+id/viewLine"
@@ -110,6 +123,5 @@
         android:layout_above="@+id/relLay"
         android:layout_marginTop="@dimen/spacing_medium"
         android:layout_marginBottom="@dimen/spacing_medium" />
-
 
 </RelativeLayout>

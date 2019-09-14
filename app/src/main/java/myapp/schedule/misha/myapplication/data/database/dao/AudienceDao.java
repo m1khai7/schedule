@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 
+import java.util.ArrayList;
+
 import myapp.schedule.misha.myapplication.data.database.AbsDao;
 import myapp.schedule.misha.myapplication.data.database.AppContentProvider;
 import myapp.schedule.misha.myapplication.entity.Audience;
@@ -42,6 +44,13 @@ public class AudienceDao extends AbsDao<Audience> {
         audience.setId(getString(cursor, ID));
         audience.setName(getString(cursor, AUDIENCE));
         return audience;
+    }
+
+    public Audience getItemByName(String name) {
+        Cursor cursor = getContentResolver().query(getTableUri(), getAllColumns(),
+                AUDIENCE + EQUALS, new String[]{String.valueOf(name)}, null);
+        ArrayList<Audience> models = extractItemsFromCursor(cursor);
+        return models.isEmpty() ? null : models.get(0);
     }
 
     @Override

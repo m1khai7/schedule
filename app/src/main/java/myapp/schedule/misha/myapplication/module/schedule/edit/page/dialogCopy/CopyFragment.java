@@ -1,5 +1,6 @@
 package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -63,9 +65,9 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
 
     private TextView tvWeeks;
 
-    private ImageView imageAdd;
+    private RelativeLayout relLayWeeks;
 
-    private PopupMenu popupMenu;
+    private ImageView imageAdd;
 
     private int lessonPosition;
 
@@ -108,7 +110,7 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
         spinnerAdapter.addAll(listDays);
         spinnerDay.setAdapter(spinnerAdapter);
         spinnerDay.setSelection(0);
-        adapter = new CopyFragmentAdapter(listLessonsForCopy, (position, view1) ->  presenter.onImageDeleteClick(listLessonsForCopy, position));
+        adapter = new CopyFragmentAdapter(listLessonsForCopy, (position, view1) -> presenter.onImageDeleteClick(listLessonsForCopy, position));
         rvItems.setAdapter(adapter);
         rvItems.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
         tvLesson.setText(ScheduleApp.getStr(R.string.timelesson, CallDao.getInstance().getItemByID(1).getName(), CallDao.getInstance().getItemByID(2).getName()));
@@ -127,16 +129,14 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
     private void setView(View view) {
         spinnerDay = view.findViewById(R.id.day);
         rvItems = view.findViewById(R.id.rv_dialog_list);
+        relLayWeeks = view.findViewById(R.id.relLayWeeks);
         tvWeeks = view.findViewById(R.id.weeks);
         tvLesson = view.findViewById(R.id.timeLesson);
         imageAdd = view.findViewById(R.id.imageAdd);
     }
 
     private void setListeners(View view) {
-        popupMenu = new PopupMenu(view.getContext(), tvWeeks);
-        popupMenu.inflate(R.menu.menu_weeks);
-        popupMenu.setOnMenuItemClickListener(this);
-        tvWeeks.setOnClickListener(this);
+        relLayWeeks.setOnClickListener(this);
         tvLesson.setOnClickListener(this);
         imageAdd.setOnClickListener(this);
         view.findViewById(R.id.btn_ok).setOnClickListener(v -> presenter.onClickCopyLesson());
@@ -196,24 +196,29 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
                 tvWeeks.setText(R.string.select_all);
                 setAllWeeks();
             } else {
-                tvWeeks.setText(ScheduleApp.getStr(R.string.selected_weeks, stringSelectedWeeks));
+                tvWeeks.setText(stringSelectedWeeks);
             }
         }
     }
+
+    private void getPopupMenu(Context context, View view, int id) {
+        PopupMenu popupMenu = new PopupMenu(context, view);
+        popupMenu.inflate(id);
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.show();
+    }
+
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.imageAdd) {
             presenter.onImageAddClick(lessonPosition, spinnerDay.getSelectedItemPosition(), tvLesson.getText().toString());
         }
-        if (v.getId() == R.id.weeks) {
-            popupMenu.show();
+        if (v.getId() == R.id.relLayWeeks) {
+            getPopupMenu(v.getContext(), relLayWeeks, R.menu.menu_weeks);
         }
         if (v.getId() == R.id.day) {
-            PopupMenu popup = new PopupMenu(v.getContext(), spinnerDay);
-            popup.inflate(R.menu.menu_days);
-            popup.setOnMenuItemClickListener(this);
-            popup.show();
+            getPopupMenu(v.getContext(), spinnerDay, R.menu.menu_days);
         }
         if (v.getId() == R.id.timeLesson) {
             presenter.onDialogLessonClick();

@@ -37,7 +37,7 @@
     <string name="educator">Преподаватель</string>
     <string name="subject">Предмет</string>
     <string name="audience">Аудитория</string>
-    <string name="typelesson">Тип предмета</string>
+    <string name="typelesson">Тип занятия</string>
     <string name="clear_subjects">Очистить предметы?</string>
     <string name="clear_audience">Очистить аудитории?</string>
     <string name="clear_educators">Очистить преподавателей?</string>
@@ -106,7 +106,7 @@
     <string name="copy_other_day">Скопировать в другой день</string>
     <string name="dialog_button_copy">Скопировать</string>
     <string name="title_dialog_rv_weeks">Выбор недель</string>
-    <string name="select_all">Все недели</string>
+    <string name="select_all">Все</string>
     <string name="current_day">Текущая дата</string>
     <string name="selectively_week">Выборочно</string>
     <string name="monday">Понедельник</string>
@@ -126,6 +126,6 @@
     <string name="title_select_theme">Выберите тему</string>
     <string name="dialog_button_delete">Удалить</string>
     <string name="next">Далее</string>
-    <string name="selected_weeks">Выбранные недели: %1$s</string>
+    <string name="selected_weeks">Выбранные недели:</string>
     <string name="error_selected_week">Выберите минимум одну неделю</string>
 </resources>

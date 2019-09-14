@@ -32,6 +32,10 @@ public class Educator implements Parcelable, SimpleItem {
         this.name = name;
     }
 
+    public Educator(String name) {
+        this.name = name;
+    }
+
     public Educator(Cursor cursor) {
         this.id = cursor.getString(0);
         this.name = cursor.getString(1);

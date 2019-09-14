@@ -10,6 +10,7 @@ import android.net.Uri;
 import java.util.ArrayList;
 
 import myapp.schedule.misha.myapplication.ScheduleApp;
+import myapp.schedule.misha.myapplication.entity.Subject;
 
 /**
  * Abstract data access object.

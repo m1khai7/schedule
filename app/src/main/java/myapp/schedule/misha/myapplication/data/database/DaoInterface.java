@@ -2,6 +2,8 @@ package myapp.schedule.misha.myapplication.data.database;
 
 import java.util.ArrayList;
 
+import myapp.schedule.misha.myapplication.entity.Subject;
+
 public interface DaoInterface<T> {
 
     T getItemByID(long id);

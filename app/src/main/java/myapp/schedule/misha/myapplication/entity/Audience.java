@@ -33,6 +33,10 @@ public class Audience implements Parcelable, SimpleItem {
     }
 
 
+    public Audience(String name) {
+        this.name = name;
+    }
+
     public Audience(Cursor cursor) {
         this.id = cursor.getString(0);
         this.name = cursor.getString(1);

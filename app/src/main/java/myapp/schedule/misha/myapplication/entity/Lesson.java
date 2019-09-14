@@ -51,7 +51,6 @@ public class Lesson implements Parcelable {
 
     }
 
-
     public Lesson(int number_week, int number_day, int number_lesson, int id_subject, int id_audience, int id_educator, int id_typelesson) {
         this.number_week = String.valueOf(number_week);
         this.number_day = String.valueOf(number_day);

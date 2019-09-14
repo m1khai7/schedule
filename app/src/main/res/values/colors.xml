@@ -15,5 +15,31 @@
     <color name="greyB3">#b3b3b3</color>
     <color name="greyBF">#bfbfbf</color>
 
+
+    <color name="primary">#ffffff</color>
+    <color name="accent">#b39ddb</color>
+    <color name="accent_2">#373334</color>
+    <color name="accent_3">#FF5073A2</color>
+    <color name="background_root">#f1f1f1</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="body_text_1">#de000000</color>
     <color name="body_text_2">#8a000000</color>
+    <color name="body_text_3">#60000000</color>
+
+    <color name="filter_buttons_bgr">#fafafa</color>
+
+    <color name="warm_two">#000000</color>
+
+    <color name="border_gray_transparent">#90aaaaaa</color>
+
+    <color name="border_gray">#d8d8d8</color>
+    <color name="border_gray2">#dcdcdc</color>
+
+    <color name="purple_gray">#231F20</color>
+    <color name="warm_gray">#7c7c7c</color>
+
+    <color name="purple_brown">#231f20</color>
+    <color name="header_color">#f7f7f7</color>
+
 </resources>

@@ -49,6 +49,10 @@ public class Subject implements Parcelable, SimpleItem {
 
     }
 
+    public Subject(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return name;
