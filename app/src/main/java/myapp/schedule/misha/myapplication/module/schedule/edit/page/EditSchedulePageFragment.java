@@ -200,7 +200,6 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
         }
     }
 
-
     @Override
     public void onClick(View v) {
         int id = v.getId();

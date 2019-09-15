@@ -26,6 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/viewLine"
-        android:layout_marginTop="@dimen/spacing_small" />
+        android:layout_marginTop="@dimen/spacing_micro" />
 
 </RelativeLayout>

@@ -119,7 +119,7 @@
 
     <style name="CardViewDarkStyle" parent="CardView">
         <item name="cardCornerRadius">@dimen/spacing_medium</item>
-        <item name="cardElevation">@dimen/spacing_small</item>
+        <item name="cardElevation">@dimen/spacing_micro</item>
         <item name="cardBackgroundColor">@color/black56</item>
     </style>
 
@@ -189,7 +189,7 @@
 
     <style name="CardViewLightStyle" parent="CardView">
         <item name="cardCornerRadius">@dimen/spacing_medium</item>
-        <item name="cardElevation">@dimen/spacing_small</item>
+        <item name="cardElevation">@dimen/spacing_micro</item>
         <item name="cardBackgroundColor">@color/white</item>
     </style>
 

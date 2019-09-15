@@ -10,16 +10,14 @@ import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.C
 
 public class ActivityCopyLesson extends BaseActivity {
 
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Lesson lesson = getIntent().getParcelableExtra(EditSchedulePageFragmentView.CURRENT_LESSON);
-        setCurrentTitle(getString(R.string.title_copy_lesson));
         replaceFragment(CopyFragment.newInstance(lesson));
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_copy;
+        return R.layout.activity_default;
     }
 }

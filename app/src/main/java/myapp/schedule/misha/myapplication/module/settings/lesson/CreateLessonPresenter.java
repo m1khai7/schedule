@@ -51,32 +51,28 @@ public class CreateLessonPresenter extends BaseMainPresenter<CreateLessonView> i
 
     @Override
     public void onNext(String nameSubject, String nameAudience, String nameEducator, String nameTypelesson) {
-        Lesson lesson = new Lesson();
         Subject subject = SubjectDao.getInstance().getItemByName(nameSubject);
         Audience audience = AudienceDao.getInstance().getItemByName(nameAudience);
         Educator educator = EducatorDao.getInstance().getItemByName(nameEducator);
         Typelesson typelesson = TypelessonDao.getInstance().getItemByName(nameTypelesson);
         if (subject == null) {
             SubjectDao.getInstance().insertItem(new Subject(nameSubject));
-        } else {
-            lesson.setId_subject(subject.getId());
+            subject = SubjectDao.getInstance().getItemByName(nameSubject);
         }
         if (audience == null) {
             AudienceDao.getInstance().insertItem(new Audience(nameAudience));
-        } else {
-            lesson.setId_audience(audience.getId());
+            audience = AudienceDao.getInstance().getItemByName(nameAudience);
         }
         if (educator == null) {
             EducatorDao.getInstance().insertItem(new Educator(nameEducator));
-        } else {
-            lesson.setId_educator(educator.getId());
+            educator = EducatorDao.getInstance().getItemByName(nameEducator);
         }
         if (typelesson == null) {
             TypelessonDao.getInstance().insertItem(new Typelesson(nameTypelesson));
-        } else {
-            lesson.setId_typelesson(typelesson.getId());
+            typelesson = TypelessonDao.getInstance().getItemByName(nameTypelesson);
+
         }
-        getView().showCopyLesson(lesson);
+        getView().showCopyLesson(new Lesson(subject.getId(), audience.getId(), educator.getId(), typelesson.getId()));
     }
 }
 

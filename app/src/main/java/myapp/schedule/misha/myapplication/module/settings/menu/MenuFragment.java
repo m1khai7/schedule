@@ -13,9 +13,12 @@ import android.widget.TextView;
 import org.jetbrains.annotations.NotNull;
 
 import myapp.schedule.misha.myapplication.R;
+import myapp.schedule.misha.myapplication.activity.ActivityCopyLesson;
+import myapp.schedule.misha.myapplication.activity.ActivityCreateLesson;
 import myapp.schedule.misha.myapplication.common.core.BaseMainFragment;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.data.preferences.Preferences;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.EditSchedulePageFragment;
 import myapp.schedule.misha.myapplication.module.settings.DialogFragmentSelectTheme;
 import myapp.schedule.misha.myapplication.module.settings.lesson.CreateLessonFragment;
 import myapp.schedule.misha.myapplication.module.settings.transfer.TransferFragment;
@@ -116,7 +119,8 @@ public class MenuFragment extends BaseMainFragment implements MenuFragmentView, 
 
     @Override
     public void showFragmentCreateLesson(){
-        getParent().replaceFragment(CreateLessonFragment.newInstance());
+        Intent intent = new Intent(getActivity(), ActivityCreateLesson.class);
+        startActivity(intent);
     }
 
     public void openFragmentTransferData() {

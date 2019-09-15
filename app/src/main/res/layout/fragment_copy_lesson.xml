@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/spacing_small">
+    android:padding="@dimen/spacing_micro">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_dialog_list"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/relLayWeeks"
         android:layout_marginEnd="@dimen/spacing_normal"
-        android:layout_marginBottom="@dimen/spacing_small">
+        android:layout_marginBottom="@dimen/spacing_micro">
 
         <ImageView
             android:id="@+id/imageAdd"
@@ -67,7 +67,7 @@
             android:layout_marginTop="2dp"
             android:layout_toStartOf="@id/imageAdd"
             android:maxLines="1"
-            android:padding="@dimen/spacing_small"
+            android:padding="@dimen/spacing_micro"
             android:singleLine="true"
             android:textSize="16sp"
             tools:text="8:00-10:00" />
@@ -91,10 +91,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/linLay"
         android:layout_marginStart="@dimen/spacing_normal"
-        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_micro"
         android:layout_marginEnd="@dimen/spacing_normal"
         android:layout_marginBottom="@dimen/spacing_medium"
-        android:padding="@dimen/spacing_small">
+        android:padding="@dimen/spacing_micro">
 
         <TextView
             android:id="@+id/titleWeeks"

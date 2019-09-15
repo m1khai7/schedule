@@ -11,7 +11,7 @@
         android:layout_width="100sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_medium"
-        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_micro"
         android:layout_marginEnd="@dimen/spacing_medium"
         android:textSize="16sp"
         tools:text="2 неделя" />

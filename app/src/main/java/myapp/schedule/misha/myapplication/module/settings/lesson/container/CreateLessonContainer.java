@@ -1,4 +1,4 @@
-package myapp.schedule.misha.myapplication.module.settings;
+package myapp.schedule.misha.myapplication.module.settings.lesson.container;
 
 
 import android.os.Bundle;
@@ -12,17 +12,15 @@ import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseMainFragment;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.common.core.Container;
-import myapp.schedule.misha.myapplication.module.settings.menu.MenuFragment;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.CopyFragment;
+import myapp.schedule.misha.myapplication.module.settings.lesson.CreateLessonFragment;
 
-public class SettingsContainer extends BaseMainFragment implements Container {
+public class CreateLessonContainer extends BaseMainFragment implements Container {
 
-    private SettingsContainerPresenter presenter =  new SettingsContainerPresenter();
+    private CreateLessonContainerPresenter presenter =  new CreateLessonContainerPresenter();
 
-    public static SettingsContainer newInstance() {
-        Bundle args = new Bundle();
-        SettingsContainer fragment = new SettingsContainer();
-        fragment.setArguments(args);
-        return fragment;
+    public static CreateLessonContainer newInstance() {
+        return new CreateLessonContainer();
     }
 
     @Override
@@ -33,7 +31,7 @@ public class SettingsContainer extends BaseMainFragment implements Container {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        replaceFragment(MenuFragment.newInstance());
+        replaceFragment(CreateLessonFragment.newInstance());
     }
 
 

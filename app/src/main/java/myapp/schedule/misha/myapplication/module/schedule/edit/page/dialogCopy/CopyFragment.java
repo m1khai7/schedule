@@ -92,6 +92,15 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getContext().setTitle(R.string.title_copy_lesson);
+        if (getParent() != null) {
+            showIcon();
+        }
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new CopyFragmentPresenter();
@@ -157,8 +166,8 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
                             currentLesson.getId_educator(), currentLesson.getId_typelesson());
                     LessonDao.getInstance().updateItemByID(lessonListWeek.get(lesson.getId()));
                 }
-                getActivity().finish();
             }
+            getActivity().finish();
         }
     }
 

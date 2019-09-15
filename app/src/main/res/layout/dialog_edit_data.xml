@@ -10,9 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_normal"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:layout_marginEnd="@dimen/spacing_small"
-        android:layout_marginBottom="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_micro"
+        android:layout_marginEnd="@dimen/spacing_micro"
+        android:layout_marginBottom="@dimen/spacing_micro"
         android:textSize="19sp"
         tools:text="Преподаватель" />
 
@@ -29,8 +29,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/viewLine"
-        android:layout_marginStart="@dimen/spacing_small"
-        android:layout_marginEnd="@dimen/spacing_small"
+        android:layout_marginStart="@dimen/spacing_micro"
+        android:layout_marginEnd="@dimen/spacing_micro"
         android:hint="@string/educator"
         android:imeOptions="actionDone"
         android:paddingBottom="@dimen/spacing_normal"

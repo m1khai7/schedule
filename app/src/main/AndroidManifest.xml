@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="myapp.schedule.misha.myapplication.ScheduleApp"
+        android:name=".ScheduleApp"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_scheme"
         android:icon="@mipmap/ic_launcher_app"
@@ -44,17 +44,21 @@
         </activity>
 
         <activity
-            android:name="myapp.schedule.misha.myapplication.activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
 
         <activity
-            android:name="myapp.schedule.misha.myapplication.activity.ActivityCopyLesson"
+            android:name=".activity.ActivityCopyLesson"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".activity.ActivityCreateLesson"
+            android:screenOrientation="portrait"/>
+
         <provider
-            android:name="myapp.schedule.misha.myapplication.data.database.AppContentProvider"
+            android:name=".data.database.AppContentProvider"
             android:authorities="com.schedule.misha.myapplication.provider"
             android:exported="false"
             android:multiprocess="true" />

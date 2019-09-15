@@ -51,6 +51,13 @@ public class Lesson implements Parcelable {
 
     }
 
+    public Lesson(String idSubject, String idAudience, String idEducator, String idTypelesson) {
+        this.id_subject = idSubject;
+        this.id_audience = idAudience;
+        this.id_educator = idEducator;
+        this.id_typelesson = idTypelesson;
+    }
+
     public Lesson(int number_week, int number_day, int number_lesson, int id_subject, int id_audience, int id_educator, int id_typelesson) {
         this.number_week = String.valueOf(number_week);
         this.number_day = String.valueOf(number_day);
@@ -136,6 +143,7 @@ public class Lesson implements Parcelable {
         this.id_educator = educator;
         this.id_typelesson = typeLesson;
     }
+
     protected Lesson(Parcel in) {
         id = in.readString();
         number_week = in.readString();

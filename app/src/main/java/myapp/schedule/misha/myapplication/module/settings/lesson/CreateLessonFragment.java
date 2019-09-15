@@ -18,10 +18,6 @@ import java.util.ArrayList;
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseMainFragment;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
-import myapp.schedule.misha.myapplication.data.database.dao.AudienceDao;
-import myapp.schedule.misha.myapplication.data.database.dao.EducatorDao;
-import myapp.schedule.misha.myapplication.data.database.dao.SubjectDao;
-import myapp.schedule.misha.myapplication.data.database.dao.TypelessonDao;
 import myapp.schedule.misha.myapplication.data.preferences.Preferences;
 import myapp.schedule.misha.myapplication.entity.Audience;
 import myapp.schedule.misha.myapplication.entity.Educator;
@@ -42,8 +38,6 @@ import static myapp.schedule.misha.myapplication.module.schedule.edit.page.EditS
 import static myapp.schedule.misha.myapplication.module.schedule.edit.page.EditSchedulePageFragmentView.ITEMS;
 import static myapp.schedule.misha.myapplication.module.schedule.edit.page.EditSchedulePageFragmentView.POSITION;
 
-//Todo прочитать про наследование инкапсуляцию интерфейсы абстрактные классы и generic.
-
 public class CreateLessonFragment extends BaseMainFragment implements CreateLessonView,
         View.OnClickListener {
 
@@ -62,17 +56,14 @@ public class CreateLessonFragment extends BaseMainFragment implements CreateLess
     private ImageView imageSelectEducator;
     private ImageView imageSelectTypelesson;
     private Button btnNext;
-    private Lesson lesson;
-
 
     public static CreateLessonFragment newInstance() {
         return new CreateLessonFragment();
     }
 
-
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onResume() {
+        super.onResume();
         getContext().setTitle(R.string.title_create_lesson);
     }
 
@@ -103,7 +94,7 @@ public class CreateLessonFragment extends BaseMainFragment implements CreateLess
 
     @Override
     public void showCopyLesson(Lesson lesson) {
-        replaceFragment(CopyFragment.newInstance(lesson));
+        getParent().replaceFragment(CopyFragment.newInstance(lesson));
     }
 
     @Override

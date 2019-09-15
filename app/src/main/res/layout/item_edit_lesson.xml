@@ -46,7 +46,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_small"
+                android:layout_marginStart="@dimen/spacing_micro"
                 android:layout_marginTop="1dp"
                 android:layout_toEndOf="@id/timeOne">
 
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:paddingStart="@dimen/spacing_medium"
-                android:padding="@dimen/spacing_small"
+                android:padding="@dimen/spacing_micro"
                 android:textAppearance="?android:textAppearanceLarge"
                 tools:ignore="RtlSymmetry" />
         </RelativeLayout>
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_normal"
-            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_micro"
             android:layout_marginEnd="@dimen/spacing_normal"
             android:maxLines="1"
             android:singleLine="true"

@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/spacing_medium"
-        android:layout_marginTop="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_micro"
         android:layout_marginEnd="@dimen/spacing_medium"
         android:imeOptions="actionDone"
         android:paddingBottom="@dimen/spacing_normal"

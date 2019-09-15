@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/linLay"
         android:layout_below="@+id/dialog_textView"
-        android:layout_margin="@dimen/spacing_small"
+        android:layout_margin="@dimen/spacing_micro"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     <LinearLayout

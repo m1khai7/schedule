@@ -4,5 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="6dp"
-    android:layout_margin="@dimen/spacing_small"
+    android:layout_margin="@dimen/spacing_micro"
     android:textSize="15sp" />
