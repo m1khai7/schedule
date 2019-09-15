@@ -33,8 +33,6 @@ import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_SUBJECTS;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
 import static myapp.schedule.misha.myapplication.Constants.LIST_ITEMS;
 
-//Todo прочитать про наследование инкапсуляцию интерфейсы абстрактные классы и generic.
-
 public class DialogEditFragmentListItems extends BaseAlertDialog implements DialogEditFragmentListItemsView {
 
     private DialogEditFragmentPresenter presenter;

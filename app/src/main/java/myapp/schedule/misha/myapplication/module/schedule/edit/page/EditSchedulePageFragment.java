@@ -56,6 +56,12 @@ public class EditSchedulePageFragment extends BaseMainFragment implements EditSc
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        hideToolbarIcon();
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int positionWeek = getArguments().getInt(Constants.SELECTED_WEEK);

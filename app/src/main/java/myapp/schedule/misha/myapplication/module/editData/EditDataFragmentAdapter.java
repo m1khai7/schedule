@@ -22,7 +22,7 @@ import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
 public class EditDataFragmentAdapter extends FragmentStatePagerAdapter {
 
 
-    public EditDataFragmentAdapter(FragmentManager fm) {
+    EditDataFragmentAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -31,13 +31,13 @@ public class EditDataFragmentAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         Fragment fragment = null;
         if (position == 0) {
-            fragment = EditDataFragmentPage.newInstance(new EditDataModel(R.string.error_subject, R.string.hint_subject, R.string.delete_subject, TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES, 60, FRAGMENT_SUBJECTS, 0, ""));
+            fragment = EditDataFragmentPage.newInstance(new EditDataModel(R.string.error_subject, R.string.hint_subject, R.string.delete_subject, TYPE_TEXT_FLAG_CAP_SENTENCES, 60, FRAGMENT_SUBJECTS, 0, ""));
         } else if (position == 1) {
-            fragment = EditDataFragmentPage.newInstance(new EditDataModel(R.string.error_audience, R.string.hint_audience, R.string.delete_audience, TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES, 14, FRAGMENT_AUDIENCES, 0, ""));
+            fragment = EditDataFragmentPage.newInstance(new EditDataModel(R.string.error_audience, R.string.hint_audience, R.string.delete_audience, TYPE_TEXT_FLAG_CAP_SENTENCES, 14, FRAGMENT_AUDIENCES, 0, ""));
         } else if (position == 2) {
-            fragment = EditDataFragmentPage.newInstance(new EditDataModel(R.string.error_educator, R.string.hint_educator, R.string.delete_educator, TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_WORDS, 60, FRAGMENT_EDUCATORS, 0, ""));
+            fragment = EditDataFragmentPage.newInstance(new EditDataModel(R.string.error_educator, R.string.hint_educator, R.string.delete_educator, TYPE_TEXT_FLAG_CAP_WORDS, 60, FRAGMENT_EDUCATORS, 0, ""));
         } else if (position == 3) {
-            fragment = EditDataFragmentPage.newInstance(new EditDataModel(R.string.error_typelesson, R.string.hint_typelesson, R.string.delete_typelesson, TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES, 20, FRAGMENT_TYPELESSONS, 0, ""));
+            fragment = EditDataFragmentPage.newInstance(new EditDataModel(R.string.error_typelesson, R.string.hint_typelesson, R.string.delete_typelesson, TYPE_TEXT_FLAG_CAP_SENTENCES, 20, FRAGMENT_TYPELESSONS, 0, ""));
         }
         return fragment;
     }

@@ -1,7 +1,5 @@
 package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit.addData;
 
-import java.util.ArrayList;
-
 import myapp.schedule.misha.myapplication.common.core.BaseMainPresenter;
 import myapp.schedule.misha.myapplication.data.database.AbsDao;
 import myapp.schedule.misha.myapplication.entity.Audience;
@@ -18,21 +16,11 @@ import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
 
 public class DialogFragmentDataPresenter extends BaseMainPresenter<DialogFragmentAddDataView> implements DialogFragmentDataPresenterInterface {
 
-    private final EditDataModel editDataModel;
     private AbsDao absDao;
-    private ArrayList<SimpleItem> listItems = new ArrayList<>();
 
     public DialogFragmentDataPresenter(EditDataModel editDataModel) {
-        this.editDataModel = editDataModel;
         absDao = editDataModel.getDao();
     }
-
-
-    @Override
-    public void init() {
-        listItems = absDao.getAllData();
-    }
-
 
     @Override
     public void insert(String itemName, int type) {
@@ -51,9 +39,11 @@ public class DialogFragmentDataPresenter extends BaseMainPresenter<DialogFragmen
         }
         item.setName(itemName);
         absDao.insertItem(item);
-        listItems.add(item);
         init();
     }
 
+    @Override
+    public void init() {
 
+    }
 }

@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener;
@@ -38,6 +38,7 @@ public class ScheduleFragment extends BaseMainFragment implements ScheduleFragme
     private RecyclerView dayTabs;
     private ViewPager viewPager;
     private Spinner spinner;
+    private TextView textView;
     private CustomSpinnerAdapterWeeks customSpinnerAdapterWeeks;
     private SchedulePresenter presenter;
 
@@ -45,26 +46,32 @@ public class ScheduleFragment extends BaseMainFragment implements ScheduleFragme
     @Override
     public void onPause() {
         super.onPause();
+        getContext().getToolbar().removeView(textView);
         getContext().getToolbar().removeView(spinner);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        hideToolbarIcon();
+        setHasOptionsMenu(true);
+        textView = new TextView(getContext());
+        textView.setBackgroundColor(Color.TRANSPARENT);
         spinner = new Spinner(getContext());
         spinner.setBackgroundColor(Color.TRANSPARENT);
         spinner.setAdapter(customSpinnerAdapterWeeks);
         spinner.setOnItemSelectedListener(this);
+        presenter.init();
+        getContext().getToolbar().addView(textView);
+        textView.getLayoutParams().width = 70;
         getContext().getToolbar().addView(spinner);
         getContext().setCurrentTitle(null);
-        presenter.init();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new SchedulePresenter();
-        setHasOptionsMenu(true);
         customSpinnerAdapterWeeks = new CustomSpinnerAdapterWeeks(getContext());
         pagerAdapterTabDays = new ScheduleFragmentPagerAdapter(getChildFragmentManager());
         adapterTabDays = new TabDaysAdapter((position, view) -> presenter.onPageSelected(position));
@@ -122,7 +129,6 @@ public class ScheduleFragment extends BaseMainFragment implements ScheduleFragme
         viewPager.setCurrentItem(position);
     }
 
-
     @Override
     public void onCreateOptionsMenu(@NotNull Menu menu, @NotNull MenuInflater inflater) {
         inflater.inflate(R.menu.menu_empty, menu);
@@ -152,11 +158,8 @@ public class ScheduleFragment extends BaseMainFragment implements ScheduleFragme
 
     }
 
-    @NonNull
     @Override
     protected BasePresenter getPresenter() {
         return presenter;
     }
-
-
 }

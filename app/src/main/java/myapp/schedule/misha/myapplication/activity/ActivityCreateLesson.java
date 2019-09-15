@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseActivity;
-import myapp.schedule.misha.myapplication.module.settings.lesson.container.CreateLessonContainer;
+import myapp.schedule.misha.myapplication.module.settings.lesson.CreateLessonContainer;
 
 public class ActivityCreateLesson extends BaseActivity {
 

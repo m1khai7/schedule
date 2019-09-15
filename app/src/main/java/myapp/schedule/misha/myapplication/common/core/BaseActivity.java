@@ -95,7 +95,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Root {
         setupActionBar();
         toolbar.setNavigationOnClickListener(createDrawerClick());
     }
-
     /**
      * Disable collapsing.
      */
@@ -110,8 +109,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Root {
         collapsingToolbar.setLayoutParams(params);
         CoordinatorLayout.LayoutParams lp
                 = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
-        int height = getResources().getDimensionPixelSize(R.dimen.toolbar_height);
-        lp.height = height;
+        lp.height = getResources().getDimensionPixelSize(R.dimen.toolbar_height);
         toolbar.setTitle(currentTitle);
     }
 

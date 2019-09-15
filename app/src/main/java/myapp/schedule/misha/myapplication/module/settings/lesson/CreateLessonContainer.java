@@ -1,4 +1,4 @@
-package myapp.schedule.misha.myapplication.module.settings.lesson.container;
+package myapp.schedule.misha.myapplication.module.settings.lesson;
 
 
 import android.os.Bundle;
@@ -12,8 +12,7 @@ import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseMainFragment;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.common.core.Container;
-import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.CopyFragment;
-import myapp.schedule.misha.myapplication.module.settings.lesson.CreateLessonFragment;
+import myapp.schedule.misha.myapplication.module.settings.lesson.fragment.CreateLessonFragment;
 
 public class CreateLessonContainer extends BaseMainFragment implements Container {
 
@@ -34,8 +33,6 @@ public class CreateLessonContainer extends BaseMainFragment implements Container
         replaceFragment(CreateLessonFragment.newInstance());
     }
 
-
-    @NonNull
     @Override
     public BasePresenter getPresenter() {
         return presenter;

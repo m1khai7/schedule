@@ -4,15 +4,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.textfield.TextInputLayout;
-
 import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
-
 import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.data.database.dao.AudienceDao;
 import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
@@ -35,7 +30,6 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
     private Educator educator;
     private Typelesson typelesson;
 
-
     @Override
     public int getItemViewType(int position) {
         int codeViewType = 0;
@@ -52,7 +46,6 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
         }
         return codeViewType;
     }
-
 
     @NotNull
     @Override
@@ -120,7 +113,6 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
         }
     }
 
-
     @Override
     public int getItemCount() {
         return lessonList.size();
@@ -147,8 +139,7 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
         private final TextInputLayout audienceHint;
         private final TextInputLayout educatorHint;
 
-
-        public ViewHolderLesson(View view) {
+        ViewHolderLesson(View view) {
             super(view);
             timeEditOne = view.findViewById(R.id.timeOne);
             timeEditTwo = view.findViewById(R.id.timeTwo);
@@ -159,7 +150,6 @@ public class ScheduleListFragmentAdapter extends RecyclerView.Adapter {
             subjectHint = view.findViewById(R.id.subject_hint);
             audienceHint = view.findViewById(R.id.audience_hint);
             educatorHint = view.findViewById(R.id.educator_hint);
-
         }
     }
 }

@@ -8,17 +8,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -37,20 +34,33 @@ public class EditScheduleFragment extends BaseMainFragment implements EditSchedu
     private EditScheduleFragmentPagerAdapter pagerAdapter;
     private TabDaysAdapter adapterTabDays;
     private Spinner spinner;
+    private TextView textView;
     private ViewPager viewPager;
     private RecyclerView dayTabs;
     private CustomSpinnerAdapterWeeks customSpinnerAdapterWeeks;
     private EditSchedulePresenter presenter;
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        getContext().getToolbar().removeView(textView);
+        getContext().getToolbar().removeView(spinner);
+    }
 
     @Override
     public void onResume() {
         super.onResume();
+        hideToolbarIcon();
+        setHasOptionsMenu(true);
+        textView = new TextView(getContext());
+        textView.setBackgroundColor(Color.TRANSPARENT);
         spinner = new Spinner(getContext());
         spinner.setBackgroundColor(Color.TRANSPARENT);
         spinner.setAdapter(customSpinnerAdapterWeeks);
         spinner.setOnItemSelectedListener(this);
         presenter.init();
+        getContext().getToolbar().addView(textView);
+        textView.getLayoutParams().width = 70;
         getContext().getToolbar().addView(spinner);
         getContext().setCurrentTitle(null);
     }
@@ -69,7 +79,6 @@ public class EditScheduleFragment extends BaseMainFragment implements EditSchedu
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new EditSchedulePresenter();
-        setHasOptionsMenu(true);
         customSpinnerAdapterWeeks = new CustomSpinnerAdapterWeeks(getContext());
         pagerAdapter = new EditScheduleFragmentPagerAdapter(getChildFragmentManager());
         adapterTabDays = new TabDaysAdapter((position, view) -> presenter.onPageSelected(position));
@@ -144,13 +153,6 @@ public class EditScheduleFragment extends BaseMainFragment implements EditSchedu
     public void selectPage(int position) {
         viewPager.setCurrentItem(position);
     }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        getContext().getToolbar().removeView(spinner);
-    }
-
 
     @Override
     public boolean onOptionsItemSelected(@NotNull MenuItem item) {

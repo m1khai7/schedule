@@ -8,7 +8,6 @@
     android:orientation="vertical"
     android:padding="@dimen/spacing_middle">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,6 +30,7 @@
             android:layout_toStartOf="@+id/imageSelectSubject"
             android:layout_toEndOf="@+id/imageSubject"
             android:hint="@string/subject"
+            android:inputType="textCapSentences"
             android:textSize="@dimen/text_size_large"
             tools:text="@string/subject" />
 
@@ -66,6 +66,7 @@
             android:layout_toStartOf="@+id/imageSelectEducator"
             android:layout_toEndOf="@+id/imageEducator"
             android:hint="@string/educator"
+            android:inputType="textCapWords"
             android:textSize="@dimen/text_size_large"
             tools:text="@string/educator" />
 
@@ -102,6 +103,7 @@
             android:layout_toStartOf="@+id/imageSelectAudience"
             android:layout_toEndOf="@+id/imageAudience"
             android:hint="@string/audience"
+            android:inputType="textCapSentences"
             android:textSize="@dimen/text_size_large"
             tools:text="@string/audience" />
 
@@ -138,6 +140,7 @@
             android:layout_toStartOf="@+id/imageSelectTypelesson"
             android:layout_toEndOf="@+id/imageTypelesson"
             android:hint="@string/typelesson"
+            android:inputType="textCapSentences"
             android:textSize="@dimen/text_size_large"
             tools:text="@string/typelesson" />
 

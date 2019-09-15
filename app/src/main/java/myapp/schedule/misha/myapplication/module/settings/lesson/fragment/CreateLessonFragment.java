@@ -1,4 +1,4 @@
-package myapp.schedule.misha.myapplication.module.settings.lesson;
+package myapp.schedule.misha.myapplication.module.settings.lesson.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-
-import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -42,7 +40,6 @@ public class CreateLessonFragment extends BaseMainFragment implements CreateLess
         View.OnClickListener {
 
     private CreateLessonPresenter presenter;
-
     private EditText textSubject;
     private EditText textAudience;
     private EditText textEducator;
@@ -180,13 +177,29 @@ public class CreateLessonFragment extends BaseMainFragment implements CreateLess
             presenter.onTypelessonClick();
         }
         if (id == R.id.btnNext) {
-            presenter.onNext(textSubject.getText().toString(), textAudience.getText().toString(),
-                    textEducator.getText().toString(), textTypelesson.getText().toString());
+            checkData(textSubject.getText().toString(), textAudience.getText().toString(), textEducator.getText().toString(), textTypelesson.getText().toString());
         }
     }
 
+    private void checkData(String subject, String audience, String educator, String typelesson) {
+        if (!subject.isEmpty() && !audience.isEmpty() && !educator.isEmpty() && !typelesson.isEmpty()) {
+            presenter.onNext(subject, audience, educator, typelesson);
+        } else {
+            if (subject.isEmpty()) {
+                textSubject.setError(getString(R.string.error_subject));
+            }
+            if (audience.isEmpty()) {
+                textAudience.setError(getString(R.string.error_audience));
+            }
+            if (educator.isEmpty()) {
+                textEducator.setError(getString(R.string.error_educator));
+            }
+            if (typelesson.isEmpty()) {
+                textTypelesson.setError(getString(R.string.error_typelesson));
+            }
+        }
+    }
 
-    @NonNull
     @Override
     protected BasePresenter getPresenter() {
         return presenter;

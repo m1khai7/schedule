@@ -26,11 +26,9 @@ import myapp.schedule.misha.myapplication.data.database.dao.CallDao;
 import myapp.schedule.misha.myapplication.entity.Calls;
 import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.CopyFragmentView;
 
-
 public class DialogSelectLessonFragment extends BaseAlertDialog implements DialogSelectLessonFragmentView {
 
     private DialogSelectLessonFragmentPresenter presenter;
-
     private RecyclerView rvItems;
 
     public static DialogSelectLessonFragment newInstance() {

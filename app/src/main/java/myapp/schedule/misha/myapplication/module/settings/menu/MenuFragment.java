@@ -13,30 +13,24 @@ import android.widget.TextView;
 import org.jetbrains.annotations.NotNull;
 
 import myapp.schedule.misha.myapplication.R;
-import myapp.schedule.misha.myapplication.activity.ActivityCopyLesson;
 import myapp.schedule.misha.myapplication.activity.ActivityCreateLesson;
 import myapp.schedule.misha.myapplication.common.core.BaseMainFragment;
 import myapp.schedule.misha.myapplication.common.core.BasePresenter;
 import myapp.schedule.misha.myapplication.data.preferences.Preferences;
-import myapp.schedule.misha.myapplication.module.schedule.edit.page.EditSchedulePageFragment;
 import myapp.schedule.misha.myapplication.module.settings.DialogFragmentSelectTheme;
-import myapp.schedule.misha.myapplication.module.settings.lesson.CreateLessonFragment;
 import myapp.schedule.misha.myapplication.module.settings.transfer.TransferFragment;
 import myapp.schedule.misha.myapplication.util.DataUtil;
 
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DARK_THEME;
 
-
 public class MenuFragment extends BaseMainFragment implements MenuFragmentView, View.OnClickListener {
 
     private MenuPresenter presenter;
-
     private TextView createLesson;
     private TextView dataStartSemester;
     private TextView changeTheme;
     private TextView transferData;
     private TextView developerInfo;
-
 
     public static MenuFragment newInstance() {
         return new MenuFragment();
@@ -45,6 +39,7 @@ public class MenuFragment extends BaseMainFragment implements MenuFragmentView, 
     @Override
     public void onResume() {
         super.onResume();
+        hideToolbarIcon();
         getContext().setCurrentTitle(R.string.settings);
     }
 
@@ -147,10 +142,8 @@ public class MenuFragment extends BaseMainFragment implements MenuFragmentView, 
         }
     }
 
-
     @Override
     protected BasePresenter getPresenter() {
         return presenter;
     }
-
 }

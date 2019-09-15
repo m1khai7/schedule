@@ -1,6 +1,5 @@
 package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit.addData;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -17,8 +16,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -44,14 +41,10 @@ public class DialogFragmentAddData extends BaseAlertDialog implements TextView.O
 
     @NotNull
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         EditDataModel editDataModel = getArguments().getParcelable(FRAGMENT_EDIT_DATA);
         presenter = new DialogFragmentDataPresenter(editDataModel);
-        presenter.init();
 
-
-        @SuppressLint("InflateParams")
         View view = layoutInflater.inflate(R.layout.dialog_add_data, null);
         TextView title_dialog = view.findViewById(R.id.dialog_textView);
         inputItem = view.findViewById(R.id.dialog_editText);
@@ -96,8 +89,6 @@ public class DialogFragmentAddData extends BaseAlertDialog implements TextView.O
         }
     }
 
-
-    @NonNull
     @Override
     protected BasePresenter getPresenter() {
         return presenter;

@@ -11,13 +11,9 @@ public interface ScheduleListFragmentView extends BaseView {
 
     void openEditor();
 
-    void selectCurrentDay(int currentDay);
-
     void selectCurrentWeek(int currentWeek);
 
     void hideProgressBar();
 
     void updateList(ArrayList<Lesson> lessonList);
-
-
 }

@@ -13,6 +13,4 @@ public interface EditScheduleFragmentView extends BaseView {
     void swipePage(int position);
 
     void selectPage(int position);
-
-
 }

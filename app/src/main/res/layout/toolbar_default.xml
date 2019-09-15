@@ -9,6 +9,5 @@
     android:visibility="visible"
     app:contentInsetStartWithNavigation="0dp"
     app:layout_collapseMode="parallax"
-    app:titleTextAppearance="@style/TitleText"
-    />
+    app:titleTextAppearance="@style/TitleText" />
 

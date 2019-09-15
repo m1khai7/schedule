@@ -1,4 +1,4 @@
-package myapp.schedule.misha.myapplication.module.settings.lesson.container;
+package myapp.schedule.misha.myapplication.module.settings.lesson;
 
 
 import myapp.schedule.misha.myapplication.common.core.BaseView;

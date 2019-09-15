@@ -33,7 +33,6 @@ import myapp.schedule.misha.myapplication.util.DataUtil;
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DARK_THEME;
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.LIGHT_THEME;
 
-
 public class ScheduleListFragment extends BaseMainFragment implements ScheduleListFragmentView, AdapterView.OnItemSelectedListener, View.OnTouchListener {
 
     private Spinner spinner;
@@ -41,21 +40,34 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
     private ScheduleListPresenter presenter;
     private ScheduleListFragmentAdapter rvadapter;
     private TextView titleDay;
+    private TextView textView;
     private ArrayList<Lesson> lessons;
     private RecyclerView rvLessons;
     private String dateDay = "";
 
     @Override
+    public void onPause() {
+        super.onPause();
+        getContext().getToolbar().removeView(textView);
+        getContext().getToolbar().removeView(spinner);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
+        hideToolbarIcon();
+        setHasOptionsMenu(true);
+        textView = new TextView(getContext());
+        textView.setBackgroundColor(Color.TRANSPARENT);
         spinner = new Spinner(getContext());
         spinner.setBackgroundColor(Color.TRANSPARENT);
         spinner.setAdapter(customSpinnerAdapterWeeks);
         spinner.setOnItemSelectedListener(this);
-        spinner.setOnTouchListener(this);
+        presenter.init();
+        getContext().getToolbar().addView(textView);
+        textView.getLayoutParams().width = 70;
         getContext().getToolbar().addView(spinner);
         getContext().setCurrentTitle(null);
-
     }
 
     @Override
@@ -70,7 +82,6 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
             }
             Preferences.getInstance().selectWeek(false);
         }
-
     }
 
     @Override
@@ -82,7 +93,6 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
         super.onCreate(savedInstanceState);
         presenter = new ScheduleListPresenter();
         rvadapter = new ScheduleListFragmentAdapter();
-        setHasOptionsMenu(true);
         customSpinnerAdapterWeeks = new CustomSpinnerAdapterWeeks(getContext());
         DataUtil.hintKeyboard(getContext());
     }
@@ -94,12 +104,11 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
         rvLessons.setAdapter(rvadapter);
         titleDay = fragmentView.findViewById(R.id.titleDay);
 
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rvLessons.setLayoutManager(linearLayoutManager);
         rvLessons.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+            public void onScrolled(@NotNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 LinearLayoutManager layoutManager = (LinearLayoutManager) rvLessons.getLayoutManager();
                 int firstVisiblePosition = layoutManager != null ? (layoutManager.findFirstVisibleItemPosition() == 0 ? layoutManager.findFirstVisibleItemPosition() : layoutManager.findFirstVisibleItemPosition() - 1) : 0;
@@ -115,13 +124,6 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
         return fragmentView;
     }
 
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        presenter.init();
-    }
-
     @Override
     public void selectWeek(int position) {
         spinner.setSelection(position);
@@ -133,15 +135,9 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
     }
 
     @Override
-    public void selectCurrentDay(int currentDay) {
-
-    }
-
-    @Override
     public void selectCurrentWeek(int currentWeek) {
         spinner.setSelection(currentWeek);
     }
-
 
     @NonNull
     @Override
@@ -172,12 +168,6 @@ public class ScheduleListFragment extends BaseMainFragment implements ScheduleLi
             presenter.onButtonClicked();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        getContext().getToolbar().removeView(spinner);
     }
 
     @Override

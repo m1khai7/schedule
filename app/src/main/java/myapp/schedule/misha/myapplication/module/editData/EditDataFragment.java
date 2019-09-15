@@ -26,7 +26,6 @@ import myapp.schedule.misha.myapplication.util.DataUtil;
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DARK_THEME;
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.LIGHT_THEME;
 
-
 public class EditDataFragment extends BaseMainFragment implements EditDataFragmentView {
 
     private TabLayout tabLayout;
@@ -36,9 +35,9 @@ public class EditDataFragment extends BaseMainFragment implements EditDataFragme
     @Override
     public void onResume() {
         super.onResume();
+        hideToolbarIcon();
         getContext().setCurrentTitle(getString(R.string.title_edit_data));
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,6 @@ public class EditDataFragment extends BaseMainFragment implements EditDataFragme
         presenter = new EditDataPresenter();
         DataUtil.hintKeyboard(getContext());
     }
-
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -58,7 +56,6 @@ public class EditDataFragment extends BaseMainFragment implements EditDataFragme
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout = view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
         return view;
     }
 
@@ -82,7 +79,6 @@ public class EditDataFragment extends BaseMainFragment implements EditDataFragme
         return super.onOptionsItemSelected(item);
     }
 
-
     public Dialog onCreateDialogClear(AbsDao dao, int titleClear) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setCancelable(false).setPositiveButton(R.string.ack, (dialog, id) ->
@@ -96,12 +92,10 @@ public class EditDataFragment extends BaseMainFragment implements EditDataFragme
         return presenter;
     }
 
-
     @Override
     public void updateView() {
         if (!(viewPagerAdapter == null)) {
             viewPagerAdapter.notifyDataSetChanged();
         }
     }
-
 }
