@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class CopyLesson implements Parcelable {
 
     public static final Creator<CopyLesson> CREATOR = new Creator<CopyLesson>() {
@@ -67,6 +69,17 @@ public class CopyLesson implements Parcelable {
 
     public void setDay(int day) {
         this.day = day;
+    }
+
+    public boolean searchLesson(ArrayList<CopyLesson> listLessons, CopyLesson copyLesson) {
+        boolean contain = false;
+        for (CopyLesson lesson : listLessons) {
+            if (lesson.getDay() == copyLesson.getDay() && lesson.getTimeLesson().equals(copyLesson.getTimeLesson())) {
+                contain = true;
+                break;
+            }
+        }
+        return contain;
     }
 
     @Override

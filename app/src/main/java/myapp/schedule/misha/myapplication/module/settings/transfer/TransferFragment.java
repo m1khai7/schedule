@@ -41,6 +41,7 @@ public class TransferFragment extends BaseMainFragment implements TransferFragme
     @Override
     public void onResume() {
         super.onResume();
+        showIcon();
         getContext().setCurrentTitle(R.string.title_transfer_data);
     }
 

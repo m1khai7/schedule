@@ -128,4 +128,5 @@
     <string name="next">Далее</string>
     <string name="selected_weeks">Выбранные недели:</string>
     <string name="error_selected_week">Выберите минимум одну неделю</string>
+    <string name="already_selected_lesson">Данное занятие уже выбрано</string>
 </resources>

@@ -1,4 +1,4 @@
-package myapp.schedule.misha.myapplication.module.settings.lesson;
+package myapp.schedule.misha.myapplication.module.settings.lesson.fragment;
 
 import java.util.ArrayList;
 

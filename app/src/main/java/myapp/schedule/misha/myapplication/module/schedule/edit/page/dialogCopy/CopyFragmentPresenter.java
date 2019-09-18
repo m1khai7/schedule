@@ -2,6 +2,7 @@ package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy;
 
 import java.util.ArrayList;
 
+import myapp.schedule.misha.myapplication.R;
 import myapp.schedule.misha.myapplication.common.core.BaseMainPresenter;
 import myapp.schedule.misha.myapplication.entity.CopyLesson;
 
@@ -24,8 +25,13 @@ public class CopyFragmentPresenter extends BaseMainPresenter<CopyFragmentView> i
         copyLesson.setId(id);
         copyLesson.setDay(numberDay);
         copyLesson.setTimeLesson(timeLesson);
-        listLessonsForCopy.add(copyLesson);
-        getView().updateItemsAdapter(listLessonsForCopy);
+        if (copyLesson.searchLesson(listLessonsForCopy, copyLesson)) {
+            getView().showError(R.string.already_selected_lesson);
+        } else {
+            listLessonsForCopy.add(copyLesson);
+            getView().updateItemsAdapter(listLessonsForCopy);
+        }
+
     }
 
     @Override

@@ -98,19 +98,27 @@ public class CreateLessonFragment extends BaseMainFragment implements CreateLess
     public void onActivityResult(int requestCode, int resultOk, Intent data) {
         if (requestCode == FRAGMENT_SUBJECTS) {
             Subject subject = data.getParcelableExtra(LIST_ITEMS);
-            textSubject.setText(subject.getName());
+            textSubject.requestFocus();
+            textSubject.setText("");
+            textSubject.append(subject.getName());
         }
         if (requestCode == FRAGMENT_TYPELESSONS) {
             Typelesson typelesson = data.getParcelableExtra(LIST_ITEMS);
-            textTypelesson.setText(typelesson.getName());
+            textTypelesson.requestFocus();
+            textTypelesson.setText("");
+            textTypelesson.append(typelesson.getName());
         }
         if (requestCode == FRAGMENT_AUDIENCES) {
             Audience audience = data.getParcelableExtra(LIST_ITEMS);
-            textAudience.setText(audience.getName());
+            textAudience.requestFocus();
+            textAudience.setText("");
+            textAudience.append(audience.getName());
         }
         if (requestCode == FRAGMENT_EDUCATORS) {
             Educator educator = data.getParcelableExtra(LIST_ITEMS);
-            textEducator.setText(educator.getName());
+            textEducator.requestFocus();
+            textEducator.setText("");
+            textEducator.append(educator.getName());
         }
     }
 

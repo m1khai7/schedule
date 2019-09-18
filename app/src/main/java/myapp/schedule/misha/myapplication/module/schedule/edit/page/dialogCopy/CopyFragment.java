@@ -217,7 +217,6 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
         popupMenu.show();
     }
 
-
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.imageAdd) {
