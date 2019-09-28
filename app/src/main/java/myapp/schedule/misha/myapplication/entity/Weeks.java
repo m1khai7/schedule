@@ -109,7 +109,7 @@ public class Weeks implements Parcelable, SimpleItem {
 
     public ArrayList<Weeks> getNewListWeeks() {
         ArrayList<Weeks> listWeeks = new ArrayList<>();
-        List<String> arrayWeek = Arrays.asList(ScheduleApp.getAppContext().getResources().getStringArray(R.array.weeks));
+        String[] arrayWeek = ScheduleApp.getAppContext().getResources().getStringArray(R.array.weeks);
         for (String stringWeek : arrayWeek) {
             Weeks week = new Weeks();
             week.setName(stringWeek);

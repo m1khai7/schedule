@@ -3,5 +3,4 @@ package myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.
 public interface DialogSelectWeekFragmentPresenterInterface {
 
     void onSelectAllClicked();
-
 }

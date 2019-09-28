@@ -1,29 +1,13 @@
 <resources>
 
     <dimen name="toolbar_height">56dp</dimen>
-    <dimen name="sub_toolbar_height">48dp</dimen>
 
-    <dimen name="spacing_nano">2dp</dimen>
     <dimen name="spacing_micro">4dp</dimen>
     <dimen name="spacing_medium">8dp</dimen>
     <dimen name="spacing_middle">12dp</dimen>
     <dimen name="spacing_normal">16dp</dimen>
-    <dimen name="spacing_large">24dp</dimen>
 
-    <dimen name="text_size_micro">12sp</dimen>
-    <dimen name="text_size_small">14sp</dimen>
-    <dimen name="text_size_medium">16sp</dimen>
     <dimen name="text_size_large">18sp</dimen>
-    <dimen name="text_size_extra_large">20sp</dimen>
-
-    <dimen name="dialog_title_margin">20dp</dimen>
-
-    <dimen name="button_height">36dp</dimen>
-
-    <dimen name="dialog_button_area">58dp</dimen>
-
-    <dimen name="thumb_width">24dp</dimen>
-    <dimen name="thumb_height">24dp</dimen>
 
     <dimen name="gallery_padding">70dp</dimen>
 

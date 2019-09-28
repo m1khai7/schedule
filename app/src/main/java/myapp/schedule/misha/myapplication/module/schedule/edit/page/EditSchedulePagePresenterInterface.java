@@ -26,8 +26,13 @@ public interface EditSchedulePagePresenterInterface {
 
     void setWeek(int position);
 
-    void onButtonClicked(int id);
+    void onClickMainFab();
+
+    void onClickClearWeek();
 
     ArrayList<Lesson> getLessonList();
 
+    void onCreateDialogCopyWeek();
+
+    void onCreateDialogClearWeek();
 }

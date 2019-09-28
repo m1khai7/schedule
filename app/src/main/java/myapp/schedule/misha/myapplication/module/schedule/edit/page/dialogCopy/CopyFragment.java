@@ -41,6 +41,7 @@ import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.l
 import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.lessons.DialogSelectLessonFragmentView;
 import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.weeks.DialogSelectWeekFragment;
 import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.weeks.DialogSelectWeekFragmentView;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogEdit.DialogEditFragmentListItemsView;
 
 import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DARK_THEME;
 
@@ -87,7 +88,7 @@ public class CopyFragment extends BaseMainFragment implements CopyFragmentView,
 
     @Override
     public void openWeekDialog() {
-        DialogSelectWeekFragment dialogFragment = DialogSelectWeekFragment.newInstance(listWeeks);
+        DialogSelectWeekFragment dialogFragment = DialogSelectWeekFragment.Companion.newInstance(listWeeks, DialogSelectWeekFragmentView.LIST_ITEMS);
         dialogFragment.show(getChildFragmentManager(), DialogSelectWeekFragment.class.getSimpleName());
     }
 

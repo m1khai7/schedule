@@ -1,4 +1,6 @@
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <attr name="cardStyle" format="reference" />
     <attr name="navBottomStyle" format="reference" />
     <attr name="tabLayoutStyle" format="reference" />
@@ -11,7 +13,6 @@
     <attr name="floatButton" format="reference" />
     <attr name="lineColorStyle" format="reference" />
     <attr name="titleTextColorStyle" format="reference" />
-
 
     <style name="DarkTheme" parent="@style/Theme.AppCompat">
         <item name="windowNoTitle">true</item>

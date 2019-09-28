@@ -26,4 +26,6 @@ public interface EditSchedulePageFragmentView extends BaseView {
     void setWeek(int position);
 
     void animateFAB();
+
+    void openWeekDialog(int code);
 }

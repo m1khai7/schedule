@@ -105,7 +105,7 @@
     <string name="title_dialog_licenses">Лицензии открытого ПО</string>
     <string name="copy_other_day">Скопировать в другой день</string>
     <string name="dialog_button_copy">Скопировать</string>
-    <string name="title_dialog_rv_weeks">Выбор недель</string>
+    <string name="title_dialog_rv_weeks">Учебные недели</string>
     <string name="select_all">Все</string>
     <string name="current_day">Текущая дата</string>
     <string name="selectively_week">Выборочно</string>
@@ -126,7 +126,9 @@
     <string name="title_select_theme">Выберите тему</string>
     <string name="dialog_button_delete">Удалить</string>
     <string name="next">Далее</string>
+    <string name="delete_week">Удалить выбранные недели?</string>
     <string name="selected_weeks">Выбранные недели:</string>
     <string name="error_selected_week">Выберите минимум одну неделю</string>
     <string name="already_selected_lesson">Данное занятие уже выбрано</string>
+    <string name="copy_week">Скопировать текущую в выбранные недели?</string>
 </resources>

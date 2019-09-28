@@ -4,6 +4,8 @@ public final class Constants {
 
     public static final String SELECTED_WEEK = "SELECTED_WEEK";
 
+    public static final String FRAGMENT = "FRAGMENT";
+
     public static final String DAY = "DAY";
 
     public static final String LIST_ITEMS = "LIST_ITEMS";

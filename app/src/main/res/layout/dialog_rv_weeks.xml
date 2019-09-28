@@ -9,24 +9,24 @@
         android:id="@+id/dialog_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:layout_marginEnd="@dimen/spacing_medium"
-        android:layout_marginBottom="12dp"
+        android:layout_margin="@dimen/spacing_medium"
         android:text="@string/title_dialog_rv_weeks"
         android:textSize="19sp" />
 
     <View
+        android:id="@+id/view"
         style="?attr/lineColorStyle"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:layout_below="@+id/dialog_textView" />
+        android:layout_below="@+id/dialog_textView"
+        android:layout_marginTop="@dimen/spacing_micro" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_dialog_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/btn_select_all"
-        android:layout_below="@+id/dialog_textView"
+        android:layout_below="@+id/view"
         android:layout_margin="@dimen/spacing_micro"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -47,7 +47,6 @@
         android:layout_height="1dp"
         android:layout_above="@+id/linLay" />
 
-
     <LinearLayout
         android:id="@+id/linLay"
         android:layout_width="match_parent"
@@ -62,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/spacing_micro"
             android:padding="@dimen/spacing_medium"
-            android:text="@string/add"
+            android:text="@string/ack"
             android:textSize="14sp" />
 
         <Button

@@ -22,15 +22,14 @@ import myapp.schedule.misha.myapplication.entity.Educator;
 import myapp.schedule.misha.myapplication.entity.Lesson;
 import myapp.schedule.misha.myapplication.entity.Subject;
 import myapp.schedule.misha.myapplication.entity.Typelesson;
+import myapp.schedule.misha.myapplication.module.schedule.edit.page.dialogCopy.weeks.DialogSelectWeekFragmentView;
 
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_AUDIENCES;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_EDUCATORS;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_SUBJECTS;
 import static myapp.schedule.misha.myapplication.Constants.FRAGMENT_TYPELESSONS;
 
-
 public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePageFragmentView> implements EditSchedulePagePresenterInterface {
-
 
     private ArrayList<Lesson> lessonList = new ArrayList<>();
 
@@ -78,16 +77,8 @@ public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePag
     }
 
     @Override
-    public void onButtonClicked(int id) {
-        if (id == R.id.main_fab) {
-            getView().animateFAB();
-        }
-        if (id == R.id.copyWeek) {
-            copyWeek();
-        }
-        if (id == R.id.clearDay) {
-            Toast.makeText(context, "Пока здесь пусто :)", Toast.LENGTH_SHORT).show();
-        }
+    public void onClickMainFab() {
+        getView().animateFAB();
     }
 
     @Override
@@ -147,16 +138,21 @@ public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePag
         getView().updateView(lessonList);
     }
 
-    public void copyWeek() {
-        onCreateDialogCopyWeek().show();
+    public void onClickCopyWeek() {
+       getView().openWeekDialog(DialogSelectWeekFragmentView.COPY);
     }
 
+    @Override
+    public void onClickClearWeek() {
+        getView().openWeekDialog(DialogSelectWeekFragmentView.CLEAR);
+    }
 
-    private Dialog onCreateDialogCopyWeek() {
+    @Override
+    public void onCreateDialogCopyWeek() {
         int currentWeek = Preferences.getInstance().getSelectedWeekSchedule();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(false).setPositiveButton(R.string.ack, (dialog, id) -> {
-            for (int idWeek = 2; idWeek < 18; idWeek += 2) {
+           /* for (int idWeek = 2; idWeek < 18; idWeek += 2) {
                 lessonListWeekCurrent = LessonDao.getInstance().getLessonByWeek(currentWeek);
 
                 lessonListWeek = LessonDao.getInstance().getLessonByWeek(idWeek);
@@ -165,22 +161,29 @@ public class EditSchedulePagePresenter extends BaseMainPresenter<EditSchedulePag
                             lessonListWeekCurrent.get(idRowWeek).getId_educator(), lessonListWeekCurrent.get(idRowWeek).getId_typelesson());
                     LessonDao.getInstance().updateItemByID(lessonListWeek.get(idRowWeek));
                 }
-            }
-        }).setNegativeButton(R.string.cancel, (dialog, id) -> dialog.cancel()).setTitle("");
-        return builder.create();
-        /*   {
-            for (int idWeek = 1; idWeek < 18; idWeek += 2) {
-                lessonListWeekCurrent = LessonDao.getInstance().getLessonByWeek(currentWeek);
-                lessonListWeek = LessonDao.getInstance().getLessonByWeek(idWeek);
-                for (int idRowWeek = 0; idRowWeek < 36; idRowWeek++) {
-                    lessonListWeek.get(idRowWeek).setData(lessonListWeekCurrent.get(idRowWeek).getId_subject(), lessonListWeekCurrent.get(idRowWeek).getId_audience(),
-                            lessonListWeekCurrent.get(idRowWeek).getId_educator(), lessonListWeekCurrent.get(idRowWeek).getId_typelesson());
-                    LessonDao.getInstance().updateItemByID(lessonListWeek.get(idRowWeek));
-                }
-            }
-        }*/
+            }*/
+        }).setNegativeButton(R.string.cancel, (dialog, id) -> dialog.cancel()).setTitle(R.string.copy_week);
+        builder.create().show();
     }
 
+    @Override
+    public void onCreateDialogClearWeek() {
+        int currentWeek = Preferences.getInstance().getSelectedWeekSchedule();
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(false).setPositiveButton(R.string.ack, (dialog, id) -> {
+         /*   for (int idWeek = 2; idWeek < 18; idWeek += 2) {
+                lessonListWeekCurrent = LessonDao.getInstance().getLessonByWeek(currentWeek);
+
+                lessonListWeek = LessonDao.getInstance().getLessonByWeek(idWeek);
+                for (int idRowWeek = 0; idRowWeek < 36; idRowWeek++) {
+                    lessonListWeek.get(idRowWeek).setData(lessonListWeekCurrent.get(idRowWeek).getId_subject(), lessonListWeekCurrent.get(idRowWeek).getId_audience(),
+                            lessonListWeekCurrent.get(idRowWeek).getId_educator(), lessonListWeekCurrent.get(idRowWeek).getId_typelesson());
+                    LessonDao.getInstance().updateItemByID(lessonListWeek.get(idRowWeek));
+                }
+            }*/
+        }).setNegativeButton(R.string.cancel, (dialog, id) -> dialog.cancel()).setTitle(R.string.delete_week);
+        builder.create().show();
+    }
 
     public void updateList(int day, int positionWeek) {
         lessonList = LessonDao.getInstance().getLessonByWeekAndDay(positionWeek, day);

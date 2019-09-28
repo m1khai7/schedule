@@ -42,7 +42,6 @@ public class ScheduleFragment extends BaseMainFragment implements ScheduleFragme
     private CustomSpinnerAdapterWeeks customSpinnerAdapterWeeks;
     private SchedulePresenter presenter;
 
-
     @Override
     public void onPause() {
         super.onPause();
