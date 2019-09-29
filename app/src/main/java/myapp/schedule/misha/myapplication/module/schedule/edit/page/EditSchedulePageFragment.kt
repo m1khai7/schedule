@@ -10,7 +10,6 @@ import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import myapp.schedule.misha.myapplication.Constants
 import myapp.schedule.misha.myapplication.Constants.*
 import myapp.schedule.misha.myapplication.R
 import myapp.schedule.misha.myapplication.activity.ActivityCopyLesson
@@ -100,19 +99,18 @@ class EditSchedulePageFragment : BaseMainFragment(), EditSchedulePageFragmentVie
         return presenter!!
     }
 
-    override fun updateView(lessonList: ArrayList<Lesson>) {
-        rvadapter!!.setLessonList(lessonList)
-        rvadapter!!.notifyDataSetChanged()
+    override fun updateView(listLessons: ArrayList<Lesson>) {
+        rvadapter?.setLessonList(listLessons)
     }
 
-    override fun setWeek(selectedWeek: Int) {
-        presenter!!.setWeek(selectedWeek + 1)
+    override fun setWeek(position: Int) {
+        presenter!!.setWeek(position + 1)
     }
 
-    override fun showEditDialog(items: ArrayList<out SimpleItem>, position: Int, fragmentCode: Int) {
+    override fun showEditDialog(listItems: ArrayList<out SimpleItem>, pos: Int, fragmentCode: Int) {
         val args = Bundle()
-        args.putParcelableArrayList(EditSchedulePageFragmentView.ITEMS, items)
-        args.putInt(EditSchedulePageFragmentView.POSITION, position)
+        args.putParcelableArrayList(EditSchedulePageFragmentView.ITEMS, listItems)
+        args.putInt(EditSchedulePageFragmentView.POSITION, pos)
         args.putInt(EditSchedulePageFragmentView.FRAGMENT_CODE, fragmentCode)
         val dialogFragment = DialogEditFragmentListItems.newInstance(args)
         dialogFragment.show(childFragmentManager, DialogEditFragmentListItems::class.java.simpleName)
@@ -125,8 +123,8 @@ class EditSchedulePageFragment : BaseMainFragment(), EditSchedulePageFragmentVie
     }
 
     override fun onActivityResult(requestCode: Int, resultOk: Int, data: Intent?) {
-        val lessonList = presenter!!.lessonList
         if (requestCode == FRAGMENT_SUBJECTS) {
+            val lessonList = presenter!!.lessonList()
             val lessonPosition = data!!.getIntExtra(EditSchedulePageFragmentView.POSITION, 0)
             val subject = data.getParcelableExtra<Subject>(LIST_ITEMS)
             lessonList[lessonPosition].id_subject = subject!!.id
@@ -134,6 +132,7 @@ class EditSchedulePageFragment : BaseMainFragment(), EditSchedulePageFragmentVie
             LessonDao.getInstance().updateItemByID(lessonList[lessonPosition])
         }
         if (requestCode == FRAGMENT_TYPELESSONS) {
+            val lessonList = presenter!!.lessonList()
             val lessonPosition = data!!.getIntExtra(EditSchedulePageFragmentView.POSITION, 0)
             val typelesson = data.getParcelableExtra<Typelesson>(LIST_ITEMS)
             lessonList[lessonPosition].id_typelesson = typelesson!!.id
@@ -141,6 +140,7 @@ class EditSchedulePageFragment : BaseMainFragment(), EditSchedulePageFragmentVie
             LessonDao.getInstance().updateItemByID(lessonList[lessonPosition])
         }
         if (requestCode == FRAGMENT_AUDIENCES) {
+            val lessonList = presenter!!.lessonList()
             val lessonPosition = data!!.getIntExtra(EditSchedulePageFragmentView.POSITION, 0)
             val audience = data.getParcelableExtra<Audience>(LIST_ITEMS)
             lessonList[lessonPosition].id_audience = audience!!.id
@@ -148,20 +148,23 @@ class EditSchedulePageFragment : BaseMainFragment(), EditSchedulePageFragmentVie
             LessonDao.getInstance().updateItemByID(lessonList[lessonPosition])
         }
         if (requestCode == FRAGMENT_EDUCATORS) {
+            val lessonList = presenter!!.lessonList()
             val lessonPosition = data!!.getIntExtra(EditSchedulePageFragmentView.POSITION, 0)
             val educator = data.getParcelableExtra<Educator>(LIST_ITEMS)
             lessonList[lessonPosition].setEducatorEdit(educator!!.id)
             updateView(lessonList)
             LessonDao.getInstance().updateItemByID(lessonList[lessonPosition])
         }
-
         if (requestCode == DialogSelectWeekFragmentView.CLEAR) {
             val listWeeks = data!!.getParcelableArrayListExtra<Weeks>(LIST_ITEMS)
             for (i in listWeeks!!.indices) {
                 val week = listWeeks[i]
                 week.number = i + 1
             }
-            presenter!!.onCreateDialogClearWeek()
+            presenter!!.onCreateDialogClearWeek(listWeeks)
+        }
+        if (requestCode == DialogSelectWeekFragmentView.ACK_CLEAR) {
+            presenter!!.init()
         }
         if (requestCode == DialogSelectWeekFragmentView.COPY) {
             val listWeeks = data!!.getParcelableArrayListExtra<Weeks>(LIST_ITEMS)
@@ -169,7 +172,7 @@ class EditSchedulePageFragment : BaseMainFragment(), EditSchedulePageFragmentVie
                 val week = listWeeks[i]
                 week.number = i + 1
             }
-            presenter!!.onCreateDialogCopyWeek()
+            presenter!!.onCreateDialogCopyWeek(listWeeks)
         }
     }
 
@@ -192,7 +195,7 @@ class EditSchedulePageFragment : BaseMainFragment(), EditSchedulePageFragmentVie
     }
 
     override fun openWeekDialog(code: Int) {
-       val listWeeks = Weeks().newListWeeks
+        val listWeeks = Weeks().newListWeeks
         val dialogFragment = DialogSelectWeekFragment.newInstance(listWeeks, code)
         dialogFragment.show(childFragmentManager, DialogSelectWeekFragment::class.java.simpleName)
     }
@@ -206,10 +209,10 @@ class EditSchedulePageFragment : BaseMainFragment(), EditSchedulePageFragmentVie
     }
 
     companion object {
-        fun newInstance(selectedWeek: Int, position: Int): EditSchedulePageFragment {
+        fun newInstance(posWeek: Int, posDay: Int): EditSchedulePageFragment {
             val args = Bundle()
-            args.putInt(SELECTED_WEEK, selectedWeek)
-            args.putInt(DAY, position + 1)
+            args.putInt(SELECTED_WEEK, posWeek)
+            args.putInt(DAY, posDay + 1)
             val fragment = EditSchedulePageFragment()
             fragment.arguments = args
             return fragment

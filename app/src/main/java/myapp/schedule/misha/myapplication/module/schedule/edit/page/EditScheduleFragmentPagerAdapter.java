@@ -34,8 +34,8 @@ import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DA
 
 public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditScheduleFragmentPagerAdapter.ViewHolder> {
 
-    private List<Lesson> lessonList;
     private EditSchedulePagePresenterInterface callback;
+    private List<Lesson> lessonList;
     private Subject subject;
     private Audience audience;
     private Educator educator;
@@ -49,6 +49,7 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
 
     public void setLessonList(List<Lesson> lessonList) {
         this.lessonList = lessonList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -57,7 +58,6 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
                 .inflate(R.layout.item_edit_lesson, parent, false);
         return new ViewHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
@@ -68,7 +68,6 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
     public int getItemCount() {
         return lessonList.size();
     }
-
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             PopupMenu.OnMenuItemClickListener {
@@ -81,7 +80,6 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
         private final TextView typeLessonEdit;
         private final ImageView textViewOptions;
         private PopupMenu popup;
-
 
         public ViewHolder(View view) {
             super(view);
@@ -107,12 +105,8 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
             ArrayList<Calls> callsList = CallDao.getInstance().getAllData();
             timeEditOne.setText(callsList.get(position * 2).getName());
             timeEditTwo.setText(callsList.get((position * 2) + 1).getName());
-            if (position == 0) {
-                popup.getMenu().removeItem(R.id.copyUp);
-            }
-            if (position == 5) {
-                popup.getMenu().removeItem(R.id.copyDown);
-            }
+            if (position == 0) popup.getMenu().removeItem(R.id.copyUp);
+            if (position == 5) popup.getMenu().removeItem(R.id.copyDown);
             try {
                 subject = SubjectDao.getInstance().getItemByID(Long.parseLong(lesson.getId_subject()));
                 audience = AudienceDao.getInstance().getItemByID(Long.parseLong(lesson.getId_audience()));
@@ -120,33 +114,30 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
                 typelesson = TypelessonDao.getInstance().getItemByID(Long.parseLong(lesson.getId_typelesson()));
             } catch (NumberFormatException ignored) {
             }
+            String selectedTheme = Preferences.getInstance().getSelectedTheme();
+            textViewOptions.setImageResource(selectedTheme.equals(DARK_THEME) ? R.drawable.ic_more_vert_white : R.drawable.ic_more_vert_black);
+            if (subject == null && audience == null && educator == null && typelesson == null)
+                itemView.setBackgroundColor(selectedTheme.equals(DARK_THEME) ? ScheduleApp.getClr(R.color.black30) : ScheduleApp.getClr(R.color.whiteE0));
+            else if (subject == null || audience == null || educator == null || typelesson == null)
+                itemView.setBackgroundColor(selectedTheme.equals(DARK_THEME) ? ScheduleApp.getClr(R.color.black40) : ScheduleApp.getClr(R.color.whiteF0));
+            else
+                itemView.setBackgroundColor(selectedTheme.equals(DARK_THEME) ? ScheduleApp.getClr(R.color.black56) : ScheduleApp.getClr(R.color.white));
+
             subjectEdit.setText(subject == null ? ScheduleApp.getStr(R.string.hint_subject) : subject.getName());
             audienceEdit.setText(audience == null ? ScheduleApp.getStr(R.string.hint_audience) : audience.getName());
             educatorEdit.setText(educator == null ? ScheduleApp.getStr(R.string.hint_educator) : educator.getName());
             typeLessonEdit.setText(typelesson == null ? ScheduleApp.getStr(R.string.hint_typelesson) : typelesson.getName());
-            String selectedTheme = Preferences.getInstance().getSelectedTheme();
-            textViewOptions.setImageResource(selectedTheme.equals(DARK_THEME) ? R.drawable.ic_more_vert_white : R.drawable.ic_more_vert_black);
         }
 
         @Override
         public void onClick(View v) {
             int id = v.getId();
             int position = getAdapterPosition();
-            if (id == R.id.subject) {
-                callback.onSubjectClick(position);
-            }
-            if (id == R.id.timeLesson) {
-                callback.onAudienceClick(position);
-            }
-            if (id == R.id.day) {
-                callback.onEducatorClick(position);
-            }
-            if (id == R.id.typelesson) {
-                callback.onTypelessonClick(position);
-            }
-            if (id == R.id.menuOptions) {
-                popup.show();
-            }
+            if (id == R.id.subject) callback.onSubjectClick(position);
+            if (id == R.id.timeLesson) callback.onAudienceClick(position);
+            if (id == R.id.day) callback.onEducatorClick(position);
+            if (id == R.id.typelesson) callback.onTypelessonClick(position);
+            if (id == R.id.menuOptions) popup.show();
         }
 
         @Override
@@ -168,7 +159,6 @@ public class EditScheduleFragmentPagerAdapter extends RecyclerView.Adapter<EditS
             if (id == R.id.clearDay) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle(ScheduleApp.getStr(R.string.dialog_clear_day))
-                        .setCancelable(false)
                         .setPositiveButton(ScheduleApp.getStr(R.string.ack), (dialog, idButton) -> callback.onClearDayClick())
                         .setNegativeButton(ScheduleApp.getStr(R.string.cancel), (dialog, idButton) -> dialog.cancel());
                 builder.create().show();

@@ -30,11 +30,10 @@
         <item name="titleTextColorStyle">@style/TitleDarkStyle</item>
         <item name="android:textColorHint">@color/whiteD3</item>
         <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="colorAccent">@color/black38</item>
-        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorAccent">@color/black40</item>
         <item name="colorPrimary">@color/colorAccent</item>
-        <item name="colorPrimaryDark">@color/black38</item>
-        <item name="android:colorBackground">@color/black38</item>
+        <item name="colorPrimaryDark">@color/black48</item>
+        <item name="android:colorBackground">@color/black40</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="lineColorStyle">@style/DarkLineColorStyle</item>
@@ -59,9 +58,8 @@
         <item name="floatButton">@style/FloatButtonLightStyle</item>
         <item name="android:textColorHint">@color/greyB3</item>
         <item name="colorControlActivated">@color/green</item>
-        <item name="colorControlNormal">@color/green</item>
         <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryDark">@color/black48</item>
+        <item name="colorPrimaryDark">@color/black70</item>
         <item name="android:colorBackground">@color/white</item>
         <item name="android:textColor">@color/black20</item>
         <item name="android:textColorPrimary">@color/black20</item>
@@ -69,7 +67,7 @@
     </style>
 
     <style name="ToolBarDarkStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@color/black27</item>
+        <item name="android:background">@color/black30</item>
     </style>
 
     <style name="DarkLineColorStyle" parent="Widget.AppCompat.Toolbar">
@@ -91,7 +89,7 @@
     <style name="TabLayoutDarkStyle" parent="Widget.Design.TabLayout">
         <item name="tabSelectedTextColor">@color/colorAccent</item>
         <item name="tabTextColor">@android:color/white</item>
-        <item name="tabBackground">@color/black38</item>
+        <item name="tabBackground">@color/black40</item>
         <item name="tabIndicatorColor">@color/colorAccent</item>
     </style>
 
@@ -111,7 +109,7 @@
 
 
     <style name="TextViewNumberCallDarkStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:background">@color/black44</item>
+        <item name="android:background">@color/black42</item>
     </style>
 
     <style name="LineSpinnerItemDarkStyle" parent="Widget.AppCompat.TextView">
@@ -125,7 +123,7 @@
     </style>
 
     <style name="BottomNavigationViewDarkStyle" parent="Widget.Design.BottomNavigationView">
-        <item name="itemBackground">@color/black27</item>
+        <item name="itemBackground">@color/black30</item>
         <item name="itemIconTint">@drawable/nav_bottom_view_dark</item>
     </style>
 
@@ -143,6 +141,7 @@
         <item name="android:textColorPrimary">@color/black20</item>
         <item name="android:textColorSecondary">@color/black56</item>
     </style>
+
     <style name="LicensesLightStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textColorLink">@color/green</item>
     </style>
@@ -166,7 +165,7 @@
 
 
     <style name="ToolBarLightStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@color/whiteFA</item>
+        <item name="android:background">@color/whiteF5</item>
     </style>
 
     <style name="LightLineColorStyle" parent="Widget.AppCompat.Toolbar">
@@ -195,7 +194,7 @@
     </style>
 
     <style name="BottomNavigationLightView" parent="Widget.Design.BottomNavigationView">
-        <item name="itemBackground">@color/whiteFA</item>
+        <item name="itemBackground">@color/whiteF5</item>
         <item name="itemIconTint">@drawable/nav_bottom_view_light</item>
     </style>
 

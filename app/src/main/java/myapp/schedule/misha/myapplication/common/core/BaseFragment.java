@@ -1,10 +1,16 @@
 package myapp.schedule.misha.myapplication.common.core;
 
+import android.graphics.PorterDuff;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import myapp.schedule.misha.myapplication.R;
+import myapp.schedule.misha.myapplication.ScheduleApp;
 import myapp.schedule.misha.myapplication.common.ErrorView;
+import myapp.schedule.misha.myapplication.data.preferences.Preferences;
+
+import static myapp.schedule.misha.myapplication.data.preferences.Preferences.DARK_THEME;
 
 public abstract class BaseFragment extends Fragment {
 
@@ -63,6 +69,9 @@ public abstract class BaseFragment extends Fragment {
 
     public void showIcon() {
         getContext().getToolbar().setNavigationIcon(R.drawable.ic_arrow_back_black_24dp);
+        String nameTheme = Preferences.getInstance().getSelectedTheme();
+        getContext().getToolbar().getNavigationIcon().setColorFilter(ScheduleApp.getClr(nameTheme.equals(DARK_THEME) ?
+                R.color.white : R.color.black20), PorterDuff.Mode.SRC_ATOP);
     }
 
     public void showProgressDialog() {

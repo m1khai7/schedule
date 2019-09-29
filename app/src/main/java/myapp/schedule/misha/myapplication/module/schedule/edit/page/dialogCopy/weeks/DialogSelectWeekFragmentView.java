@@ -8,6 +8,8 @@ public interface DialogSelectWeekFragmentView extends BaseView {
 
     int CLEAR = 1234;
 
+    int ACK_CLEAR = 5156;
+
     int COPY = 4321;
 
     void selectAll();

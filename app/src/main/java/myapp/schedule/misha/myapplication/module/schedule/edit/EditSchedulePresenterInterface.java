@@ -7,6 +7,4 @@ public interface EditSchedulePresenterInterface {
     void onPageSwiped(int position);
 
     void onPageSelected(int position);
-
-
 }

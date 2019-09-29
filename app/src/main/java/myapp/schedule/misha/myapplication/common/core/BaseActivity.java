@@ -3,7 +3,9 @@ package myapp.schedule.misha.myapplication.common.core;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 
@@ -63,7 +65,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Root {
         compositeDisposable = new CompositeDisposable();
         setTheme(R.style.DarkTheme);
         String nameTheme = Preferences.getInstance().getSelectedTheme();
-
         if (nameTheme.equals(DARK_THEME)) {
             setTheme(R.style.DarkTheme);
         }
@@ -95,6 +96,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Root {
         setupActionBar();
         toolbar.setNavigationOnClickListener(createDrawerClick());
     }
+
     /**
      * Disable collapsing.
      */
@@ -191,7 +193,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Root {
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        String nameTheme = Preferences.getInstance().getSelectedTheme();
+        final Drawable upArrow = ScheduleApp.getDrwbl(R.drawable.ic_arrow_back_black_24dp);
+        upArrow.setColorFilter(ScheduleApp.getClr(nameTheme.equals(DARK_THEME)? R.color.white: R.color.black20), PorterDuff.Mode.SRC_ATOP);
+        actionBar.setHomeAsUpIndicator(upArrow);
     }
 
     public void setCurrentTitle(String title) {

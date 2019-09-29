@@ -136,11 +136,6 @@ public class Repository implements RepositoryManager {
     }
 
     @Override
-    public String getSelectedDay() {
-        return preferencesInterface.getSelectedDay();
-    }
-
-    @Override
     public String getSelectedDate() {
         return preferencesInterface.getSelectedDate();
     }

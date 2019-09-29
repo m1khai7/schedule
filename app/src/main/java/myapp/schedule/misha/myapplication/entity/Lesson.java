@@ -144,6 +144,13 @@ public class Lesson implements Parcelable {
         this.id_typelesson = typeLesson;
     }
 
+    public void clear() {
+        this.id_subject = "0";
+        this.id_audience = "0";
+        this.id_educator = "0";
+        this.id_typelesson = "0";
+    }
+
     protected Lesson(Parcel in) {
         id = in.readString();
         number_week = in.readString();

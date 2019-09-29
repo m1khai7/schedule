@@ -9,7 +9,7 @@ import myapp.schedule.misha.myapplication.ScheduleApp;
 
 public final class Preferences implements PreferencesInterface {
 
-    public static final String SELECT_DATE = "SELECT_DATE";
+    private static final String SELECT_DATE = "SELECT_DATE";
     public static final String DARK_THEME = "DARK_THEME";
     public static final String LIGHT_THEME = "LIGHT_THEME";
     private static final String PREF_KEY_FIRST_OPEN_HINT = "PREF_KEY_FIRST_OPEN_HINT";
@@ -20,13 +20,13 @@ public final class Preferences implements PreferencesInterface {
     private static final String PREF_KEY_SELECT_LESSON = "PREF_KEY_SELECT_LESSON";
     private static final String PREF_KEY_FAB_OPEN = "PREF_KEY_FAB_OPEN";
     private static final String SELECTED_WEEK = "SELECTED_WEEK";
-    private static final String SELECTED_DAY = "SELECTED_DAY";
     private static final String SELECTED_LESSON = "SELECTED_LESSON";
     private static final String CURRENT_LESSON = "CURRENT_LESSON";
     private static final String WEEK = "WEEK";
+    public String SELECT_THEME = "SELECT_THEME";
+
     private static volatile Preferences instance;
     private final SharedPreferences mPrefs;
-    public String SELECT_THEME = "SELECT_THEME";
 
     private Preferences() {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(ScheduleApp.getAppContext());
@@ -126,11 +126,6 @@ public final class Preferences implements PreferencesInterface {
     @Override
     public String getSelectedWeek() {
         return mPrefs.getString(SELECTED_WEEK, "");
-    }
-
-    @Override
-    public String getSelectedDay() {
-        return mPrefs.getString(SELECTED_DAY, "");
     }
 
     @Override

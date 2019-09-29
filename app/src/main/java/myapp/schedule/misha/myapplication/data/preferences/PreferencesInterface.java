@@ -42,8 +42,6 @@ public interface PreferencesInterface {
 
     String getSelectedWeek();
 
-    String getSelectedDay();
-
     String getSelectedDate();
 
     String getSelectedCurrentLesson();
